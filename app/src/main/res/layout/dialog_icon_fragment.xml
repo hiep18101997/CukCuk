@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIcon"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rv_icon_h">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tvCancel"
+        style="@style/FontButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tv_cancel_h"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/tv_cancel_margin_end"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/colorAccent" />
+</LinearLayout>

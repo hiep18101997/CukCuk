@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/FontBodyTextRegular"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/tv_title_margin_start"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/iv_toolbar_w"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_remove" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/FontBodyTextRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/tv_title_margin_start"
+        android:paddingTop="@dimen/edt_padding"
+        android:paddingBottom="@dimen/edt_padding"
+        android:text="@string/confirm_remove_unit" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:padding="@dimen/ln_button_padding">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/FontBodyTextOverline"
+            android:layout_width="@dimen/tv_save_w"
+            android:layout_height="@dimen/tv_save_h"
+            android:background="@drawable/bg_btn_cancel"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+        <Space
+            android:layout_width="@dimen/space_button"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tvOK"
+            style="@style/FontBodyTextOverline"
+            android:layout_width="@dimen/tv_save_w"
+            android:layout_height="@dimen/tv_save_h"
+            android:background="@drawable/bg_btn_save"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/item_menu_margin_bot"
+    android:background="@drawable/bg_item"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/item_menu_padding">
+
+    <RelativeLayout
+        android:id="@+id/rlIconContainer"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivProductIcon"
+            android:layout_width="@dimen/image_circle_size"
+            android:layout_height="@dimen/image_circle_size"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvCost"
+        style="@style/FontCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/tv_margin_start"
+        android:textColor="@color/boulder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rlIconContainer" />
+
+    <TextView
+        android:id="@+id/tvState"
+        style="@style/FontBodyTextOverline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/tv_state_margin_start"
+        android:background="@drawable/bg_dish_state"
+        android:paddingStart="@dimen/tv_state_padding_start"
+        android:paddingTop="@dimen/tv_state_padding_top"
+        android:paddingEnd="@dimen/tv_state_padding_end"
+        android:paddingBottom="@dimen/tv_state_padding_bot"
+        android:text="@string/stop_sell"
+        android:textColor="@color/color_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvCost" />
+
+    <ImageView
+        android:id="@+id/ivDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_next" />
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/FontBodyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/tv_margin_start"
+        android:textColor="@color/emperor"
+        app:layout_constraintStart_toEndOf="@+id/rlIconContainer"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

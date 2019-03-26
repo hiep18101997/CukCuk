@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0973B9</color>
+    <color name="colorPrimaryDark">#0973B9</color>
+    <color name="colorAccent">#0973B9</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_red">#C62C2C</color>
+    <color name="emperor">#555555</color>
+    <color name="boulder">#757575</color>
+    <color name="color_background_main">#cccccc</color>
+    <color name="color_primary_40">#9dc7e3</color>
+    <color name="gray">#C7C6BD</color>
+    <color name="blue_trans">#BA0B559E</color>
+
+    <array name="arr_colors">
+        <item>#26C6DA</item>
+        <item>#0097A7</item>
+        <item>#0D47A1</item>
+        <item>#1565C0</item>
+        <item>#039BE5</item>
+        <item>#64B5F6</item>
+        <item>#FF6F00</item>
+        <item>#FFA000</item>
+        <item>#FFB300</item>
+        <item>#CF9A0A</item>
+        <item>#8D6E63</item>
+        <item>#6D4C41</item>
+        <item>#D32F2F</item>
+        <item>#FF1744</item>
+        <item>#F44336</item>
+        <item>#EC407A</item>
+        <item>#AD1457</item>
+        <item>#6A1B9A</item>
+        <item>#AB47BC</item>
+        <item>#BA68C8</item>
+        <item>#00695C</item>
+        <item>#00897B</item>
+        <item>#4DB6AC</item>
+        <item>#2E7D32</item>
+        <item>#43A047</item>
+        <item>#64DD17</item>
+        <item>#212121</item>
+        <item>#5F7C8A</item>
+        <item>#B0BEC5</item>
+        <item>#455A64</item>
+        <item>#607D8B</item>
+        <item>#90A4AE</item>
+    </array>
+</resources>

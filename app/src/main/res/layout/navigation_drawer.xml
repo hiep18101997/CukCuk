@@ -1,0 +1,410 @@
+<com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_view"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/header_h">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_navi" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/blue_trans" />
+
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/tv_navi_padding"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_avatar" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivAvatar"
+                    android:layout_marginTop="@dimen/tv_navi_padding"
+                    android:gravity="center"
+                    android:text="@string/hiep"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_sell" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/sell"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_menu_navi" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/menu"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_diagram" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/report"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_thick"
+                android:background="@color/gray" />
+
+            <TextView
+                style="@style/FontCaption"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tv_title_navi_h"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_navi_padding"
+                android:text="@string/setting"
+                android:textColor="@color/color_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_sync" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/sync"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_setting" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/setting"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_link" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/connect"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_thick"
+                android:background="@color/gray" />
+
+            <TextView
+                style="@style/FontCaption"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tv_title_navi_h"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_navi_padding"
+                android:text="@string/help"
+                android:textColor="@color/color_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_notification" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/noti"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_share" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/suggest"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_rate" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/rate"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_envelope" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/feed_back"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_info" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/info"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_thick"
+                android:background="@color/gray" />
+
+            <TextView
+                style="@style/FontCaption"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tv_title_navi_h"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_navi_padding"
+                android:text="@string/account"
+                android:textColor="@color/color_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_key" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/change_pass"
+                    android:textColor="@color/color_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/iv_navi_w"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/iv_navi_w"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_logout" />
+
+                <TextView
+                    style="@style/FontBodyTextRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/tv_navi_padding_start"
+                    android:text="@string/logout"
+                    android:textColor="@color/color_black" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</com.google.android.material.navigation.NavigationView>
