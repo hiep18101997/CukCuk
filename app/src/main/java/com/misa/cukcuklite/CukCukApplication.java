@@ -2,6 +2,8 @@ package com.misa.cukcuklite;
 
 import android.app.Application;
 
+import com.facebook.FacebookSdk;
+
 import androidx.appcompat.app.AppCompatDelegate;
 
 /**
@@ -13,6 +15,7 @@ public class CukCukApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        FacebookSdk.sdkInitialize(getApplicationContext());
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 }

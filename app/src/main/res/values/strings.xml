@@ -1,4 +1,5 @@
 <resources>
+    <string name="facebook_app_id">1272175256254255</string> <string name="fb_login_protocol_scheme">fb1272175256254255</string>
     <string name="app_name">CukCukLite</string>
     <string name="image_view">ImageView</string>
     <string name="stop_sell">Ngừng bán</string>
@@ -46,4 +47,8 @@
     <string name="change_pass">Đặt mật khẩu</string>
     <string name="menu">Thực đơn</string>
     <string name="fragment_cal">Fragment Cal</string>
+    <string name="title_cancel_short">Hủy</string>
+    <string name="take_money">Thu tiền</string>
+    <string name="content_login_google">Đăng nhập bằng Google</string>
+    <string name="content_login_facebook">Đăng nhập bằng Facebook</string>
 </resources>
