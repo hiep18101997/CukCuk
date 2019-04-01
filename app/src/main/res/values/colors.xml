@@ -9,9 +9,18 @@
     <color name="emperor">#555555</color>
     <color name="boulder">#757575</color>
     <color name="color_background_main">#cccccc</color>
-    <color name="color_primary_40">#9dc7e3</color>
+    <color name="color_primary_40">#ff9dc7e3</color>
     <color name="gray">#C7C6BD</color>
     <color name="blue_trans">#BA0B559E</color>
+    <color name="color_gray">#ffededed</color>
+    <color name="color_divider">#ffc7c6bd</color>
+    <color name="color_text_main">#212121</color>
+    <color name="color_disable">#ababab</color>
+    <color name="background_color_gray">#ededed</color>
+    <color name="btn_login_google_dark">#c43030</color>
+    <color name="btn_login_google">#c43030</color>
+    <color name="btn_login_facebook_dark">#063987</color>
+    <color name="btn_login_facebook">#063987</color>
 
     <array name="arr_colors">
         <item>#26C6DA</item>

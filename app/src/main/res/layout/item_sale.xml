@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_order_default_height"
+    android:layout_marginBottom="1dp"
+    android:background="@drawable/bg_white_no_border_with_radius"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_large_small"
+        android:paddingEnd="@dimen/margin_medium">
+
+        <RelativeLayout
+            android:id="@+id/realColorTable"
+            android:layout_width="@dimen/size_icon_table_sale"
+            android:layout_height="@dimen/size_icon_table_sale">
+
+            <ImageView
+                android:id="@+id/imgBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_view" />
+
+            <TextView
+                android:id="@+id/tvTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_size_large"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/size_icon_table_sale"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal_small"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:drawableEnd="@drawable/ic_person"
+                android:drawablePadding="-6.0dp"
+                android:gravity="center"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/font_size_medium"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_divider" />
+
+    <LinearLayout
+        android:layout_width="0.0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rlContent"
+            android:layout_width="match_parent"
+            android:layout_height="0.0dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_white_no_border_no_radius_selector"
+            android:paddingTop="@dimen/margin_large_small"
+            tools:ignore="NestedWeights">
+
+            <ImageView
+                android:id="@+id/imgGotoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_small_small"
+                android:contentDescription="@string/image_view"
+                app:srcCompat="@drawable/ic_chevron_right" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_toStartOf="@+id/imgGotoDetail"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="2"
+                android:textColor="@color/color_text_main"
+                android:textSize="@dimen/font_size_medium_small" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvContent"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_toStartOf="@+id/imgGotoDetail"
+                android:textColor="@color/color_disable"
+                android:textSize="@dimen/font_size_medium_small" />
+        </RelativeLayout>
+
+        <include layout="@layout/view_vertical_divider" />
+
+        <LinearLayout
+            android:id="@+id/lnButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_button_default"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/lnCancel"
+                android:layout_width="0.0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/bg_gray_no_border_no_radius_selector"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_normal_small"
+                android:paddingBottom="@dimen/margin_normal_small">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_view"
+                    app:srcCompat="@drawable/ic_close" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:text="@string/title_cancel_short"
+                    android:textSize="@dimen/font_size_medium_small" />
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_divider" />
+
+            <LinearLayout
+                android:id="@+id/lnTakeMoney"
+                android:layout_width="0.0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/bg_gray_no_border_no_radius_selector"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_normal_small"
+                android:paddingBottom="@dimen/margin_normal_small">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_view"
+                    app:srcCompat="@drawable/ic_money" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:text="@string/take_money"
+                    android:textSize="@dimen/font_size_medium_small" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

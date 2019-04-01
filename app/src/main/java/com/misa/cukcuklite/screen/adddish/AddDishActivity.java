@@ -102,7 +102,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Bắt sự kiện
+     * Mục đích method: Bắt sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
