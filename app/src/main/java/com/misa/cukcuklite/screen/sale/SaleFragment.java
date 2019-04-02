@@ -44,17 +44,23 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     private void initComp() {
         mPendingOrders = new ArrayList<>();
-        Dish dish=new Dish.Builder().setName("Thịt chó").build();
+        Dish dish1=new Dish.Builder().setName("Kẹo lạc").build();
+        Dish dish2=new Dish.Builder().setName("Nước chè").build();
+        Dish dish3=new Dish.Builder().setName("Coca").build();
+        Dish dish4=new Dish.Builder().setName("Sting").build();
+        Dish dish5=new Dish.Builder().setName("Bò húc").build();
+        Dish dish6=new Dish.Builder().setName("Cháo gà").build();
         HashMap<Dish,Integer> hashMap=new HashMap<>();
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
-        hashMap.put(dish,6);
+        hashMap.put(dish1,6);
+        hashMap.put(dish2,5);
+        hashMap.put(dish3,4);
+        hashMap.put(dish4,3);
+        hashMap.put(dish5,2);
+        hashMap.put(dish6,1);
+        mPendingOrders.add(new PendingOrder(8,8,hashMap));
+        mPendingOrders.add(new PendingOrder(8,8,hashMap));
+        mPendingOrders.add(new PendingOrder(8,8,hashMap));
+        mPendingOrders.add(new PendingOrder(8,8,hashMap));
         mPendingOrders.add(new PendingOrder(8,8,hashMap));
         mPendingOrders.add(new PendingOrder(8,8,hashMap));
         mPendingOrders.add(new PendingOrder(8,8,hashMap));

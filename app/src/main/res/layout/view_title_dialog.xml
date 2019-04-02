@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/EditTextDefaultSingleLine"
-        android:layout_width="0.0dip"
+        style="@style/TextViewDefaultSingleLine"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"

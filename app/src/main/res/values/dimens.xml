@@ -69,7 +69,7 @@
     <dimen name="tv_navi_padding_start">24dp</dimen>
     <dimen name="navi_padding_start">8dp</dimen>
     <dimen name="margin_extra_large">25dp</dimen>
-    <dimen name="item_order_default_height">180dp</dimen>
+    <dimen name="item_order_default_height">140dp</dimen>
     <dimen name="radius_default">3dp</dimen>
     <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_large_small">16dp</dimen>

@@ -19,28 +19,28 @@ public class PendingOrder {
         mListDish = builder.mListDish;
     }
 
-    public int getmNumberTable() {
+    public int getNumberTable() {
         return mNumberTable;
     }
 
-    public void setmNumberTable(int mNumberTable) {
-        this.mNumberTable = mNumberTable;
+    public void setNumberTable(int numberTable) {
+        mNumberTable = numberTable;
     }
 
-    public int getmNumberPerson() {
+    public int getNumberPerson() {
         return mNumberPerson;
     }
 
-    public void setmNumberPerson(int mNumberPerson) {
-        this.mNumberPerson = mNumberPerson;
+    public void setNumberPerson(int numberPerson) {
+        mNumberPerson = numberPerson;
     }
 
-    public HashMap<Dish, Integer> getmListDish() {
+    public HashMap<Dish, Integer> getListDish() {
         return mListDish;
     }
 
-    public void setmListDish(HashMap<Dish, Integer> mListDish) {
-        this.mListDish = mListDish;
+    public void setListDish(HashMap<Dish, Integer> listDish) {
+        mListDish = listDish;
     }
 
     public static class Builder {
@@ -48,22 +48,19 @@ public class PendingOrder {
         private int mNumberPerson;
         private HashMap<Dish, Integer> mListDish;
 
-        public Builder setmNumberTable(int mNumberTable) {
-            this.mNumberTable = mNumberTable;
+        public Builder setNumberTable(int numberTable) {
+            mNumberTable = numberTable;
             return this;
         }
 
-        public Builder setmNumberPerson(int mNumberPerson) {
-            this.mNumberPerson = mNumberPerson;
+        public Builder setNumberPerson(int numberPerson) {
+            mNumberPerson = numberPerson;
             return this;
         }
 
-        public Builder setmListDish(HashMap<Dish, Integer> mListDish) {
-            this.mListDish = mListDish;
+        public Builder setListDish(HashMap<Dish, Integer> listDish) {
+            mListDish = listDish;
             return this;
-        }
-        public PendingOrder build() {
-            return new PendingOrder(this);
         }
     }
 }

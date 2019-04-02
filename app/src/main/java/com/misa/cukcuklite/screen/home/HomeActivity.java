@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
@@ -20,12 +22,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-
-public class HomeActivity extends AppCompatActivity implements IHomeContract.IView {
+public class HomeActivity extends AppCompatActivity implements IHomeContract.IView, View.OnClickListener {
     private static final String TAG = HomeActivity.class.getName();
     private IHomeContract.IPresenter mPresenter;
     private DrawerLayout mDrawerLayout;
     private TextView tvTitle;
+    private LinearLayout lnMenu, lnSale;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
@@ -38,15 +40,22 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initComponent();
+        initListener();
         setupToolbar();
         loadFragment(SaleFragment.newInstance());
     }
 
+    private void initListener() {
+        lnSale.setOnClickListener(this);
+        lnMenu.setOnClickListener(this);
+    }
+
     private void initComponent() {
+        lnMenu = findViewById(R.id.lnMenu);
+        lnSale = findViewById(R.id.lnSale);
         mDrawerLayout = findViewById(R.id.drawer);
         tvTitle = findViewById(R.id.titleToolbar);
         mPresenter = new HomePresenter(this);
-
     }
 
     /**
@@ -102,8 +111,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
 
     private void loadFragment(Fragment fragment) {
         if (fragment instanceof MenuFragment) {
-          tvTitle.setText(getString(R.string.menu));
-        }else if (fragment instanceof SaleFragment){
+            tvTitle.setText(getString(R.string.menu));
+        } else if (fragment instanceof SaleFragment) {
             tvTitle.setText("Bán hàng");
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -111,5 +120,19 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         transaction.replace(R.id.frHome, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.lnSale:
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                loadFragment(SaleFragment.newInstance());
+                break;
+            case R.id.lnMenu:
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                loadFragment(MenuFragment.newInstance());
+                break;
+        }
     }
 }

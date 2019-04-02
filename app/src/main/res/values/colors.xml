@@ -12,6 +12,7 @@
     <color name="color_primary_40">#ff9dc7e3</color>
     <color name="gray">#C7C6BD</color>
     <color name="gray_dark">#9D9D9D</color>
+    <color name="gray_light">#7A7A7A</color>
     <color name="blue_trans">#BA0B559E</color>
     <color name="color_gray">#ffededed</color>
     <color name="color_divider">#ffc7c6bd</color>
@@ -32,6 +33,7 @@
     <color name="negative_btn_text_color">#fff53232</color>
     <color name="gray_border_color">#ffd6d6d6</color>
     <color name="color_action_bar_selected">#ff3a89be</color>
+    <color name="bg_rv_sale">#D1D6DC</color>
 
     <array name="arr_colors">
         <item>#26C6DA</item>

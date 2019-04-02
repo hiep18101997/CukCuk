@@ -54,6 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/iv_navi_w"
+                android:id="@+id/lnSale"
                 android:background="@drawable/bg_item"
                 android:clickable="true"
                 android:focusable="true"
@@ -80,6 +81,7 @@
                 android:layout_height="@dimen/iv_navi_w"
                 android:background="@drawable/bg_item"
                 android:clickable="true"
+                android:id="@+id/lnMenu"
                 android:focusable="true"
                 android:orientation="horizontal">
 
