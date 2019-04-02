@@ -19,9 +19,9 @@ public class MenuPresenter implements IMenuContract.IPresenter {
     private Context mContext;
     private IMenuContract.IView mView;
 
-    public MenuPresenter(IMenuContract.IView view) {
+    public MenuPresenter(IMenuContract.IView view,Context context) {
         mView = view;
-        mContext = (Context) view;
+        mContext = context;
     }
 
     /**

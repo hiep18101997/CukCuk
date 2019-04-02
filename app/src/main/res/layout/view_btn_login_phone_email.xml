@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/lnLoginFacebook"
+    android:id="@+id/lnLoginPhoneEmail"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_btn_login"
     android:layout_marginStart="@dimen/btn_login_margin"
     android:layout_marginTop="@dimen/btn_login_margin_top"
     android:layout_marginEnd="@dimen/btn_login_margin"
-    android:background="@drawable/selector_btn_login_facebook"
+    android:background="@drawable/selector_btn_login_phone_email"
+    android:baselineAligned="false"
     android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="@dimen/width_icon_btn_login"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_icon_login_fb"
+        android:background="@drawable/bg_icon_login_phone_email"
         android:gravity="center">
 
         <ImageView
@@ -21,13 +22,15 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/image_view"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_facebook" />
+            app:srcCompat="@drawable/ic_phone" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1.0">
+        android:layout_weight="1.0"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
         <TextView
             style="@style/FontBodyTextRegular"
@@ -35,8 +38,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
-            android:text="@string/content_login_facebook"
+            android:text="@string/content_login_phone_email_top"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+            style="@style/FontBodyTextRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:text="@string/content_login_phone_email_bot"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_login_text_size" />
     </LinearLayout>
 </LinearLayout>

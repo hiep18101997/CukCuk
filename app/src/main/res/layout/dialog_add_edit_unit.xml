@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:id="@+id/dialog_note_root"
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include layout="@layout/view_title_dialog" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_normal_small"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_normal_small"
+        android:paddingBottom="@dimen/margin_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_height_message_dialog">
+
+        <EditText
+            android:textSize="@dimen/font_size_medium"
+            android:id="@+id/etUnitName"
+            android:background="@android:color/transparent"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_unit_input"
+            android:scrollHorizontally="true"
+            style="@style/EditTextDefaultSingleLine">
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <include layout="@layout/view_button_dialog" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/button_background_gray_light"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textColor="@color/color_text_dark_gray"
+            android:id="@+id/btnCancel"
+            android:background="@drawable/bg_transparent_no_border_no_radius_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_cancel_1"
+            android:layout_weight="1.0"
+            android:textAllCaps="true" />
+
+        <include
+            android:id="@+id/deleteDivider"
+            layout="@layout/view_horizontal_divider" />
+
+        <Button
+            android:textColor="@color/color_red"
+            android:id="@+id/btnDelete"
+            android:background="@drawable/bg_transparent_no_border_no_radius_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            android:layout_weight="1.0"
+            android:textAllCaps="true" />
+
+        <include layout="@layout/view_horizontal_divider" />
+
+        <Button
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/btnSave"
+            android:background="@drawable/bg_transparent_no_border_no_radius_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:layout_weight="1.0"
+            android:textAllCaps="true" />
+    </LinearLayout>
+</LinearLayout>

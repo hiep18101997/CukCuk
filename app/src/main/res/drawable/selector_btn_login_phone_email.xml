@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/btn_login_google_dark" />
+            <solid android:color="@color/btn_login_phone_email_dark" />
             <corners android:radius="6dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/btn_login_google" />
+            <solid android:color="@color/btn_login_phone_email" />
             <corners android:radius="6dp" />
         </shape>
     </item>

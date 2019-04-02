@@ -5,22 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.screen.adddish.AddDishActivity;
 import com.misa.cukcuklite.screen.editdish.EditDishActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,21 +33,27 @@ import static com.misa.cukcuklite.AppConstant.ACTION_REMOVE_DISH;
  * <p>
  * ‐ @created_by Hoàng Hiệp on 3/27/2019
  */
-public class MenuActivity extends AppCompatActivity implements IMenuContract.IView, MenuAdapter.OnItemClick {
-    private static final String TAG = MenuActivity.class.getName();
+public class MenuFragment extends Fragment implements IMenuContract.IView, MenuAdapter.OnItemClick {
+    private static final String TAG = MenuFragment.class.getName();
     private IMenuContract.IPresenter mPresenter;
     private MenuAdapter mAdapter;
     private List<Dish> mDishes;
     private BroadcastReceiver mReceiver;
     private DrawerLayout mDrawerLayout;
 
+    public static MenuFragment newInstance() {
+        return new MenuFragment();
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        mPresenter = new MenuPresenter(this);
-        mPresenter.getAllDish();
-        setupToolbar();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initComponent();
         initBroadcastReceiver();
     }
@@ -69,7 +74,7 @@ public class MenuActivity extends AppCompatActivity implements IMenuContract.IVi
                 mPresenter.getAllDish();
             }
         };
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mReceiver, filter);
     }
 
     /**
@@ -78,28 +83,14 @@ public class MenuActivity extends AppCompatActivity implements IMenuContract.IVi
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initComponent() {
-        mDrawerLayout = findViewById(R.id.drawer);
+        mDrawerLayout = getView().findViewById(R.id.drawer);
         mDishes = new ArrayList<>();
-        mPresenter = new MenuPresenter(this);
+        mPresenter = new MenuPresenter(this,getContext());
         mPresenter.getAllDish();
-        RecyclerView recyclerView = findViewById(R.id.rvMenu);
-        mAdapter = new MenuAdapter(this, mDishes, this);
+        RecyclerView recyclerView = getView().findViewById(R.id.rvMenu);
+        mAdapter = new MenuAdapter(getContext(), mDishes, this);
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    /**
-     * Mục dích method: Khởi tạo và cài đặt toolbar
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayShowTitleEnabled(false);
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     /**
@@ -109,27 +100,7 @@ public class MenuActivity extends AppCompatActivity implements IMenuContract.IVi
      */
     @Override
     public void onClick(Dish dish) {
-        startActivity(EditDishActivity.getIntent(this, dish));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add:
-                startActivity(AddDishActivity.getIntent(this));
-                break;
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            default:
-                break;
-        }
-        return true;
+        startActivity(EditDishActivity.getIntent(getContext(), dish));
     }
 
     /**
@@ -148,8 +119,8 @@ public class MenuActivity extends AppCompatActivity implements IMenuContract.IVi
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+    public void onDestroyView() {
+        super.onDestroyView();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mReceiver);
     }
 }

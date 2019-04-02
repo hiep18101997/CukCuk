@@ -80,7 +80,21 @@
     <dimen name="font_size_medium_small">17sp</dimen>
     <dimen name="height_button_default">48dp</dimen>
     <dimen name="margin_small">3dp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
     <dimen name="height_btn_login">55dp</dimen>
     <dimen name="width_icon_btn_login">50dp</dimen>
     <dimen name="margin_small_small">1.5dp</dimen>
+    <dimen name="btn_login_text_size">18sp</dimen>
+    <dimen name="iv_logo_w">350dp</dimen>
+    <dimen name="iv_logo_margin_top">48dp</dimen>
+    <dimen name="btn_login_margin">16dp</dimen>
+    <dimen name="size_title_bar">48dp</dimen>
+    <dimen name="size_title_bar_small">40dp</dimen>
+    <dimen name="ln_input_margin_top">30dp</dimen>
+    <dimen name="margin_large">20dp</dimen>
+    <dimen name="btn_login_margin_top">8dp</dimen>
+    <dimen name="iv_lite_w">80dp</dimen>
+    <dimen name="iv_lite_h">80dp</dimen>
+    <dimen name="min_height_message_dialog">85dp</dimen>
+    <dimen name="height_button_dialog">40dp</dimen>
 </resources>

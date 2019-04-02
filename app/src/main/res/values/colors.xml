@@ -11,6 +11,7 @@
     <color name="color_background_main">#cccccc</color>
     <color name="color_primary_40">#ff9dc7e3</color>
     <color name="gray">#C7C6BD</color>
+    <color name="gray_dark">#9D9D9D</color>
     <color name="blue_trans">#BA0B559E</color>
     <color name="color_gray">#ffededed</color>
     <color name="color_divider">#ffc7c6bd</color>
@@ -18,9 +19,19 @@
     <color name="color_disable">#ababab</color>
     <color name="background_color_gray">#ededed</color>
     <color name="btn_login_google_dark">#c43030</color>
-    <color name="btn_login_google">#c43030</color>
+    <color name="btn_login_google">#DC4C4C</color>
     <color name="btn_login_facebook_dark">#063987</color>
-    <color name="btn_login_facebook">#063987</color>
+    <color name="btn_login_facebook">#0D47A1</color>
+    <color name="btn_login_phone_email_dark">#0EB48C</color>
+    <color name="btn_login_phone_email">#14C094</color>
+    <color name="divider_color">#c7c6bd</color>
+    <color name="color_primary_light">#0199fc</color>
+    <color name="my_primary_dark">#ff005082</color>
+    <color name="button_background_gray_light">#ffebebeb</color>
+    <color name="color_text_dark_gray">#ff373737</color>
+    <color name="negative_btn_text_color">#fff53232</color>
+    <color name="gray_border_color">#ffd6d6d6</color>
+    <color name="color_action_bar_selected">#ff3a89be</color>
 
     <array name="arr_colors">
         <item>#26C6DA</item>

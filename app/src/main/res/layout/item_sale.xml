@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="0"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/font_size_large"
                 android:textStyle="bold" />
@@ -52,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
                 android:drawableEnd="@drawable/ic_person"
-                android:drawablePadding="-6.0dp"
+                android:drawablePadding="-6dp"
                 android:gravity="center"
                 android:textColor="@color/color_gray"
                 android:textSize="@dimen/font_size_medium"
@@ -63,7 +62,7 @@
     <include layout="@layout/view_horizontal_divider" />
 
     <LinearLayout
-        android:layout_width="0.0dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.0"
         android:orientation="vertical">
@@ -71,7 +70,7 @@
         <RelativeLayout
             android:id="@+id/rlContent"
             android:layout_width="match_parent"
-            android:layout_height="0.0dp"
+            android:layout_height="0dp"
             android:layout_weight="1.0"
             android:background="@drawable/bg_white_no_border_no_radius_selector"
             android:paddingTop="@dimen/margin_large_small"
@@ -123,7 +122,7 @@
 
             <LinearLayout
                 android:id="@+id/lnCancel"
-                android:layout_width="0.0dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:background="@drawable/bg_gray_no_border_no_radius_selector"
@@ -150,7 +149,7 @@
 
             <LinearLayout
                 android:id="@+id/lnTakeMoney"
-                android:layout_width="0.0dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:background="@drawable/bg_gray_no_border_no_radius_selector"

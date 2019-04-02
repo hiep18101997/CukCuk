@@ -13,14 +13,13 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMenu"
+        <FrameLayout
+            android:id="@+id/frHome"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent">
 
+        </FrameLayout>
     </LinearLayout>
 
     <include layout="@layout/navigation_drawer" />
-
 </androidx.drawerlayout.widget.DrawerLayout>

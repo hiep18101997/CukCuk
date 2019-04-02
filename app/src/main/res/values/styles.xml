@@ -61,4 +61,45 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
+    <style name="EditTextDefaultSingleLine" parent="@android:style/TextAppearance.Widget.EditText">
+        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textColor">@color/color_text_main</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/margin_medium_small</item>
+        <item name="android:paddingTop">@dimen/margin_normal</item>
+        <item name="android:paddingRight">@dimen/margin_medium_small</item>
+        <item name="android:paddingBottom">@dimen/margin_normal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:drawablePadding">@dimen/margin_normal_small</item>
+        <item name="android:inputType">textCapSentences</item>
+    </style>
+    <style name="ButtonDefault" parent="@android:style/TextAppearance.Widget.Button">
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_primary_no_border_with_radius_selector</item>
+        <item name="android:paddingTop">@dimen/margin_medium</item>
+        <item name="android:paddingBottom">@dimen/margin_medium</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="DialogNegativeButtonStyle">
+        <item name="android:textColor">@drawable/selector_negative_btn_text_color</item>
+        <item name="android:background">@drawable/selector_btn_negative</item>
+        <item name="android:paddingLeft">@dimen/margin_large_small</item>
+        <item name="android:paddingTop">@dimen/margin_normal</item>
+        <item name="android:paddingRight">@dimen/margin_large_small</item>
+        <item name="android:paddingBottom">@dimen/margin_normal</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+    <style name="DialogPositiveButtonStyle">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:background">@drawable/selector_btn_positive</item>
+        <item name="android:paddingLeft">@dimen/margin_large_small</item>
+        <item name="android:paddingTop">@dimen/margin_normal</item>
+        <item name="android:paddingRight">@dimen/margin_large_small</item>
+        <item name="android:paddingBottom">@dimen/margin_normal</item>
+        <item name="android:minWidth">0.0dip</item>
+        <item name="android:minHeight">0.0dip</item>
+    </style>
 </resources>

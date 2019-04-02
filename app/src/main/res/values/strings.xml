@@ -51,4 +51,18 @@
     <string name="take_money">Thu tiền</string>
     <string name="content_login_google">Đăng nhập bằng Google</string>
     <string name="content_login_facebook">Đăng nhập bằng Facebook</string>
+    <string name="content_login_phone_email_top">Đăng nhập bằng</string>
+    <string name="content_login_phone_email_bot">Số điện thoại hoặc email</string>
+    <string name="app_name_up_case">CUKCUK LITE</string>
+    <string name="login_number_phone_hint">Số điện thoại hoặc email</string>
+    <string name="password_hint">Mật khẩu</string>
+    <string name="button_login">ĐĂNG NHẬP</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="login_msg_password_empty">Mật khẩu không được để trống.</string>
+    <string name="login_msg_username_empty">Tên đăng nhập không được để trống.</string>
+    <string name="msg_login_fail">Thông tin đăng nhập không đúng. Vui lòng kiểm tra lại.</string>
+    <string name="loading">Đang xử lý</string>
+    <string name="no_account">Bạn chưa có tài khoản?</string>
+    <string name="register">Đăng ký</string>
+    <string name="button_cancel_1">Hủy bỏ</string>
 </resources>

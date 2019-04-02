@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class InputDialog extends DialogFragment implements View.OnClickListener {
-    private TextView tvSave, tvCancel;
+    private Button btnAcceptDialog, btnCancelDialog;
     private EditText edtIput;
     private String input;
     private boolean mIsEdit;
@@ -38,7 +39,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dialog_input_unit, container);
+        View rootView = inflater.inflate(R.layout.dialog_add_edit_unit, container);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
@@ -53,9 +54,9 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initListener() {
-        tvSave.setOnClickListener(this);
+        btnAcceptDialog.setOnClickListener(this);
         ivClose.setOnClickListener(this);
-        tvCancel.setOnClickListener(this);
+        btnCancelDialog.setOnClickListener(this);
     }
 
     /**
@@ -65,10 +66,10 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
      */
     private void initComponent(View rootView) {
         try {
-            tvSave = rootView.findViewById(R.id.tvOK);
-            ivClose = rootView.findViewById(R.id.ivClose);
-            tvCancel = rootView.findViewById(R.id.tvCancel);
-            edtIput = rootView.findViewById(R.id.edtInput);
+            btnAcceptDialog = rootView.findViewById(R.id.btnAcceptDialog);
+            ivClose = rootView.findViewById(R.id.btn_title_close);
+            btnCancelDialog = rootView.findViewById(R.id.btnCancelDialog);
+            edtIput = rootView.findViewById(R.id.etUnitName);
             edtIput.requestFocus();
             if (!TextUtils.isEmpty(input)) {
                 edtIput.setText(input);
@@ -96,7 +97,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     public void onClick(View view) {
         try {
             switch (view.getId()) {
-                case R.id.tvOK:
+                case R.id.btnAcceptDialog:
                     if (!validateInput()) {
                         ((ChooseUnitActivity) getActivity()).onEmptyInput();
                         return;
@@ -108,10 +109,10 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
                     }
                     dismiss();
                     break;
-                case R.id.tvCancel:
+                case R.id.btnCancelDialog:
                     dismiss();
                     break;
-                case R.id.ivClose:
+                case R.id.btn_title_close:
                     dismiss();
                     break;
             }

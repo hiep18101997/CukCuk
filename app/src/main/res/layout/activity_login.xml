@@ -7,30 +7,55 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="350dp"
+        android:layout_width="@dimen/iv_logo_w"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="@dimen/iv_logo_margin_top"
         android:contentDescription="@string/image_view"
         android:src="@drawable/ic_logo_flow" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/iv_lite_w"
+        android:layout_height="@dimen/iv_lite_h"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/btn_login_margin"
+        android:layout_marginBottom="@dimen/btn_login_margin"
         android:contentDescription="@string/image_view"
         android:src="@drawable/icon_lite" />
 
     <include layout="@layout/view_btn_login_facebook" />
 
     <include layout="@layout/view_btn_login_google" />
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+
+    <include layout="@layout/view_btn_login_phone_email" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/EditTextDefaultSingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_account"
+            android:textColor="@color/color_black" />
+
+        <TextView
+            android:id="@+id/tvRegister"
+            style="@style/EditTextDefaultSingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textColor="@color/color_black"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

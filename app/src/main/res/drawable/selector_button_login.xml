@@ -3,13 +3,19 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/btn_login_facebook_dark" />
+            <solid android:color="@color/color_primary_light" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/color_primary_light" />
             <corners android:radius="6dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/btn_login_facebook" />
+            <solid android:color="@color/my_primary_dark" />
             <corners android:radius="6dp" />
         </shape>
     </item>
