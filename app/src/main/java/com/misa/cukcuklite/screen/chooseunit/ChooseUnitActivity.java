@@ -91,7 +91,17 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     public void onClickEdit(Unit unit) {
         try {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            InputDialog inputDialog = new InputDialog(unit.getName(), true);
+            InputDialog inputDialog = new InputDialog(unit.getName(), new InputDialog.OnClickAccept() {
+                @Override
+                public void onEmptyInput() {
+                    onEmptyInput();
+                }
+
+                @Override
+                public void onSuccess(String s) {
+                    editUnit(s);
+                }
+            });
             inputDialog.show(fragmentManager, getString(R.string.input_dialogl));
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,7 +138,17 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
                     break;
                 case R.id.ivAdd:
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    InputDialog inputDialog = new InputDialog();
+                    InputDialog inputDialog = new InputDialog(new InputDialog.OnClickAccept() {
+                        @Override
+                        public void onEmptyInput() {
+                            onEmptyInput();
+                        }
+
+                        @Override
+                        public void onSuccess(String s) {
+                            saveUnit(s);
+                        }
+                    });
                     inputDialog.show(fragmentManager, getString(R.string.input_dialogl));
                     break;
                 case R.id.tvDone:

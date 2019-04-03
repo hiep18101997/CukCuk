@@ -65,4 +65,10 @@
     <string name="no_account">Bạn chưa có tài khoản?</string>
     <string name="register">Đăng ký</string>
     <string name="button_cancel_1">Hủy bỏ</string>
+    <string name="img_content_description">no_image</string>
+    <string name="key1">1</string>
+    <string name="Text_Please_Order">Mời bạn nói để chọn món!</string>
+    <string name="total_money">Tổng tiền</string>
+    <string name="title_add_order">Chọn món</string>
+    <string name="sale">Bán hàng</string>
 </resources>

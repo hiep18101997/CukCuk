@@ -10,10 +10,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,15 +23,20 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     private String input;
     private boolean mIsEdit;
     private ImageView ivClose;
+    private OnClickAccept mClickAccept;
 
     public InputDialog() {
-        mIsEdit = false;
     }
 
     @SuppressLint("ValidFragment")
-    public InputDialog(String string, boolean isEdit) {
+    public InputDialog(OnClickAccept onClickAccept) {
+        mClickAccept = onClickAccept;
+    }
+
+    @SuppressLint("ValidFragment")
+    public InputDialog(String string, OnClickAccept onClickAccept) {
         input = string;
-        mIsEdit = isEdit;
+        mClickAccept = onClickAccept;
     }
 
     @Nullable
@@ -99,13 +102,10 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             switch (view.getId()) {
                 case R.id.btnAcceptDialog:
                     if (!validateInput()) {
-                        ((ChooseUnitActivity) getActivity()).onEmptyInput();
+                        mClickAccept.onEmptyInput();
                         return;
-                    }
-                    if (mIsEdit) {
-                        ((ChooseUnitActivity) getActivity()).editUnit(edtIput.getText().toString());
-                    } else {
-                        ((ChooseUnitActivity) getActivity()).saveUnit(edtIput.getText().toString());
+                    }else {
+                        mClickAccept.onSuccess(edtIput.getText().toString());
                     }
                     dismiss();
                     break;
@@ -132,5 +132,11 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             return false;
         }
         return true;
+    }
+
+    public interface OnClickAccept {
+        void onEmptyInput();
+
+        void onSuccess(String s);
     }
 }

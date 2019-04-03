@@ -47,9 +47,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Map<Dish, Integer> hashMap = orders.get(position).getListDish();
+        List<Map.Entry<Dish,Integer>> hashMap = orders.get(position).getListDish();
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        for (Map.Entry<Dish, Integer> entry : hashMap.entrySet()) {
+        for (Map.Entry<Dish, Integer> entry : hashMap) {
             Dish dish = entry.getKey();
             Integer count = entry.getValue();
             String s = dish.getName() + " (" + count.toString() + "), ";

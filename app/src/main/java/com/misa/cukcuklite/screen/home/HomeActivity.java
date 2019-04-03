@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.screen.adddish.AddDishActivity;
+import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.menu.MenuFragment;
 import com.misa.cukcuklite.screen.sale.SaleFragment;
 
@@ -99,6 +100,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
                 if (currentFragment instanceof MenuFragment) {
                     startActivity(AddDishActivity.getIntent(this));
+                } else if (currentFragment instanceof SaleFragment) {
+                    startActivity(AddOrderActivity.getIntent(this));
                 }
                 break;
             case android.R.id.home:
@@ -113,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         if (fragment instanceof MenuFragment) {
             tvTitle.setText(getString(R.string.menu));
         } else if (fragment instanceof SaleFragment) {
-            tvTitle.setText("Bán hàng");
+            tvTitle.setText(getString(R.string.sale));
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

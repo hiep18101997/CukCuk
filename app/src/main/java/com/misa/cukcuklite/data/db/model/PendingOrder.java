@@ -1,13 +1,14 @@
 package com.misa.cukcuklite.data.db.model;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PendingOrder {
     private int mNumberTable;
     private int mNumberPerson;
-    private HashMap<Dish, Integer> mListDish;
+    private List<Map.Entry<Dish, Integer>> mListDish;
 
-    public PendingOrder(int mNumberTable, int mNumberPerson, HashMap<Dish, Integer> mListDish) {
+    public PendingOrder(int mNumberTable, int mNumberPerson, List<Map.Entry<Dish, Integer>> mListDish) {
         this.mNumberTable = mNumberTable;
         this.mNumberPerson = mNumberPerson;
         this.mListDish = mListDish;
@@ -35,18 +36,18 @@ public class PendingOrder {
         mNumberPerson = numberPerson;
     }
 
-    public HashMap<Dish, Integer> getListDish() {
+    public List<Map.Entry<Dish, Integer>> getListDish() {
         return mListDish;
     }
 
-    public void setListDish(HashMap<Dish, Integer> listDish) {
+    public void setListDish(List<Map.Entry<Dish, Integer>> listDish) {
         mListDish = listDish;
     }
 
     public static class Builder {
         private int mNumberTable;
         private int mNumberPerson;
-        private HashMap<Dish, Integer> mListDish;
+        private List<Map.Entry<Dish, Integer>> mListDish;
 
         public Builder setNumberTable(int numberTable) {
             mNumberTable = numberTable;
@@ -58,9 +59,12 @@ public class PendingOrder {
             return this;
         }
 
-        public Builder setListDish(HashMap<Dish, Integer> listDish) {
+        public Builder setListDish(List<Map.Entry<Dish, Integer>> listDish) {
             mListDish = listDish;
             return this;
+        }
+        public PendingOrder build() {
+            return new PendingOrder(this);
         }
     }
 }

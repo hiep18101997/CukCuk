@@ -9,9 +9,11 @@ import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
 import com.misa.cukcuklite.data.db.model.PendingOrder;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,29 +46,6 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     private void initComp() {
         mPendingOrders = new ArrayList<>();
-        Dish dish1=new Dish.Builder().setName("Kẹo lạc").build();
-        Dish dish2=new Dish.Builder().setName("Nước chè").build();
-        Dish dish3=new Dish.Builder().setName("Coca").build();
-        Dish dish4=new Dish.Builder().setName("Sting").build();
-        Dish dish5=new Dish.Builder().setName("Bò húc").build();
-        Dish dish6=new Dish.Builder().setName("Cháo gà").build();
-        HashMap<Dish,Integer> hashMap=new HashMap<>();
-        hashMap.put(dish1,6);
-        hashMap.put(dish2,5);
-        hashMap.put(dish3,4);
-        hashMap.put(dish4,3);
-        hashMap.put(dish5,2);
-        hashMap.put(dish6,1);
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
-        mPendingOrders.add(new PendingOrder(8,8,hashMap));
         mPresenter = new SalePresenter(this);
         mAdapter = new SaleAdapter(getContext(), mPendingOrders, this);
         RecyclerView rvSale = getView().findViewById(R.id.rvSale);

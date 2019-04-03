@@ -34,6 +34,9 @@
     <color name="gray_border_color">#ffd6d6d6</color>
     <color name="color_action_bar_selected">#ff3a89be</color>
     <color name="bg_rv_sale">#D1D6DC</color>
+    <color name="color_dark_gray">#ffd1d6dc</color>
+    <color name="background_color_dark_gray">#ffd1d6dc</color>
+    <color name="color_primary_15">#ffdaeaf5</color>
 
     <array name="arr_colors">
         <item>#26C6DA</item>

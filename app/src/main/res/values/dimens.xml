@@ -97,4 +97,11 @@
     <dimen name="iv_lite_h">80dp</dimen>
     <dimen name="min_height_message_dialog">85dp</dimen>
     <dimen name="height_button_dialog">40dp</dimen>
+    <dimen name="size_tab_bar">48dp</dimen>
+    <dimen name="icon_inventory_item_size">40dp</dimen>
+    <dimen name="min_width_text_view_quantity">40dp</dimen>
+    <dimen name="padding_dialog_key_10">10dp</dimen>
+    <dimen name="icon_w">25dp</dimen>
+    <dimen name="icon_h">25dp</dimen>
+    <dimen name="dp_0_1">0.1dp</dimen>
 </resources>
