@@ -12,6 +12,7 @@ import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.DishOrder;
 import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.screen.bill.BillActivity;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -187,6 +188,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                 break;
             case R.id.btnTakeMoney:
             case R.id.btnActionTakeMoney:
+                startActivity(BillActivity.getIntent(this,currentOrder));
                 break;
             case R.id.tvTable:
                 showDialogCalculator(FLAG_TABLE);

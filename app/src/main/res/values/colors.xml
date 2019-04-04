@@ -37,6 +37,7 @@
     <color name="color_dark_gray">#ffd1d6dc</color>
     <color name="background_color_dark_gray">#ffd1d6dc</color>
     <color name="color_primary_15">#ffdaeaf5</color>
+    <color name="color_background_for_bill">#ffcac9cf</color>
 
     <array name="arr_colors">
         <item>#26C6DA</item>
