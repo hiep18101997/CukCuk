@@ -25,14 +25,16 @@
             <ImageView
                 android:id="@+id/imgBg"
                 android:layout_width="@dimen/size_tab_bar"
-                android:layout_height="@dimen/size_tab_bar" />
+                android:layout_height="@dimen/size_tab_bar"
+                android:contentDescription="@string/image_view" />
 
             <ImageView
                 android:id="@+id/imgIcon"
                 android:layout_width="@dimen/icon_inventory_item_size"
                 android:layout_height="@dimen/icon_inventory_item_size"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_def" />
+                android:src="@drawable/ic_def"
+                android:contentDescription="@string/image_view" />
         </RelativeLayout>
 
         <ImageView

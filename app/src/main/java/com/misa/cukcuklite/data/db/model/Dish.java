@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.data.db.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -13,18 +12,7 @@ import androidx.room.PrimaryKey;
  * ‐ @created_by dhhiep on 3/25/2019
  */
 @Entity(tableName = "dishes")
-public class Dish implements Parcelable {
-    public static final Creator<Dish> CREATOR = new Creator<Dish>() {
-        @Override
-        public Dish createFromParcel(Parcel in) {
-            return new Dish(in);
-        }
-
-        @Override
-        public Dish[] newArray(int size) {
-            return new Dish[size];
-        }
-    };
+public class Dish  implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "name")
@@ -57,16 +45,6 @@ public class Dish implements Parcelable {
         mColor = builder.mColor;
         mIcon = builder.mIcon;
         isSell = builder.isSell;
-    }
-
-    protected Dish(Parcel in) {
-        id = in.readInt();
-        mName = in.readString();
-        mCost = in.readLong();
-        mUnit = in.readString();
-        mColor = in.readInt();
-        mIcon = in.readString();
-        isSell = in.readByte() != 0;
     }
 
     public int getId() {
@@ -126,19 +104,16 @@ public class Dish implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(mName);
-        dest.writeLong(mCost);
-        dest.writeString(mUnit);
-        dest.writeInt(mColor);
-        dest.writeString(mIcon);
-        dest.writeByte((byte) (isSell ? 1 : 0));
+    public String toString() {
+        return "Dish{" +
+                "id=" + id +
+                ", mName='" + mName + '\'' +
+                ", mCost=" + mCost +
+                ", mUnit='" + mUnit + '\'' +
+                ", mColor=" + mColor +
+                ", mIcon='" + mIcon + '\'' +
+                ", isSell=" + isSell +
+                '}';
     }
 
     public static class Builder {

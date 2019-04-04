@@ -15,6 +15,7 @@ import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.menu.MenuFragment;
 import com.misa.cukcuklite.screen.sale.SaleFragment;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class HomeActivity extends AppCompatActivity implements IHomeContract.IView, View.OnClickListener {
     private static final String TAG = HomeActivity.class.getName();
+    private static final int REQUEST_CODE = 914;
     private IHomeContract.IPresenter mPresenter;
     private DrawerLayout mDrawerLayout;
     private TextView tvTitle;
@@ -138,4 +140,5 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
                 break;
         }
     }
+
 }

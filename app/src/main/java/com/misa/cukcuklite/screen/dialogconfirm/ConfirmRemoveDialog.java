@@ -6,65 +6,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Unit;
-import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 @SuppressLint("ValidFragment")
-public class ConfirmRemoveUnitDialog extends DialogFragment implements View.OnClickListener {
-    private TextView tvOK, tvCancel;
-    private ImageView ivClose;
-    private Unit mUnit;
+public class ConfirmRemoveDialog extends DialogFragment implements View.OnClickListener {
+    private String mMess;
+    private TextView tvMess;
+    private OnClickAccept mOnClickAccept;
 
     @SuppressLint("ValidFragment")
-    public ConfirmRemoveUnitDialog(Unit unit) {
-        mUnit = unit;
+    public ConfirmRemoveDialog(String mess, OnClickAccept onClickAccept) {
+        mMess = mess;
+        mOnClickAccept = onClickAccept;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dialog_confirm_remove_unit, container);
+        View rootView = inflater.inflate(R.layout.dialog_confirm_remove, container);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
-        initComponent(rootView);
-        initListener();
+
+        tvMess = rootView.findViewById(R.id.tvMess);
+        tvMess.setText(mMess);
+        rootView.findViewById(R.id.btnClose).setOnClickListener(this);
+        rootView.findViewById(R.id.btnAcceptDialog).setOnClickListener(this);
+        rootView.findViewById(R.id.btnCancelDialog).setOnClickListener(this);
         return rootView;
     }
 
-    /**
-     * Mục dích method: Bắt sự kiện
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
-    private void initListener() {
-        tvOK.setOnClickListener(this);
-        tvCancel.setOnClickListener(this);
-        ivClose.setOnClickListener(this);
-    }
-
-    /**
-     * Mục dích method: Khởi tạo, ánh xạ View
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
-    private void initComponent(View rootView) {
-        try {
-            tvOK = rootView.findViewById(R.id.tvOK);
-            ivClose = rootView.findViewById(R.id.ivClose);
-            tvCancel = rootView.findViewById(R.id.tvCancel);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Mục dích method: Set kích cỡ cho dialog
@@ -88,19 +65,23 @@ public class ConfirmRemoveUnitDialog extends DialogFragment implements View.OnCl
     public void onClick(View view) {
         try {
             switch (view.getId()) {
-                case R.id.tvOK:
-                    ((ChooseUnitActivity) getActivity()).removeUnit(mUnit);
+                case R.id.btnAcceptDialog:
+                    mOnClickAccept.onAccept();
                     dismiss();
                     break;
-                case R.id.tvCancel:
+                case R.id.btnCancelDialog:
                     dismiss();
                     break;
-                case R.id.ivClose:
+                case R.id.btnClose:
                     dismiss();
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public interface OnClickAccept {
+        void onAccept();
     }
 }

@@ -70,7 +70,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     private void initComponent(View rootView) {
         try {
             btnAcceptDialog = rootView.findViewById(R.id.btnAcceptDialog);
-            ivClose = rootView.findViewById(R.id.btn_title_close);
+            ivClose = rootView.findViewById(R.id.btnClose);
             btnCancelDialog = rootView.findViewById(R.id.btnCancelDialog);
             edtIput = rootView.findViewById(R.id.etUnitName);
             edtIput.requestFocus();
@@ -112,7 +112,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
                 case R.id.btnCancelDialog:
                     dismiss();
                     break;
-                case R.id.btn_title_close:
+                case R.id.btnClose:
                     dismiss();
                     break;
             }

@@ -230,6 +230,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
                     .setExpressionEditable(false)
                     .setZeroShownWhenNoValue(true)
                     .setAnswerBtnShown(false)
+                    .setMinValue(new BigDecimal(0))
                     .setSignBtnShown(true)
                     .setShouldEvaluateOnOperation(true)
                     .setOrderOfOperationsApplied(true);

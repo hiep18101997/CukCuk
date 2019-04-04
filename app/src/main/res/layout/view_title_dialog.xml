@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tvTitle"
         style="@style/TextViewDefaultSingleLine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textSize="@dimen/font_size_medium_small" />
 
     <ImageButton
-        android:id="@+id/btn_title_close"
+        android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/bg_action_bar_selector"

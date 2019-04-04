@@ -104,4 +104,5 @@
     <dimen name="icon_w">25dp</dimen>
     <dimen name="icon_h">25dp</dimen>
     <dimen name="dp_0_1">0.1dp</dimen>
+    <dimen name="item_sale_margin">8dp</dimen>
 </resources>

@@ -23,6 +23,7 @@
     <string name="state">Trạng thái</string>
     <string name="confirm_remove_dish">Bạn có chắc chắn muốn xóa món này không?</string>
     <string name="confirm_remove_unit">Bạn có chắc chắn muốn xóa đơn vị tính này không?</string>
+    <string name="confirm_remove_order">Bạn có chắc chắn muốn hủy các món đã chọn không?</string>
     <string name="edit_dish">Sửa món</string>
     <string name="confirm_dialog">confirm_dialog</string>
     <string name="input_dialogl">input_dialog</string>
@@ -71,4 +72,7 @@
     <string name="total_money">Tổng tiền</string>
     <string name="title_add_order">Chọn món</string>
     <string name="sale">Bán hàng</string>
+    <string name="msg_person_empty">Mời bạn thêm số người</string>
+    <string name="msg_table_empty">Mời bạn thêm số bàn</string>
+    <string name="msg_dish_empty">Mời bạn chọn món</string>
 </resources>

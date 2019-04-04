@@ -21,7 +21,7 @@ import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
-import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDishDialog;
+import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
 import com.thebluealliance.spectrum.SpectrumDialog;
 
@@ -124,7 +124,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     private void initComps() {
         try {
-            currentDish = getIntent().getParcelableExtra(EXTRA_DISH);
+            currentDish = (Dish) getIntent().getSerializableExtra(EXTRA_DISH);
             tvCost = findViewById(R.id.tvCost);
             tvUnit = findViewById(R.id.tvUnit);
             mCheckBox = findViewById(R.id.cbState);
@@ -209,6 +209,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
                 .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
                 .setExpressionShown(false)
                 .setExpressionEditable(false)
+                .setMinValue(new BigDecimal(0))
                 .setZeroShownWhenNoValue(true)
                 .setAnswerBtnShown(false)
                 .setSignBtnShown(true)
@@ -273,7 +274,12 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     private void showConfirmDialog() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        ConfirmRemoveDishDialog inputDialog = new ConfirmRemoveDishDialog();
+        ConfirmRemoveDialog inputDialog = new ConfirmRemoveDialog(getString(R.string.confirm_remove_dish), new ConfirmRemoveDialog.OnClickAccept() {
+            @Override
+            public void onAccept() {
+                removeDish();
+            }
+        });
         inputDialog.show(fragmentManager, "confirm_dialog");
     }
 

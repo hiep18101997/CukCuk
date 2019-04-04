@@ -1,19 +1,29 @@
 package com.misa.cukcuklite.screen.addorder;
 
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.PendingOrder;
+import com.misa.cukcuklite.data.db.model.DishOrder;
 
 import java.util.List;
-import java.util.Map;
 
 interface IAddOrderContract {
     interface IView {
-        void onLoadListDishSuccess(List<Map.Entry<Dish, Integer>> list);
+        void onLoadListDishSuccess(List<DishOrder> list);
+
+        void onZeroPerson();
+
+        void onZeroTable();
+
+        void onZeroDish();
+
+        void onSaveOrderDone();
+
+        void onEditOrderDone();
     }
 
     interface IPresenter {
         void getMenu();
 
-        void savePendingOrder(PendingOrder order);
+        void saveOrder(String table, String person, List<DishOrder> list);
+
+        void editOrder(int idOrder, String table, String person, List<DishOrder> list);
     }
 }

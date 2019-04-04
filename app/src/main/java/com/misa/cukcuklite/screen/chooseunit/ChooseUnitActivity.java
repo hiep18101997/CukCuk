@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Unit;
-import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveUnitDialog;
+import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialoginput.InputDialog;
 
 import java.util.ArrayList;
@@ -114,10 +114,15 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @Override
-    public void onClickRemove(Unit unit) {
+    public void onClickRemove(final Unit unit) {
         try {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            ConfirmRemoveUnitDialog inputDialog = new ConfirmRemoveUnitDialog(unit);
+            ConfirmRemoveDialog inputDialog = new ConfirmRemoveDialog(getString(R.string.confirm_remove_unit), new ConfirmRemoveDialog.OnClickAccept() {
+                @Override
+                public void onAccept() {
+                    removeUnit(unit);
+                }
+            });
             inputDialog.show(fragmentManager, getString(R.string.confirm_dialog));
         } catch (Exception e) {
             e.printStackTrace();

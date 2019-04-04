@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_order_default_height"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginStart="@dimen/item_sale_margin"
+    android:layout_marginTop="@dimen/item_sale_margin"
+    android:layout_marginEnd="@dimen/item_sale_margin"
     android:background="@drawable/bg_white_no_border_with_radius"
     android:baselineAligned="false"
     android:orientation="horizontal">
@@ -49,6 +49,7 @@
 
             <TextView
                 android:id="@+id/tvPerson"
+                style="@style/TextViewDefaultSingleLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
@@ -56,7 +57,6 @@
                 android:gravity="center"
                 android:textColor="@color/gray_light"
                 android:textSize="@dimen/font_size_medium"
-                style="@style/TextViewDefaultSingleLine"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -74,9 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.0"
+            android:background="@drawable/bg_white_no_border_no_radius_selector"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_white_no_border_no_radius_selector"
             android:paddingTop="@dimen/margin_large_small"
             tools:ignore="NestedWeights">
 
@@ -130,9 +130,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:background="@drawable/bg_gray_no_border_no_radius_selector"
-                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/margin_normal_small"
                 android:paddingBottom="@dimen/margin_normal_small">
@@ -159,9 +159,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:background="@drawable/bg_gray_no_border_radius_selector"
-                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/margin_normal_small"
                 android:paddingBottom="@dimen/margin_normal_small">
