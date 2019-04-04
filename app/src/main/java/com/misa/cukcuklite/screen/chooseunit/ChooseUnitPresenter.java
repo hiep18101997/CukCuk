@@ -26,7 +26,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
     }
 
     /**
-     * Mục dích method lấy dánh sách các đơn vị tính
+     * Mục đích method lấy dánh sách các đơn vị tính
      *
      * @created_by Hoàng Hiệp on 3/28/2019
      */
@@ -48,7 +48,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
     }
 
     /**
-     * Mục dích method lưu đơn vị tính
+     * Mục đích method lưu đơn vị tính
      *
      * @param text Đơn vị tính được thêm
      * @created_by Hoàng Hiệp on 3/28/2019
@@ -84,7 +84,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
     }
 
     /**
-     * Mục dích method sửa đơn vị tính
+     * Mục đích method sửa đơn vị tính
      *
      * @param unitEdit Đơn vị tính được sửa
      * @created_by Hoàng Hiệp on 3/28/2019
@@ -108,7 +108,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
     }
 
     /**
-     * Mục dích method xóa đơn vị tính
+     * Mục đích method xóa đơn vị tính
      *
      * @param unit Đơn vị tính bị xóa
      * @created_by Hoàng Hiệp on 3/28/2019

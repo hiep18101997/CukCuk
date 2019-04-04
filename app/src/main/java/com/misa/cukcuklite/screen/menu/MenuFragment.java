@@ -59,7 +59,7 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     }
 
     /**
-     * Mục dích method: Khởi tạo và đăng ki lắng nghe Broadcast
+     * Mục đích method: Khởi tạo và đăng ki lắng nghe Broadcast
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -78,14 +78,14 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     }
 
     /**
-     * Mục dích method: Khởi tạo và ánh xạ các View
+     * Mục đích method: Khởi tạo và ánh xạ các View
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initComponent() {
         mDrawerLayout = getView().findViewById(R.id.drawer);
         mDishes = new ArrayList<>();
-        mPresenter = new MenuPresenter(this,getContext());
+        mPresenter = new MenuPresenter(this, getContext());
         mPresenter.getAllDish();
         RecyclerView recyclerView = getView().findViewById(R.id.rvMenu);
         mAdapter = new MenuAdapter(getContext(), mDishes, this);
@@ -94,7 +94,7 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     }
 
     /**
-     * Mục dích method: Chuyển vào màn Sửa món ăn khi click
+     * Mục đích method: Chuyển vào màn Sửa món ăn khi click
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -104,7 +104,7 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     }
 
     /**
-     * Mục dích method: Gọi adapter cập nhật lại data khi load thành công dữ liệu
+     * Mục đích method: Gọi adapter cập nhật lại data khi load thành công dữ liệu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -114,7 +114,7 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     }
 
     /**
-     * Mục dích method: Hủy đăng kí Broadcast
+     * Mục đích method: Hủy đăng kí Broadcast
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

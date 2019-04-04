@@ -75,4 +75,16 @@
     <string name="msg_person_empty">Mời bạn thêm số người</string>
     <string name="msg_table_empty">Mời bạn thêm số bàn</string>
     <string name="msg_dish_empty">Mời bạn chọn món</string>
+    <string name="title_charges">Thu tiền</string>
+    <string name="title_bill">Hóa đơn</string>
+    <string name="label_number">Số:</string>
+    <string name="label_table">Bàn:</string>
+    <string name="label_date">Ngày:</string>
+    <string name="title_product_name">Tên hàng</string>
+    <string name="title_quantity_short">SL</string>
+    <string name="title_unit_price">Đơn giá</string>
+    <string name="into_money">Thành tiền</string>
+    <string name="title_remain_amount">Số tiền phải trả</string>
+    <string name="title_guest_amount">Tiền khách đưa</string>
+    <string name="title_return_amount">Tiền trả lại cho khách</string>
 </resources>

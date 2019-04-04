@@ -16,7 +16,10 @@ import com.misa.cukcuklite.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
+/**
+ * - Mục đích Class :Tạo dialog input
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 public class InputDialog extends DialogFragment implements View.OnClickListener {
     private Button btnAcceptDialog, btnCancelDialog;
     private EditText edtIput;
@@ -52,7 +55,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     }
 
     /**
-     * Mục dích method: Bắt sự kiện
+     * Mục đích method: Bắt sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -63,7 +66,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     }
 
     /**
-     * Mục dích method: Khởi tạo, ánh xạ View
+     * Mục đích method: Khởi tạo, ánh xạ View
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -104,7 +107,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
                     if (!validateInput()) {
                         mClickAccept.onEmptyInput();
                         return;
-                    }else {
+                    } else {
                         mClickAccept.onSuccess(edtIput.getText().toString());
                     }
                     dismiss();
@@ -122,16 +125,21 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
     }
 
     /**
-     * Mục dích method thực hiện việc kiểm tra dữ liệu nhập vào
+     * Mục đích method thực hiện việc kiểm tra dữ liệu nhập vào
      *
      * @return trả về xem dữ liệu hợp lẹ hay không
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private boolean validateInput() {
-        if (TextUtils.isEmpty(edtIput.getText())) {
-            return false;
+        try {
+            if (TextUtils.isEmpty(edtIput.getText())) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public interface OnClickAccept {

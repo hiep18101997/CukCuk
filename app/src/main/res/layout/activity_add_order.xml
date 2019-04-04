@@ -89,9 +89,9 @@
                 android:background="@color/background_color_gray"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/margin_normal"
+                android:paddingStart="@dimen/margin_normal"
                 android:paddingTop="@dimen/margin_normal"
-                android:paddingRight="@dimen/margin_normal"
+                android:paddingEnd="@dimen/margin_normal"
                 android:paddingBottom="@dimen/margin_normal">
 
                 <ImageView
@@ -108,9 +108,9 @@
                     android:background="@drawable/bg_white_with_border_and_radius_selector"
                     android:gravity="center"
                     android:minWidth="@dimen/min_width_text_view_quantity"
-                    android:paddingLeft="@dimen/margin_small"
+                    android:paddingStart="@dimen/margin_small"
                     android:paddingTop="@dimen/margin_normal"
-                    android:paddingRight="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
                     android:paddingBottom="@dimen/margin_normal" />
 
                 <ImageView
@@ -127,9 +127,9 @@
                     android:background="@drawable/bg_white_with_border_and_radius_selector"
                     android:gravity="center"
                     android:minWidth="@dimen/min_width_text_view_quantity"
-                    android:paddingLeft="@dimen/margin_small"
+                    android:paddingStart="@dimen/margin_small"
                     android:paddingTop="@dimen/margin_normal"
-                    android:paddingRight="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
                     android:paddingBottom="@dimen/margin_normal" />
 
                 <TextView
@@ -163,9 +163,9 @@
                 android:layout_height="wrap_content"
                 android:background="@color/background_color_dark_gray"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/margin_normal"
+                android:paddingStart="@dimen/margin_normal"
                 android:paddingTop="@dimen/margin_normal"
-                android:paddingRight="@dimen/margin_normal"
+                android:paddingEnd="@dimen/margin_normal"
                 android:paddingBottom="@dimen/margin_normal">
 
                 <ImageButton
@@ -173,9 +173,9 @@
                     android:layout_width="@dimen/height_button_default"
                     android:layout_height="@dimen/height_button_default"
                     android:background="@drawable/bg_white_no_border_with_radius_selector"
-                    android:paddingLeft="@dimen/margin_medium_small"
+                    android:paddingStart="@dimen/margin_medium_small"
                     android:paddingTop="@dimen/margin_normal"
-                    android:paddingRight="@dimen/margin_medium_small"
+                    android:paddingEnd="@dimen/margin_medium_small"
                     android:paddingBottom="@dimen/margin_normal"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/ic_mic" />
@@ -187,8 +187,8 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_weight="3.0"
                     android:background="@drawable/bg_white_no_border_with_radius_selector"
-                    android:paddingLeft="@dimen/margin_normal"
-                    android:paddingRight="@dimen/margin_normal"
+                    android:paddingStart="@dimen/margin_normal"
+                    android:paddingEnd="@dimen/margin_normal"
                     android:text="@string/save"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_size_medium_small" />
@@ -201,8 +201,8 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_weight="4.0"
                     android:background="@drawable/bg_primary_no_border_with_radius_selector"
-                    android:paddingLeft="@dimen/margin_large"
-                    android:paddingRight="@dimen/margin_large"
+                    android:paddingStart="@dimen/margin_large"
+                    android:paddingEnd="@dimen/margin_large"
                     android:text="@string/take_money"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/font_size_medium_small" />

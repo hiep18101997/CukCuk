@@ -58,7 +58,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     private Dish.Builder mBuilder;
 
     /**
-     * Mục dích method: Lấy intent
+     * Mục đích method: Lấy intent
      *
      * @param context Context
      * @return Trả về intent trỏ tới AddDishActivity
@@ -80,7 +80,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Khởi tạo và đăng kí lắng nghe Broadcast
+     * Mục đích method: Khởi tạo và đăng kí lắng nghe Broadcast
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -121,7 +121,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -143,7 +143,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Khởi tạo hiện dialog để chọn màu
+     * Mục đích method: Khởi tạo hiện dialog để chọn màu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -178,7 +178,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Xử lý sự kiện
+     * Mục đích method: Xử lý sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -214,7 +214,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Khởi tạo và hiện dialog máy tính
+     * Mục đích method: Khởi tạo và hiện dialog máy tính
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -243,7 +243,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Khởi tạo và hiện dialog chọn icon
+     * Mục đích method: Khởi tạo và hiện dialog chọn icon
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -258,7 +258,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Thay đổi icon sau khi chọn
+     * Mục đích method: Thay đổi icon sau khi chọn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -288,7 +288,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Báo lỗi khi không nhập tên món
+     * Mục đích method: Báo lỗi khi không nhập tên món
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -298,7 +298,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Báo lỗi vì không nhập đơn vị
+     * Mục đích method: Báo lỗi vì không nhập đơn vị
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -308,7 +308,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục dích method: Lắng nghe khi thêm món thành công
+     * Mục đích method: Lắng nghe khi thêm món thành công
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

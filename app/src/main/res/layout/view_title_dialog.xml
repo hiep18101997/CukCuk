@@ -28,9 +28,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_action_bar_selector"
         android:contentDescription="@string/image_view"
-        android:paddingLeft="@dimen/margin_normal"
+        android:paddingStart="@dimen/margin_normal"
         android:paddingTop="@dimen/margin_normal_small"
-        android:paddingRight="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_normal"
         android:paddingBottom="@dimen/margin_normal_small"
         android:tint="@color/white"
         app:srcCompat="@drawable/ic_close" />

@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
  * ‐ @created_by dhhiep on 3/25/2019
  */
 @Entity(tableName = "dishes")
-public class Dish  implements Serializable {
+public class Dish implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "name")

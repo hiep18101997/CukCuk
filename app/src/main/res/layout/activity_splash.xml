@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/margin_extra_large"
-            android:paddingRight="@dimen/margin_extra_large"
+            android:paddingStart="@dimen/margin_extra_large"
+            android:paddingEnd="@dimen/margin_extra_large"
             android:scaleType="centerInside"
             android:src="@drawable/logocukcuk_splash" />
     </RelativeLayout>

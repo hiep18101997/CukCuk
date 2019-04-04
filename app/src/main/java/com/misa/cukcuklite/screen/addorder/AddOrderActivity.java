@@ -12,6 +12,7 @@ import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.DishOrder;
 import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.screen.bill.BillActivity;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -44,7 +45,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
     private Order currentOrder;
 
     /**
-     * Mục dích method: Lấy intent
+     * Mục đích method: Lấy intent
      *
      * @param context Context
      * @return Trả về intent trỏ tới AddDishActivity
@@ -55,6 +56,14 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         return intent;
     }
 
+    /**
+     * Mục đích method: Lấy intent
+     *
+     * @param context Context
+     * @param order   Đối tượng bán hàng
+     * @return Trả về intent trỏ tới AddDishActivity
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     public static Intent getIntent(Context context, Order order) {
         Intent intent = new Intent(context, AddOrderActivity.class);
         intent.putExtra(EXTRA_ORDER, order);
@@ -69,6 +78,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         initListener();
     }
 
+    /**
+     * Mục đích method: Bắt sự kiện click
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void initListener() {
         findViewById(R.id.imgBack).setOnClickListener(this);
         findViewById(R.id.btnSave).setOnClickListener(this);
@@ -80,41 +94,64 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         tvTable.setOnClickListener(this);
     }
 
+    /**
+     * Mục đích method: Ánh xạ khởi tạo các view
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void initComponent() {
-        mPresenter = new AddOrderPresenter(this, this);
-        tvTotalMoney = findViewById(R.id.tvTotalMoney);
-        tvTable = findViewById(R.id.tvTable);
-        tvPerson = findViewById(R.id.tvPerson);
-        currentOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
-        if (currentOrder != null) {
-            showCurrentOrder();
-            isEdit = true;
-            list = new ArrayList<>();
-            list.addAll(currentOrder.getListDish());
-        } else {
-            isEdit = false;
-            list = new ArrayList<>();
-            mPresenter.getMenu();
+        try {
+            mPresenter = new AddOrderPresenter(this, this);
+            tvTotalMoney = findViewById(R.id.tvTotalMoney);
+            tvTable = findViewById(R.id.tvTable);
+            tvPerson = findViewById(R.id.tvPerson);
+            currentOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
+            if (currentOrder != null) {
+                showCurrentOrder();
+                isEdit = true;
+                list = new ArrayList<>();
+                list.addAll(currentOrder.getListDish());
+            } else {
+                isEdit = false;
+                list = new ArrayList<>();
+                mPresenter.getMenu();
+            }
+            mAdapter = new AddOrderAdapter(this, list, this);
+            RecyclerView recyclerView = findViewById(R.id.rcvInventoryItems);
+            recyclerView.setAdapter(mAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.getItemAnimator().setChangeDuration(0);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        mAdapter = new AddOrderAdapter(this, list, this);
-        RecyclerView recyclerView = findViewById(R.id.rcvInventoryItems);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.getItemAnimator().setChangeDuration(0);
     }
 
+    /**
+     * Mục đích method:Hiển thị thông tin bán hàng sẵn có
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void showCurrentOrder() {
         tvPerson.setText(String.valueOf(currentOrder.getNumberPerson()));
         tvTable.setText(String.valueOf(currentOrder.getNumberTable()));
         tvTotalMoney.setText(String.valueOf(getAmount(currentOrder.getListDish())));
     }
 
+    /**
+     * Mục đích method:Xử ;ý sự kiện onclick
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onClick(List<DishOrder> mList) {
         tvTotalMoney.setText(String.valueOf(getAmount(mList)));
     }
 
+    /**
+     * Mục đích method:Xử lý sự kiện onclick
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private long getAmount(List<DishOrder> dishOrders) {
         try {
             long amount = 0;
@@ -128,27 +165,52 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         return 0;
     }
 
+    /**
+     * Mục đích method:Callback trả về khi lấy lish món ăn thành công
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onLoadListDishSuccess(List<DishOrder> list) {
         mAdapter.setData(list);
     }
 
+    /**
+     * Mục đích method:Call back trả về khi người dùng không nhập số người
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onZeroPerson() {
         Toast.makeText(this, getString(R.string.msg_person_empty), Toast.LENGTH_SHORT).show();
+
     }
 
+    /**
+     * Mục đích method:Call back trả về khi người dùng không nhập số bàn
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onZeroTable() {
         Toast.makeText(this, getString(R.string.msg_table_empty), Toast.LENGTH_SHORT).show();
-
     }
 
+    /**
+     * Mục đích method:Call back trả về khi người dùng không chọn món
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onZeroDish() {
         Toast.makeText(this, getString(R.string.msg_dish_empty), Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Mục đích method:Call back trả về khi lưu đối tượng bán hàng thành công
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onSaveOrderDone() {
         try {
@@ -160,6 +222,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         }
     }
 
+    /**
+     * Mục đích method:Call back trả về khi sửa đối tượng bán hàng thành công
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onEditOrderDone() {
         try {
@@ -171,35 +238,44 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         }
     }
 
+    /**
+     * Mục đích method:Sử ly sự kiện khi click
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.imgBack:
-                onBackPressed();
-                break;
-            case R.id.btnSave:
-                if (isEdit) {
-                    mPresenter.editOrder(currentOrder.getId(), tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
-                } else {
-                    mPresenter.saveOrder(tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
-                }
+        try {
+            switch (v.getId()) {
+                case R.id.imgBack:
+                    onBackPressed();
+                    break;
+                case R.id.btnSave:
+                    if (isEdit) {
+                        mPresenter.editOrder(currentOrder.getId(), tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
+                    } else {
+                        mPresenter.saveOrder(tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
+                    }
+                    break;
+                case R.id.btnTakeMoney:
+                case R.id.btnActionTakeMoney:
+                    startActivity(BillActivity.getIntent(this, currentOrder));
+                    break;
+                case R.id.tvTable:
+                    showDialogCalculator(FLAG_TABLE);
+                    break;
+                case R.id.tvPerson:
+                    showDialogCalculator(FLAG_PERSON);
+                    break;
 
-                break;
-            case R.id.btnTakeMoney:
-            case R.id.btnActionTakeMoney:
-                break;
-            case R.id.tvTable:
-                showDialogCalculator(FLAG_TABLE);
-                break;
-            case R.id.tvPerson:
-                showDialogCalculator(FLAG_PERSON);
-                break;
-
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * Mục dích method: Khởi tạo và hiện dialog máy tính
+     * Mục đích method: Khởi tạo và hiện dialog máy tính
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -227,6 +303,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         }
     }
 
+    /**
+     * Mục đích method:Call back trả về khi người dùng ấn Ok dialog máy tính
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onValueEntered(int requestCode, @Nullable BigDecimal value) {
         try {

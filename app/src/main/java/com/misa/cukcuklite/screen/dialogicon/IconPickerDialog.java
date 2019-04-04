@@ -22,7 +22,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+/**
+ * - Mục đích Class :Tạo dialog chon icon
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 @SuppressLint("ValidFragment")
 public class IconPickerDialog extends DialogFragment implements IconPickerAdapter.OnItemClick, View.OnClickListener {
     private RecyclerView rvIcon;
@@ -61,7 +64,7 @@ public class IconPickerDialog extends DialogFragment implements IconPickerAdapte
     }
 
     /**
-     * Mục dích method: Bắt sự kiện click icon ở Dialog thì sẽ set icon cho Activity
+     * Mục đích method: Bắt sự kiện click icon ở Dialog thì sẽ set icon cho Activity
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

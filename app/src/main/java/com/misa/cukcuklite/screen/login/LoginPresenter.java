@@ -27,11 +27,13 @@ public class LoginPresenter implements ILoginContract.IPresenter {
     @Override
     public void loginWithFacebook(AccessToken accessToken) {
         try {
+            mView.showLoading();
             AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
             FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     try {
+                        mView.hideLoading();
                         if (task.isSuccessful()) {
                             mCallback.onGetDataSuccess(task.getResult().getUser());
                             mView.navigateHomeScreen();
@@ -39,6 +41,7 @@ public class LoginPresenter implements ILoginContract.IPresenter {
                             mCallback.onGetDataFailed(task.getException().getMessage());
                         }
                     } catch (Exception e) {
+                        mView.hideLoading();
                         e.printStackTrace();
                     }
                 }
@@ -46,10 +49,12 @@ public class LoginPresenter implements ILoginContract.IPresenter {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     mCallback.onGetDataFailed(e.getMessage());
+                    mView.hideLoading();
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
+            mView.hideLoading();
         }
     }
 

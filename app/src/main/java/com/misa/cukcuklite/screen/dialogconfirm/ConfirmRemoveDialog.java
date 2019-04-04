@@ -13,7 +13,10 @@ import com.misa.cukcuklite.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
+/**
+ * - Mục đích Class :Dialog xác nhận
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 @SuppressLint("ValidFragment")
 public class ConfirmRemoveDialog extends DialogFragment implements View.OnClickListener {
     private String mMess;
@@ -33,7 +36,6 @@ public class ConfirmRemoveDialog extends DialogFragment implements View.OnClickL
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
-
         tvMess = rootView.findViewById(R.id.tvMess);
         tvMess.setText(mMess);
         rootView.findViewById(R.id.btnClose).setOnClickListener(this);
@@ -44,7 +46,7 @@ public class ConfirmRemoveDialog extends DialogFragment implements View.OnClickL
 
 
     /**
-     * Mục dích method: Set kích cỡ cho dialog
+     * Mục đích method: Set kích cỡ cho dialog
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

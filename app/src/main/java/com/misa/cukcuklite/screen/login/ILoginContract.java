@@ -5,6 +5,10 @@ import com.facebook.AccessToken;
 interface ILoginContract {
     interface IView {
         void navigateHomeScreen();
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface IPresenter {

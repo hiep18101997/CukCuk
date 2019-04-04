@@ -41,7 +41,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích method cập nhất vị trí item đang được tích
+     * Mục đích method cập nhất vị trí item đang được tích
      *
      * @param unit Đơn vị tính được chọn
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -88,7 +88,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích method hiển thị popup dưới item view khi long click
+     * Mục đích method hiển thị popup dưới item view khi long click
      *
      * @param view itemview
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -119,7 +119,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích method lấy đơn vị đang được chọn
+     * Mục đích method lấy đơn vị đang được chọn
      *
      * @return trả về 1 đơn vị tính
      * @created_by Hoàng Hiệp on 3/28/2019
@@ -129,7 +129,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích method set giá trị cho biến index
+     * Mục đích method set giá trị cho biến index
      *
      * @created_by Hoàng Hiệp on 3/28/2019
      */
@@ -138,7 +138,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích cập nhật lại khi dữ liểu đổ vào
+     * Mục đích cập nhật lại khi dữ liểu đổ vào
      *
      * @created_by Hoàng Hiệp on 3/28/2019
      */
@@ -153,7 +153,7 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
     }
 
     /**
-     * Mục dích method tạo ra interface bắt onclick
+     * Mục đích method tạo ra interface bắt onclick
      *
      * @created_by Hoàng Hiệp on 3/28/2019
      */

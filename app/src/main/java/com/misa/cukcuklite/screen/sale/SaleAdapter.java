@@ -53,19 +53,23 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
             List<DishOrder> dishOrders = mOrders.get(position).getListDish();
             SpannableStringBuilder builder = new SpannableStringBuilder();
             for (DishOrder dishOrder : dishOrders) {
-                Dish dish = dishOrder.getDish();
-                Integer count = dishOrder.getCount();
-                String s = dish.getName() + " (" + count.toString() + "), ";
-                SpannableString span = new SpannableString(s);
-                span.setSpan(new RelativeSizeSpan(0.8f),
-                        dish.getName().length() + 1,
-                        s.length() - 2, 0);
-                span.setSpan(new ForegroundColorSpan(Color.parseColor("#3A8FC7")),
-                        dish.getName().length() + 1,
-                        s.length() - 2, 0);
-                builder.append(span);
+                if (dishOrder.getCount() != 0) {
+                    Dish dish = dishOrder.getDish();
+                    Integer count = dishOrder.getCount();
+                    String s = dish.getName() + " (" + count.toString() + "), ";
+                    SpannableString span = new SpannableString(s);
+                    span.setSpan(new RelativeSizeSpan(0.8f),
+                            dish.getName().length() + 1,
+                            s.length() - 2, 0);
+                    span.setSpan(new ForegroundColorSpan(Color.parseColor("#3A8FC7")),
+                            dish.getName().length() + 1,
+                            s.length() - 2, 0);
+                    builder.append(span);
+                } else {
+
+                }
             }
-            holder.tvContent.setText(builder);
+            holder.tvContent.setText(builder.delete(builder.length()-2,builder.length()-1));
             holder.tvPerson.setText(String.valueOf(mOrders.get(position).getNumberPerson()));
             holder.tvAmount.setText(String.valueOf(getAmount(dishOrders)));
             holder.tvTable.setText(String.valueOf(mOrders.get(position).getNumberTable()));
@@ -115,7 +119,6 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
         mOrders.clear();
         mOrders.addAll(orders);
         notifyDataSetChanged();
-
     }
 
     interface OnClickItem {

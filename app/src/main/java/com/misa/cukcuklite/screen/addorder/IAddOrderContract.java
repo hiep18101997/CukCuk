@@ -4,6 +4,10 @@ import com.misa.cukcuklite.data.db.model.DishOrder;
 
 import java.util.List;
 
+/**
+ * ‐ Contract  trong mô hình MVP cho màn hình Đặt món
+ * ‐ @created_by Hoàng Hiệp on 4/5/2019
+ */
 interface IAddOrderContract {
     interface IView {
         void onLoadListDishSuccess(List<DishOrder> list);

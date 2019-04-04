@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.data.db;
 
 import com.misa.cukcuklite.data.db.model.Order;
-import com.misa.cukcuklite.data.db.model.Unit;
 
 import java.util.List;
 

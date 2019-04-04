@@ -32,30 +32,34 @@ public class EditDishPresenter implements IEditDishContract.IPresenter {
     }
 
     /**
-     * Mục dích method: Sửa món ăn
+     * Mục đích method: Sửa món ăn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void editDish(final Dish currentDish) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().updateDish(currentDish);
-                return null;
-            }
+        try {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().updateDish(currentDish);
+                    return null;
+                }
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                mView.onEditDishDone();
-            }
-        }.execute();
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    mView.onEditDishDone();
+                }
+            }.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * Mục dích method thực hiện việc chuyển image từ asset thành Bitmap
+     * Mục đích method thực hiện việc chuyển image từ asset thành Bitmap
      *
      * @param activity context
      * @param icon     đường dẫn ảnh
@@ -75,26 +79,30 @@ public class EditDishPresenter implements IEditDishContract.IPresenter {
     }
 
     /**
-     * Mục dích method: Xóa món ăn
+     * Mục đích method: Xóa món ăn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void removeDish(final Dish currentDish) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().deleteDish(currentDish);
-                return null;
-            }
+        try {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().deleteDish(currentDish);
+                    return null;
+                }
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                mView.onRemoveDishDone();
-            }
-        }.execute();
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    mView.onRemoveDishDone();
+                }
+            }.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
