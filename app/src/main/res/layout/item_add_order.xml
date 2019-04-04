@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/margin_normal"
+        android:paddingStart="@dimen/margin_normal"
         android:paddingTop="@dimen/margin_normal"
-        android:paddingRight="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_normal"
         android:paddingBottom="@dimen/margin_normal">
 
         <RelativeLayout
@@ -96,15 +96,15 @@
                     style="@style/TextViewDefault"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/margin_normal_small"
+                    android:layout_marginStart="@dimen/margin_normal_small"
                     android:layout_marginTop="@dimen/margin_small_small"
-                    android:layout_marginRight="@dimen/margin_normal_small"
+                    android:layout_marginEnd="@dimen/margin_normal_small"
                     android:layout_marginBottom="@dimen/margin_small_small"
                     android:background="@drawable/bg_white_no_border_with_radius"
                     android:gravity="center"
                     android:minWidth="@dimen/min_width_text_view_quantity"
-                    android:paddingLeft="@dimen/margin_small"
-                    android:paddingRight="@dimen/margin_small"
+                    android:paddingStart="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
                     android:text="@string/key1" />
 
                 <ImageView

@@ -1,6 +1,5 @@
 package com.misa.cukcuklite.data.db.model;
 
-import android.os.Parcel;
 
 import java.io.Serializable;
 

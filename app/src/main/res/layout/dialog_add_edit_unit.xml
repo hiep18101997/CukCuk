@@ -11,9 +11,9 @@
     <LinearLayout
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_normal_small"
+        android:paddingStart="@dimen/margin_normal_small"
         android:paddingTop="@dimen/margin_medium"
-        android:paddingRight="@dimen/margin_normal_small"
+        android:paddingEnd="@dimen/margin_normal_small"
         android:paddingBottom="@dimen/margin_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

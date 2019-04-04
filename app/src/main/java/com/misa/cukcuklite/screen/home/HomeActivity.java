@@ -15,7 +15,6 @@ import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.menu.MenuFragment;
 import com.misa.cukcuklite.screen.sale.SaleFragment;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -140,5 +139,4 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
                 break;
         }
     }
-
 }
