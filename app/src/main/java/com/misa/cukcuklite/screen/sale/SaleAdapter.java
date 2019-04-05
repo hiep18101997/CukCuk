@@ -53,9 +53,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
             List<DishOrder> dishOrders = mOrders.get(position).getListDish();
             SpannableStringBuilder builder = new SpannableStringBuilder();
             for (DishOrder dishOrder : dishOrders) {
-                if (dishOrder.getCount() != 0) {
+                if (dishOrder.getQuantity() != 0) {
                     Dish dish = dishOrder.getDish();
-                    Integer count = dishOrder.getCount();
+                    Integer count = dishOrder.getQuantity();
                     String s = dish.getName() + " (" + count.toString() + "), ";
                     SpannableString span = new SpannableString(s);
                     span.setSpan(new RelativeSizeSpan(0.8f),
@@ -102,7 +102,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     private long getAmount(List<DishOrder> dishOrders) {
         long amount = 0;
         for (DishOrder entry : dishOrders) {
-            amount += entry.getDish().getCost() * entry.getCount();
+            amount += entry.getDish().getCost() * entry.getQuantity();
         }
         return amount;
     }

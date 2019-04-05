@@ -61,7 +61,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         try {
             Dish dish = mList.get(position).getDish();
-            final int quantity = mList.get(position).getCount();
+            final int quantity = mList.get(position).getQuantity();
             holder.tvName.setText(dish.getName());
             holder.tvPrice.setText(String.valueOf(dish.getCost()));
             holder.tvQuantity.setText(String.valueOf(quantity));
@@ -89,7 +89,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
             holder.imgPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mList.get(position).setCount(quantity + 1);
+                    mList.get(position).setQuantity(quantity + 1);
                     notifyItemChanged(position);
                     mOnClickItem.onClick(mList);
                 }
@@ -97,7 +97,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
             holder.imgMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mList.get(position).setCount(quantity - 1);
+                    mList.get(position).setQuantity(quantity - 1);
                     notifyItemChanged(position);
                     mOnClickItem.onClick(mList);
                 }
@@ -105,7 +105,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
             holder.rlItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mList.get(position).setCount(quantity + 1);
+                    mList.get(position).setQuantity(quantity + 1);
                     notifyItemChanged(position);
                     mOnClickItem.onClick(mList);
                 }
@@ -113,7 +113,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
             holder.imgSelected.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mList.get(position).setCount(0);
+                    mList.get(position).setQuantity(0);
                     notifyItemChanged(position);
                     mOnClickItem.onClick(mList);
                 }

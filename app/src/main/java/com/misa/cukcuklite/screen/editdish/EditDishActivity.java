@@ -23,6 +23,7 @@ import com.misa.cukcuklite.data.db.model.Dish;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
+import com.misa.cukcuklite.screen.keyboard.KeyboarFragment;
 import com.thebluealliance.spectrum.SpectrumDialog;
 
 import java.math.BigDecimal;
@@ -250,7 +251,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
                 showDialogPickIcon();
                 break;
             case R.id.tvCost:
-                showDialogCalculator();
+                showKeyboardDialog();
                 break;
             case R.id.tvUnit:
                 startActivity(ChooseUnitActivity.getIntent(this, tvUnit.getText().toString()));
@@ -270,7 +271,25 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
                 break;
         }
     }
-
+    /**
+     * Phương thức hiển thị hộp thoại bàn phím nhập giá sản phẩm
+     *
+     * @created_by lxphuoc on 3/27/2019
+     */
+    public void showKeyboardDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        KeyboarFragment keyboarFragment = KeyboarFragment.createInstance("0", new KeyboarFragment.IOnClickDone() {
+            @Override
+            public void onClickDone(long price, String priceShow) {
+                setPrice(price,priceShow);
+            }
+        });
+        keyboarFragment.show(fm, "dialog_fragment_keyboard");
+    }
+    public void setPrice(long price, String priceShow) {
+        currentDish.setCost((long) price);
+        tvCost.setText(priceShow);
+    }
     /**
      * Mục đích method: Hiển thị dialog xác nhận
      *

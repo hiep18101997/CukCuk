@@ -45,14 +45,16 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                 @Override
                 protected void onPostExecute(List<Dish> dishes) {
                     super.onPostExecute(dishes);
-                    List<DishOrder> list = new ArrayList<>();
+                    List<DishOrder> dishOrderList = new ArrayList<>();
                     for (Dish dish : dishes) {
                         if (dish.isSell()) {
-                            DishOrder entry = new DishOrder(dish, 0);
-                            list.add(entry);
+                            //DishOrder entry = new DishOrder(dish, 0,);
+                            DishOrder dishOrder = new DishOrder.Builder().setDishId(dish.getId()).setQuantity(0).setCost(dish.getCost()).build();
+                            dishOrder.setDish(dish);
+                            dishOrderList.add(dishOrder);
                         }
                     }
-                    mView.onLoadListDishSuccess(list);
+                    mView.onLoadListDishSuccess(dishOrderList);
                 }
             }.execute();
         } catch (Exception e) {
@@ -70,24 +72,23 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
      */
     @SuppressLint("StaticFieldLeak")
     @Override
-    public void saveOrder(String table, String person, List<DishOrder> list) {
+    public void saveOrder(String table, String person, final List<DishOrder> list) {
         try {
             if (isValidData(table, person, list)) {
                 final Order mOrder = new Order.Builder()
                         .setNumberTable(Integer.valueOf(table))
                         .setNumberPerson(Integer.valueOf(person))
-                        .setListDish(list).build();
-                new AsyncTask<Void, Void, Void>() {
+                        .build();
+                new AsyncTask<Void, Void, Long>() {
                     @Override
-                    protected Void doInBackground(Void... voids) {
-                        DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().insertOrder(mOrder);
-                        return null;
+                    protected Long doInBackground(Void... voids) {
+                        return DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().insertOrder(mOrder);
                     }
 
                     @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
-                        mView.onSaveOrderDone();
+                    protected void onPostExecute(Long aLong) {
+                        super.onPostExecute(aLong);
+                        saveDishOrderByOrderId(list, aLong);
                     }
                 }.execute();
 
@@ -95,6 +96,10 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    private void saveDishOrderByOrderId(List<DishOrder> list, Long aLong) {
+
     }
 
     /**
@@ -136,6 +141,23 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
 
     }
 
+    @SuppressLint("StaticFieldLeak")
+    @Override
+    public void getDishOrderByOrderId(final int id) {
+        new AsyncTask<Void, Void, List<DishOrder>>() {
+            @Override
+            protected List<DishOrder> doInBackground(Void... voids) {
+                return DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().getDishOrderByOrderId(id);
+            }
+
+            @Override
+            protected void onPostExecute(List<DishOrder> dishOrders) {
+                super.onPostExecute(dishOrders);
+                mView.onLoadListDishOrderDone(dishOrders);
+            }
+        }.execute();
+    }
+
     /**
      * Mục đích method: Kiểm tra đầu vào
      *
@@ -162,7 +184,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
             }
             long amount = 0;
             for (DishOrder entry : list) {
-                amount += entry.getDish().getCost() * entry.getCount();
+                amount += entry.getDish().getCost() * entry.getQuantity();
             }
             if (amount == 0) {
                 mView.onZeroDish();

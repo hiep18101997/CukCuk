@@ -39,9 +39,9 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvInventoryItemName.setText(mOrders.get(position).getDish().getName());
-        holder.tvQuantity.setText(String.valueOf(mOrders.get(position).getCount()));
+        holder.tvQuantity.setText(String.valueOf(mOrders.get(position).getQuantity()));
         holder.tvUnitPrice.setText(String.valueOf(mOrders.get(position).getDish().getCost()));
-        holder.tvAmount.setText(String.valueOf(mOrders.get(position).getDish().getCost() * mOrders.get(position).getCount()));
+        holder.tvAmount.setText(String.valueOf(mOrders.get(position).getDish().getCost() * mOrders.get(position).getQuantity()));
     }
 
     @Override

@@ -19,7 +19,7 @@ public interface OrderDAO {
     List<Order> getAllOrder();
 
     @Insert
-    void insertOrder(Order unit);
+    long insertOrder(Order unit);
 
     @Delete
     void deleteOrder(Order unit);

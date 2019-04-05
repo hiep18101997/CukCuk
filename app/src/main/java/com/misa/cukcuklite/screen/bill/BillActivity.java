@@ -120,7 +120,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
     private List<DishOrder> getOderDish(List<DishOrder> listDish) {
         List<DishOrder> dishOrders = new ArrayList<>();
         for (DishOrder dishOrder : listDish) {
-            if (dishOrder.getCount() != 0) {
+            if (dishOrder.getQuantity() != 0) {
                 dishOrders.add(dishOrder);
             }
         }
@@ -193,7 +193,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
         try {
             long amount = 0;
             for (DishOrder entry : dishOrders) {
-                amount += entry.getDish().getCost() * entry.getCount();
+                amount += entry.getDish().getCost() * entry.getQuantity();
             }
             return amount;
         } catch (Exception e) {

@@ -87,4 +87,7 @@
     <string name="title_remain_amount">Số tiền phải trả</string>
     <string name="title_guest_amount">Tiền khách đưa</string>
     <string name="title_return_amount">Tiền trả lại cho khách</string>
+    <string name="price_sale">Giá bán</string>
+    <string name="zero">0</string>
+    <string name="error_money">Giá tiền phải lớn hơn 0</string>
 </resources>

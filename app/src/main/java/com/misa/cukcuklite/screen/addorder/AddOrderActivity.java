@@ -106,14 +106,12 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             tvTable = findViewById(R.id.tvTable);
             tvPerson = findViewById(R.id.tvPerson);
             currentOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
+            list = new ArrayList<>();
             if (currentOrder != null) {
-                showCurrentOrder();
                 isEdit = true;
-                list = new ArrayList<>();
-                list.addAll(currentOrder.getListDish());
+                mPresenter.getDishOrderByOrderId(currentOrder.getId());
             } else {
                 isEdit = false;
-                list = new ArrayList<>();
                 mPresenter.getMenu();
             }
             mAdapter = new AddOrderAdapter(this, list, this);
@@ -134,7 +132,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
     private void showCurrentOrder() {
         tvPerson.setText(String.valueOf(currentOrder.getNumberPerson()));
         tvTable.setText(String.valueOf(currentOrder.getNumberTable()));
-        tvTotalMoney.setText(String.valueOf(getAmount(currentOrder.getListDish())));
+        tvTotalMoney.setText(String.valueOf(getAmount(list)));
     }
 
     /**
@@ -156,7 +154,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         try {
             long amount = 0;
             for (DishOrder entry : dishOrders) {
-                amount += entry.getDish().getCost() * entry.getCount();
+                amount += entry.getDish().getCost() * entry.getQuantity();
             }
             return amount;
         } catch (Exception e) {
@@ -235,6 +233,17 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    /**
+     * Mục đích method:Trả về khi lấy danh sách dishorder theo order id
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
+    @Override
+    public void onLoadListDishOrderDone(List<DishOrder> dishOrders) {
+        list.addAll(dishOrders);
+        mAdapter.setData(dishOrders);
+        showCurrentOrder();
     }
 
     /**
