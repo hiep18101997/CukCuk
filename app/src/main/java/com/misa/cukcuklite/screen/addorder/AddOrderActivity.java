@@ -245,6 +245,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
      */
     @Override
     public void onClick(View v) {
+<<<<<<< HEAD
         try {
             switch (v.getId()) {
                 case R.id.imgBack:
@@ -267,6 +268,30 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                 case R.id.tvPerson:
                     showDialogCalculator(FLAG_PERSON);
                     break;
+=======
+        switch (v.getId()) {
+            case R.id.imgBack:
+                onBackPressed();
+                break;
+            case R.id.btnSave:
+                if (isEdit) {
+                    mPresenter.editOrder(currentOrder.getId(), tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
+                } else {
+                    mPresenter.saveOrder(tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
+                }
+
+                break;
+            case R.id.btnTakeMoney:
+            case R.id.btnActionTakeMoney:
+                startActivity(BillActivity.getIntent(this,currentOrder));
+                break;
+            case R.id.tvTable:
+                showDialogCalculator(FLAG_TABLE);
+                break;
+            case R.id.tvPerson:
+                showDialogCalculator(FLAG_PERSON);
+                break;
+>>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
 
             }
         } catch (Exception e) {
