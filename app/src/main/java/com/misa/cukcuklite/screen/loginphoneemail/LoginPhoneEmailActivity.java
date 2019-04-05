@@ -20,7 +20,7 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
     private ProgressDialog progressDialog;
 
     /**
-     * Mục dích method: Lấy intent
+     * Mục đích method: Lấy intent
      *
      * @param context Context
      * @return Trả về intent trỏ tới AddDishActivity

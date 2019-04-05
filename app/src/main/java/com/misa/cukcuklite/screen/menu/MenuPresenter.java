@@ -19,13 +19,13 @@ public class MenuPresenter implements IMenuContract.IPresenter {
     private Context mContext;
     private IMenuContract.IView mView;
 
-    public MenuPresenter(IMenuContract.IView view,Context context) {
+    public MenuPresenter(IMenuContract.IView view, Context context) {
         mView = view;
         mContext = context;
     }
 
     /**
-     * Mục dích method: Lấy toàn bộ danh sách món ăn
+     * Mục đích method: Lấy toàn bộ danh sách món ăn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

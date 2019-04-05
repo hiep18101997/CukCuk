@@ -27,13 +27,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.misa.cukcuklite.AppConstant.IMAGE_ASSETS;
 
+/**
+ * - Mục đích Class : Adapter của RecyclerView đặt món
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHolder> {
     private List<DishOrder> mList;
     private Context mContext;

@@ -53,7 +53,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: bắt sự kiện click
+     * Mục đích method: bắt sự kiện click
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -64,7 +64,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Khởi tạo và ánh xạ các View
+     * Mục đích method: Khởi tạo và ánh xạ các View
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -83,7 +83,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Xử lí khi View click Edit, hiển thị input Dialog
+     * Mục đích method: Xử lí khi View click Edit, hiển thị input Dialog
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -109,7 +109,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Xử lí khi View click Remove, hiển thị dialog confirm
+     * Mục đích method: Xử lí khi View click Remove, hiển thị dialog confirm
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -130,7 +130,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Xử lí khi click
+     * Mục đích method: Xử lí khi click
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -170,7 +170,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method load lại list khi lấy được dữ liệu
+     * Mục đích method load lại list khi lấy được dữ liệu
      *
      * @param units Danh sách các đơn vị tính
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -181,7 +181,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method gửi Broadcast để load lại list sau khi thêm đơn vị tính thành công
+     * Mục đích method gửi Broadcast để load lại list sau khi thêm đơn vị tính thành công
      *
      * @param unit Danh sách các đơn vị tính
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -199,7 +199,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Hiện lỗi khi thêm đơn vị thất bại
+     * Mục đích method: Hiện lỗi khi thêm đơn vị thất bại
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -209,7 +209,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method gửi Broadcast để load lại list sau khi sửa đơn vị tính thành công
+     * Mục đích method gửi Broadcast để load lại list sau khi sửa đơn vị tính thành công
      *
      * @param unit Đơn vị tính được thêm
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -227,7 +227,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Cập nhật lại list khi xóa đơn vị tính thành công
+     * Mục đích method: Cập nhật lại list khi xóa đơn vị tính thành công
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -242,7 +242,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Hiện lỗi khi xóa đơn vị tính thất bại
+     * Mục đích method: Hiện lỗi khi xóa đơn vị tính thất bại
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -252,7 +252,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Hàm gọi từ dialog để lưu đơn vị tính
+     * Mục đích method: Hàm gọi từ dialog để lưu đơn vị tính
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -265,7 +265,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method: Hiện lỗi khi bỏ trống đơn vị tính
+     * Mục đích method: Hiện lỗi khi bỏ trống đơn vị tính
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -274,7 +274,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method gọi từ Dialog đẻ sửa đơn vị tính
+     * Mục đích method gọi từ Dialog đẻ sửa đơn vị tính
      *
      * @param unit Đơn vị tính được sửa
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -290,7 +290,7 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     }
 
     /**
-     * Mục dích method gọi từ Dialog đẻ xóa đơn vị tính
+     * Mục đích method gọi từ Dialog đẻ xóa đơn vị tính
      *
      * @param unit Đơn vị tính bị xóa
      * @created_by Hoàng Hiệp on 3/27/2019

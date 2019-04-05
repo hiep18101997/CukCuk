@@ -32,7 +32,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
     }
 
     /**
-     * Mục dích method thực hiện việc chuyển image từ asset thành Bitmap
+     * Mục đích method thực hiện việc chuyển image từ asset thành Bitmap
      *
      * @param context context
      * @param icon    đường dẫn ảnh
@@ -52,7 +52,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
     }
 
     /**
-     * Mục dích method thực hiện việc thêm món vào Database
+     * Mục đích method thực hiện việc thêm món vào Database
      *
      * @param dish Món
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -79,7 +79,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
     }
 
     /**
-     * Mục dích method thực hiện việc kiểm tra dữ liệu nhập vào
+     * Mục đích method thực hiện việc kiểm tra dữ liệu nhập vào
      *
      * @param dish Món
      * @return trả về xem dữ liệu hợp lẹ hay không

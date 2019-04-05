@@ -1,5 +1,6 @@
 package com.misa.cukcuklite.screen.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,11 +26,19 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
     private ILoginContract.IPresenter mPresenter;
     private LinearLayout lnFacebook, lnGoogle, lnPhoneEmail;
     private CallbackManager mCallbackManager;
+    private ProgressDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initComponent();
+
+        initFacebookSDK();
+    }
+
+    private void initComponent() {
+        mDialog=new ProgressDialog(this);
         mPresenter = new LoginPresenter(this);
         lnFacebook = findViewById(R.id.lnLoginFacebook);
         lnGoogle = findViewById(R.id.lnLoginGoogle);
@@ -37,7 +46,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
         lnGoogle.setOnClickListener(this);
         lnFacebook.setOnClickListener(this);
         lnPhoneEmail.setOnClickListener(this);
-        initFacebookSDK();
     }
 
     private void initFacebookSDK() {
@@ -96,5 +104,18 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
     @Override
     public void navigateHomeScreen() {
         startActivity(HomeActivity.getIntent(this));
+    }
+
+    @Override
+    public void showLoading() {
+        mDialog.setMessage(getString(R.string.loading));
+        mDialog.setCancelable(false);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        mDialog.dismiss();
     }
 }

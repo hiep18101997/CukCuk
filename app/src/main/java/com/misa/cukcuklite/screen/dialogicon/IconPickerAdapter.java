@@ -19,7 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.misa.cukcuklite.AppConstant.IMAGE_ASSETS;
-
+/**
+ * - Mục đích Class :Adapter cho dialog chọn icon
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 public class IconPickerAdapter extends RecyclerView.Adapter<IconPickerAdapter.ViewHolder> {
     private Context mContext;
     private List<String> mIcons;
@@ -51,7 +54,7 @@ public class IconPickerAdapter extends RecyclerView.Adapter<IconPickerAdapter.Vi
     }
 
     /**
-     * Mục dích method thực hiện việc chuyển image từ asset thành Bitmap
+     * Mục đích method thực hiện việc chuyển image từ asset thành Bitmap
      *
      * @param fileName đường dẫn ảnh
      * @return trả về Bitmap

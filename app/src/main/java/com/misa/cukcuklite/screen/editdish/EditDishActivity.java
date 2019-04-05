@@ -58,7 +58,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     private CheckBox mCheckBox;
 
     /**
-     * Mục dích method: Lấy intent
+     * Mục đích method: Lấy intent
      *
      * @param context Context
      * @return Trả về intent trỏ tới EditDishActivity
@@ -81,7 +81,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Khởi tạo và đăng kí lắng nghe Broadcast
+     * Mục đích method: Khởi tạo và đăng kí lắng nghe Broadcast
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -98,7 +98,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Bắt sự kiện
+     * Mục đích method: Bắt sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -118,7 +118,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -139,7 +139,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Load dữ liệu có sẵn
+     * Mục đích method: Load dữ liệu có sẵn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -161,7 +161,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Khởi tạo hiện dialog để chọn màu
+     * Mục đích method: Khởi tạo hiện dialog để chọn màu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -196,32 +196,36 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Khởi tạo và hiện dialog máy tính
+     * Mục đích method: Khởi tạo và hiện dialog máy tính
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void showDialogCalculator() {
-        CalcDialog calcDialog = new CalcDialog();
-        calcDialog.getSettings()
-                .setRequestCode(0)
-                .setInitialValue(null)
-                .setNumberFormat(NumberFormat.getInstance())
-                .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
-                .setExpressionShown(false)
-                .setExpressionEditable(false)
-                .setMinValue(new BigDecimal(0))
-                .setZeroShownWhenNoValue(true)
-                .setAnswerBtnShown(false)
-                .setSignBtnShown(true)
-                .setShouldEvaluateOnOperation(true)
-                .setOrderOfOperationsApplied(true);
-        FragmentManager fm = getSupportFragmentManager();
-        calcDialog.setCancelable(false);
-        calcDialog.show(fm, "fragment_cal");
+        try {
+            CalcDialog calcDialog = new CalcDialog();
+            calcDialog.getSettings()
+                    .setRequestCode(0)
+                    .setInitialValue(null)
+                    .setNumberFormat(NumberFormat.getInstance())
+                    .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
+                    .setExpressionShown(false)
+                    .setExpressionEditable(false)
+                    .setMinValue(new BigDecimal(0))
+                    .setZeroShownWhenNoValue(true)
+                    .setAnswerBtnShown(false)
+                    .setSignBtnShown(true)
+                    .setShouldEvaluateOnOperation(true)
+                    .setOrderOfOperationsApplied(true);
+            FragmentManager fm = getSupportFragmentManager();
+            calcDialog.setCancelable(false);
+            calcDialog.show(fm, "fragment_cal");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * Mục dích method: Khởi tạo hiện dialog để chọn màu
+     * Mục đích method: Khởi tạo hiện dialog để chọn màu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -232,7 +236,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Xử lý sự kiện
+     * Mục đích method: Xử lý sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -268,7 +272,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Hiển thị dialog xác nhận
+     * Mục đích method: Hiển thị dialog xác nhận
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -290,7 +294,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Thay đổi icon sau khi chọn
+     * Mục đích method: Thay đổi icon sau khi chọn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -300,7 +304,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Xóa món ăn
+     * Mục đích method: Xóa món ăn
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -309,7 +313,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Gửi Broadcast đến Menu để cập nhật lại list khi xóa thành công món
+     * Mục đích method: Gửi Broadcast đến Menu để cập nhật lại list khi xóa thành công món
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -321,7 +325,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục dích method: Gửi Broadcast đến Menu để cập nhật lại list khi sửa thành công món
+     * Mục đích method: Gửi Broadcast đến Menu để cập nhật lại list khi sửa thành công món
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */

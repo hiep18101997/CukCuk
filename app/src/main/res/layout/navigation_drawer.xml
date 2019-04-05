@@ -24,12 +24,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/bg_navi" />
+
+                    android:contentDescription="@string/image_view" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@color/blue_trans" />
+                    android:src="@color/blue_trans"
+                    android:contentDescription="@string/image_view" />
 
                 <ImageView
                     android:id="@+id/ivAvatar"
@@ -38,7 +40,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/tv_navi_padding"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_avatar" />
+            />
 
                 <TextView
                     style="@style/FontBodyTextRegular"

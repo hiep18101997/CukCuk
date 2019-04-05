@@ -11,15 +11,16 @@ import java.util.List;
 import androidx.room.TypeConverter;
 
 public class Converters {
-    
+
     static Gson gson = new Gson();
-    
+
     @TypeConverter
     public static List<DishOrder> stringToSomeObjectList(String data) {
         if (data == null) {
             return Collections.emptyList();
         }
-        Type listType = new TypeToken<List<DishOrder>>() {}.getType();
+        Type listType = new TypeToken<List<DishOrder>>() {
+        }.getType();
         return gson.fromJson(data, listType);
     }
 

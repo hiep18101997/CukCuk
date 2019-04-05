@@ -38,7 +38,6 @@ public class LoginPhoneEmailPresenter implements ILoginPhoneEmailContract.IPrese
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
                         }
                     });
         }
@@ -52,7 +51,6 @@ public class LoginPhoneEmailPresenter implements ILoginPhoneEmailContract.IPrese
                 return false;
             }
             if (TextUtils.isEmpty(password)) {
-
                 mView.hideLoading();
                 mView.onEmptyPassword();
                 return false;

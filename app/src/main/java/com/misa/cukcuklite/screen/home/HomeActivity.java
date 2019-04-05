@@ -23,6 +23,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * - Mục đích Class : Màn hình chính của ưng dụng
+ * - @created_by Hoàng Hiệp on 4/5/2019
+ */
 public class HomeActivity extends AppCompatActivity implements IHomeContract.IView, View.OnClickListener {
     private static final String TAG = HomeActivity.class.getName();
     private static final int REQUEST_CODE = 914;
@@ -31,6 +35,13 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private TextView tvTitle;
     private LinearLayout lnMenu, lnSale;
 
+    /**
+     * Mục đích method: Lấy Intent
+     *
+     * @param context Context
+     * @return intent Intent
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -47,11 +58,20 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         loadFragment(SaleFragment.newInstance());
     }
 
+    /**
+     * Mục đích method: Bắt sự kiện click
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void initListener() {
         lnSale.setOnClickListener(this);
         lnMenu.setOnClickListener(this);
     }
-
+    /**
+     * Mục đích method: Ánh xạ và khai báo view
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void initComponent() {
         lnMenu = findViewById(R.id.lnMenu);
         lnSale = findViewById(R.id.lnSale);
@@ -61,7 +81,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     }
 
     /**
-     * Mục dích method: Khởi tạo và cài đặt toolbar
+     * Mục đích method: Khởi tạo và cài đặt toolbar
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -79,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     }
 
     /**
-     * Mục dích method: tạo button add
+     * Mục đích method: tạo button add
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
@@ -90,53 +110,73 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     }
 
     /**
-     * Mục dích method: Bắt sự kiện click menu
+     * Mục đích method: Bắt sự kiện click menu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add:
-                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
-                if (currentFragment instanceof MenuFragment) {
-                    startActivity(AddDishActivity.getIntent(this));
-                } else if (currentFragment instanceof SaleFragment) {
-                    startActivity(AddOrderActivity.getIntent(this));
-                }
-                break;
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            default:
-                break;
+        try {
+            switch (item.getItemId()) {
+                case R.id.action_add:
+                    Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
+                    if (currentFragment instanceof MenuFragment) {
+                        startActivity(AddDishActivity.getIntent(this));
+                    } else if (currentFragment instanceof SaleFragment) {
+                        startActivity(AddOrderActivity.getIntent(this));
+                    }
+                    break;
+                case android.R.id.home:
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                default:
+                    break;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
-
+    /**
+     * Mục đích method: Replace Fragment
+     * @param fragment Fragment cần thay thế
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void loadFragment(Fragment fragment) {
-        if (fragment instanceof MenuFragment) {
-            tvTitle.setText(getString(R.string.menu));
-        } else if (fragment instanceof SaleFragment) {
-            tvTitle.setText(getString(R.string.sale));
+        try {
+            if (fragment instanceof MenuFragment) {
+                tvTitle.setText(getString(R.string.menu));
+            } else if (fragment instanceof SaleFragment) {
+                tvTitle.setText(getString(R.string.sale));
+            }
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.replace(R.id.frHome, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.replace(R.id.frHome, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
-
+ /**
+      * Mục đích method: Xử lý sự kiện onClick
+      * @created_by Hoàng Hiệp on 4/5/2019
+      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.lnSale:
-                mDrawerLayout.closeDrawer(GravityCompat.START);
-                loadFragment(SaleFragment.newInstance());
-                break;
-            case R.id.lnMenu:
-                mDrawerLayout.closeDrawer(GravityCompat.START);
-                loadFragment(MenuFragment.newInstance());
-                break;
+        try {
+            switch (v.getId()) {
+                case R.id.lnSale:
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                    loadFragment(SaleFragment.newInstance());
+                    break;
+                case R.id.lnMenu:
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                    loadFragment(MenuFragment.newInstance());
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
