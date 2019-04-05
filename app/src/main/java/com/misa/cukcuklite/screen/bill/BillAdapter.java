@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.LinearLayout;
-=======
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
@@ -18,13 +15,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-<<<<<<< HEAD
 /**
  * - Mục đích Class :Adapter Recyvlerview màn hóa đơn
  * - @created_by Hoàng Hiệp on 4/5/2019
  */
-=======
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     private Context mContext;
     private LayoutInflater mInflater;
@@ -39,11 +33,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-<<<<<<< HEAD
         View v = mInflater.inflate(R.layout.item_bill, parent, false);
-=======
-        View v = mInflater.inflate(R.layout.item_bill,parent,false);
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
         return new ViewHolder(v);
     }
 
@@ -52,12 +42,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tvInventoryItemName.setText(mOrders.get(position).getDish().getName());
         holder.tvQuantity.setText(String.valueOf(mOrders.get(position).getCount()));
         holder.tvUnitPrice.setText(String.valueOf(mOrders.get(position).getDish().getCost()));
-<<<<<<< HEAD
         holder.tvAmount.setText(String.valueOf(mOrders.get(position).getDish().getCost() * mOrders.get(position).getCount()));
 
-=======
-        holder.tvAmount.setText(String.valueOf(mOrders.get(position).getDish().getCost()*mOrders.get(position).getCount()));
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
     }
 
     @Override
@@ -66,7 +52,6 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-<<<<<<< HEAD
         private TextView tvInventoryItemName, tvQuantity, tvUnitPrice, tvAmount;
         private LinearLayout lnBill;
 
@@ -77,15 +62,6 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
             tvUnitPrice = itemView.findViewById(R.id.tvUnitPrice);
             tvAmount = itemView.findViewById(R.id.tvAmount);
             lnBill = itemView.findViewById(R.id.lnBill);
-=======
-        private TextView tvInventoryItemName,tvQuantity,tvUnitPrice,tvAmount;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvInventoryItemName=itemView.findViewById(R.id.tvInventoryItemName);
-            tvQuantity=itemView.findViewById(R.id.tvQuantity);
-            tvUnitPrice=itemView.findViewById(R.id.tvUnitPrice);
-            tvAmount=itemView.findViewById(R.id.tvAmount);
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
         }
     }
 }
