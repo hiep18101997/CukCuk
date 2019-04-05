@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
-    android:id="@+id/lnBill"
-=======
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -21,34 +17,23 @@
             android:layout_weight="2.4"
             android:gravity="start"
             android:paddingStart="@dimen/margin_normal_small"
-<<<<<<< HEAD
-=======
             android:text="Hạt hướng dương"
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
             tools:ignore="RtlSymmetry" />
         <TextView
             android:id="@+id/tvQuantity"
             style="@style/TextViewDetailBill"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:layout_weight="0.8" />
-=======
             android:layout_weight="0.8"
             android:text="10" />
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
         <TextView
             android:id="@+id/tvUnitPrice"
             style="@style/TextViewDetailBill"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-<<<<<<< HEAD
-            android:gravity="end" />
-=======
             android:gravity="end"
             android:text="10.000" />
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
         <TextView
             style="@style/TextViewTitleTableBill"
             android:layout_width="0dp"
@@ -62,10 +47,7 @@
             android:layout_weight="2.1"
             android:gravity="end"
             android:paddingEnd="@dimen/margin_normal"
-<<<<<<< HEAD
-=======
             android:text="30.000"
->>>>>>> 2f7d879e85c848c4f6f943621a1da7dc261ada73
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
     <View
