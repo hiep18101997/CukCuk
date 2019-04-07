@@ -20,14 +20,6 @@ public class Order implements Serializable {
     @Ignore
     private List<DishOrder> mOrders;
 
-    public List<DishOrder> getOrders() {
-        return mOrders;
-    }
-
-    public void setOrders(List<DishOrder> orders) {
-        mOrders = orders;
-    }
-
     public Order(int mNumberTable, int mNumberPerson) {
         this.mNumberTable = mNumberTable;
         this.mNumberPerson = mNumberPerson;
@@ -37,6 +29,15 @@ public class Order implements Serializable {
         mNumberPerson = builder.mNumberPerson;
         mNumberTable = builder.mNumberTable;
         id = builder.mId;
+        mOrders=builder.mOrders;
+    }
+
+    public List<DishOrder> getOrders() {
+        return mOrders;
+    }
+
+    public void setOrders(List<DishOrder> orders) {
+        mOrders = orders;
     }
 
     public int getId() {
@@ -67,9 +68,15 @@ public class Order implements Serializable {
         private int mId;
         private int mNumberTable;
         private int mNumberPerson;
+        private List<DishOrder> mOrders;
 
         public Builder setId(int id) {
             mId = id;
+            return this;
+        }
+
+        public Builder setOrders(List<DishOrder> orders) {
+            mOrders = orders;
             return this;
         }
 

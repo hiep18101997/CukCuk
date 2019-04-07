@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.screen.keyboard.model;
+package com.misa.cukcuklite.screen.calculator.model;
 
 /**
  * ‐ Class được tạo ra dể người dùng đăng nhập vào hệ thống

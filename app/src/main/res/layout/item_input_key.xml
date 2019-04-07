@@ -9,12 +9,12 @@
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
-    android:minWidth="64dp"
-    android:padding="10dp">
+    android:minWidth="@dimen/item_input_min_w"
+    android:padding="@dimen/item_input_padding">
 
     <TextView
         android:id="@+id/tvInputKey"
-        style="@style/FontButton"
+        style="@style/FontBodyTextRegular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

@@ -67,6 +67,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         lnSale.setOnClickListener(this);
         lnMenu.setOnClickListener(this);
     }
+
     /**
      * Mục đích method: Ánh xạ và khai báo view
      *
@@ -137,8 +138,10 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         }
         return false;
     }
+
     /**
      * Mục đích method: Replace Fragment
+     *
      * @param fragment Fragment cần thay thế
      * @created_by Hoàng Hiệp on 4/5/2019
      */
@@ -158,10 +161,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method: Xử lý sự kiện onClick
-      * @created_by Hoàng Hiệp on 4/5/2019
-      */
+
+    /**
+     * Mục đích method: Xử lý sự kiện onClick
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void onClick(View v) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);

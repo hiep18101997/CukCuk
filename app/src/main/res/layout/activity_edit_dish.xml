@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/app_bar_edit_dish" />
@@ -10,6 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/ln_height"
+        android:background="@drawable/bg_item"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView
@@ -49,8 +53,12 @@
         android:background="@color/gray" />
 
     <LinearLayout
+        android:id="@+id/lnCost"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ln_height"
+        android:background="@drawable/bg_item"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView
@@ -66,17 +74,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+
+            android:drawableEnd="@drawable/ic_next"
+
             android:gravity="end|center"
+            android:paddingEnd="@dimen/tv_padding_end"
             android:singleLine="true"
             android:textColor="@color/color_black" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/image_margin_end"
-            android:contentDescription="@string/image_view"
-            app:srcCompat="@drawable/ic_next" />
     </LinearLayout>
 
     <View
@@ -85,8 +89,12 @@
         android:background="@color/gray" />
 
     <LinearLayout
+        android:id="@+id/lnUnit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ln_height"
+        android:background="@drawable/bg_item"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView
@@ -110,17 +118,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_next"
             android:gravity="end|center"
+            android:paddingEnd="@dimen/tv_padding_end"
             android:singleLine="true"
             android:textColor="@color/color_black" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/image_margin_end"
-            android:contentDescription="@string/image_view"
-            app:srcCompat="@drawable/ic_next" />
+
     </LinearLayout>
 
     <View
@@ -130,7 +134,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ln_height"
+        android:layout_height="@dimen/ln_pick_h"
         android:orientation="horizontal">
 
         <TextView

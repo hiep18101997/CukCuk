@@ -17,4 +17,5 @@ public class AppConstant {
     public static final String EXTRA_ORDER = "com.misa.cukcuklite.extra.order";
     public static final String ACTION_ADD_DISH = "com.misa.cukcuklite.action.add.disk";
     public static final String IMAGE_ASSETS = "images/";
+    public static final String JSON_ASSETS = "json/inputkeys.json";
 }

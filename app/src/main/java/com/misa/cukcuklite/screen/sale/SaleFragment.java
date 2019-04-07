@@ -105,7 +105,7 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     @Override
     public void onClickTakeMoney(Order order) {
-        startActivity(BillActivity.getIntent(getContext(),order));
+        startActivity(BillActivity.getIntent(getContext(), order));
     }
 
     @Override

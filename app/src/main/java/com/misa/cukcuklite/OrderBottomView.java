@@ -12,6 +12,7 @@ public class OrderBottomView extends View {
     public OrderBottomView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
+
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int width = getWidth();
@@ -36,6 +37,7 @@ public class OrderBottomView extends View {
 
     class PainBill extends Paint {
         final OrderBottomView mBottomView;
+
         PainBill(OrderBottomView orderBottomView) {
             this.mBottomView = orderBottomView;
             setStyle(Style.FILL);

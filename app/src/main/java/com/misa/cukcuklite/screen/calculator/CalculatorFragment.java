@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.screen.keyboard;
+package com.misa.cukcuklite.screen.calculator;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.screen.keyboard.model.InputKeys;
-import com.misa.cukcuklite.screen.keyboard.model.Operators;
+import com.misa.cukcuklite.screen.calculator.model.InputKeys;
+import com.misa.cukcuklite.screen.calculator.model.Operators;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -36,17 +36,23 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.misa.cukcuklite.AppConstant.JSON_ASSETS;
+
 /**
  * Màn hình bàn phím nhập đơn vị tính
  *
  * @created_by Hoàng Hiệp on 3/28/2019
  */
-public class KeyboarFragment extends DialogFragment {
+public class CalculatorFragment extends DialogFragment {
+    private static final String NUMBER_COLUMN = "numberColumn";
+    private static final String TEXT_INPUT = "textInput";
+    private static final String DATA = "data";
+    private static final String ID = "id";
+    private static final String NAME = "name";
     private static IOnClickDone mIOnClickDone;
-
     RecyclerView rcvKeyboard;
 
-    KeyboardAdapter mKeyboardAdapter;
+    CalculatorAdapter mCalculatorAdapter;
 
     EditText etInputNumber;
 
@@ -59,24 +65,42 @@ public class KeyboarFragment extends DialogFragment {
     private String textInput = "";
 
 
-    public KeyboarFragment() {
+    public CalculatorFragment() {
 
     }
 
-    public static KeyboarFragment createInstance(String textInput, IOnClickDone mIOnClickDone) {
-        KeyboarFragment keyboarFragment = new KeyboarFragment();
+    public static CalculatorFragment createInstance(String textInput, IOnClickDone mIOnClickDone) {
+        CalculatorFragment calculatorFragment = new CalculatorFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("numberColumn", 4);
-        bundle.putString("textInput", textInput);
-        keyboarFragment.setArguments(bundle);
-        keyboarFragment.setOnClickDone(mIOnClickDone);
-        return keyboarFragment;
+        bundle.putInt(NUMBER_COLUMN, 4);
+        bundle.putString(TEXT_INPUT, textInput);
+        calculatorFragment.setArguments(bundle);
+        calculatorFragment.setOnClickDone(mIOnClickDone);
+        return calculatorFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.dialog_fragment_keyboard, container);
+    }
+
+    /**
+     * Mục đích method: Set kích cỡ cho dialog
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -87,7 +111,7 @@ public class KeyboarFragment extends DialogFragment {
 
         createItems();
 
-        mKeyboardAdapter = new KeyboardAdapter(mDatasets);
+        mCalculatorAdapter = new CalculatorAdapter(mDatasets);
 
         setOnClickItem();
 
@@ -99,11 +123,11 @@ public class KeyboarFragment extends DialogFragment {
 
         int numberColumn = 4;
         if (bundle != null) {
-            if (bundle.containsKey("numberColumn")) {
-                numberColumn = bundle.getInt("numberColumn");
+            if (bundle.containsKey(NUMBER_COLUMN)) {
+                numberColumn = bundle.getInt(NUMBER_COLUMN);
             }
-            if (bundle.containsKey("textInput")) {
-                textInput = bundle.getString("textInput");
+            if (bundle.containsKey(TEXT_INPUT)) {
+                textInput = bundle.getString(TEXT_INPUT);
                 if (textInput != null && textInput.isEmpty()) {
                     etInputNumber.setSelection(etInputNumber.getText().length());
                     etInputNumber.selectAll();
@@ -117,7 +141,7 @@ public class KeyboarFragment extends DialogFragment {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), numberColumn);
         rcvKeyboard.setLayoutManager(gridLayoutManager);
-        rcvKeyboard.setAdapter(mKeyboardAdapter);
+        rcvKeyboard.setAdapter(mCalculatorAdapter);
 
         operators = new ArrayList<>();
 
@@ -163,14 +187,14 @@ public class KeyboarFragment extends DialogFragment {
      */
     private void createItems() {
         mDatasets = new ArrayList<>();
-        String jsonString = loadJSONFromAsset(getContext(), "json/inputkeys.json");
+        String jsonString = loadJSONFromAsset(getContext(), JSON_ASSETS);
         if (jsonString != null) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
-                JSONArray datas = jsonObject.getJSONArray("data");
+                JSONArray datas = jsonObject.getJSONArray(DATA);
                 for (int i = 0; i < datas.length(); i++) {
                     JSONObject o = (JSONObject) datas.get(i);
-                    mDatasets.add(new InputKeys(o.getInt("id"), o.getString("name")));
+                    mDatasets.add(new InputKeys(o.getInt(ID), o.getString(NAME)));
                 }
 
             } catch (JSONException e) {
@@ -189,7 +213,7 @@ public class KeyboarFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     private void setOnClickItem() {
-        mKeyboardAdapter.setOnClickListener(new KeyboardAdapter.OnclickInputKey() {
+        mCalculatorAdapter.setOnClickListener(new CalculatorAdapter.OnclickInputKey() {
             @Override
             public void onClickItem(int id) {
                 onChangeText(id);
@@ -353,7 +377,7 @@ public class KeyboarFragment extends DialogFragment {
                 etInputNumber.setText(textInput);
                 operators.clear();
 
-                mKeyboardAdapter.onChangelabel();
+                mCalculatorAdapter.onChangelabel();
             } catch (ArithmeticException ex) {
                 ex.fillInStackTrace();
             }
@@ -453,7 +477,7 @@ public class KeyboarFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     public void setOnClickDone(IOnClickDone mIOnClickDone) {
-        KeyboarFragment.mIOnClickDone = mIOnClickDone;
+        CalculatorFragment.mIOnClickDone = mIOnClickDone;
     }
 
     /**

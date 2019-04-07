@@ -17,8 +17,8 @@
         android:layout_height="@dimen/size_title_bar_small"
         android:layout_gravity="start"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_arrow_back"
-        android:contentDescription="@string/image_view" />
+        android:contentDescription="@string/image_view"
+        app:srcCompat="@drawable/ic_arrow_back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,9 +32,9 @@
             android:id="@+id/imageView1"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:contentDescription="@string/image_view"
             android:scaleType="fitCenter"
-            android:src="@drawable/logo_cukcuk_white"
-            android:contentDescription="@string/image_view" />
+            android:src="@drawable/logo_cukcuk_white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_large"
-            app:srcCompat="@drawable/ic_about"
-            android:contentDescription="@string/image_view" />
+            android:contentDescription="@string/image_view"
+            app:srcCompat="@drawable/ic_about" />
     </LinearLayout>
 </LinearLayout>

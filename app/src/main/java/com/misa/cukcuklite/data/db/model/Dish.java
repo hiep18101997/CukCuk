@@ -31,14 +31,6 @@ public class Dish implements Serializable {
     @Ignore
     private String mUnitName;
 
-    public String getUnitName() {
-        return mUnitName;
-    }
-
-    public void setUnitName(String unitName) {
-        mUnitName = unitName;
-    }
-
     public Dish() {
     }
 
@@ -59,7 +51,15 @@ public class Dish implements Serializable {
         mColor = builder.mColor;
         mIcon = builder.mIcon;
         isSell = builder.isSell;
-        mUnitName=builder.mUnitName;
+        mUnitName = builder.mUnitName;
+    }
+
+    public String getUnitName() {
+        return mUnitName;
+    }
+
+    public void setUnitName(String unitName) {
+        mUnitName = unitName;
     }
 
     public int getId() {

@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.screen.keyboard.model;
+package com.misa.cukcuklite.screen.calculator.model;
 
 public class InputKeys {
     private int id;

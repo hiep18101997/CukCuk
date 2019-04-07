@@ -16,23 +16,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.maltaisn.calcdialog.CalcDialog;
-import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
 import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.screen.calculator.CalculatorFragment;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
-import com.misa.cukcuklite.screen.keyboard.KeyboarFragment;
 import com.thebluealliance.spectrum.SpectrumDialog;
 
-import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -47,7 +43,7 @@ import static com.misa.cukcuklite.AppConstant.EXTRA_PICK_UNIT;
  * <p>
  * ‐ @created_by Hoàng Hiệp on 3/27/2019
  */
-public class EditDishActivity extends AppCompatActivity implements IEditDishContract.IView, View.OnClickListener, CalcDialog.CalcDialogCallback {
+public class EditDishActivity extends AppCompatActivity implements IEditDishContract.IView, View.OnClickListener {
     private static final String TAG = EditDishActivity.class.getName();
     private IEditDishContract.IPresenter mPresenter;
     private RelativeLayout rlLayoutColor, rlLayoutIcon;
@@ -93,8 +89,8 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                int unit = intent.getIntExtra(EXTRA_PICK_UNIT,-1);
-                unitId=unit;
+                int unit = intent.getIntExtra(EXTRA_PICK_UNIT, -1);
+                unitId = unit;
                 mPresenter.getNameUnitFromId(unit);
             }
         };
@@ -110,12 +106,12 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
         try {
             rlLayoutColor.setOnClickListener(this);
             rlLayoutIcon.setOnClickListener(this);
-            tvCost.setOnClickListener(this);
-            tvUnit.setOnClickListener(this);
             findViewById(R.id.ivBack).setOnClickListener(this);
             findViewById(R.id.tvDone).setOnClickListener(this);
             findViewById(R.id.tvRemove).setOnClickListener(this);
             findViewById(R.id.tvSave).setOnClickListener(this);
+            findViewById(R.id.lnCost).setOnClickListener(this);
+            findViewById(R.id.lnUnit).setOnClickListener(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,7 +145,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     private void loadDataExist() {
         try {
-            unitId=currentDish.getUnitId();
+            unitId = currentDish.getUnitId();
             mPresenter.getNameUnitFromId(unitId);
             edtName.setText(currentDish.getName());
             tvUnit.setText(currentDish.getUnitName());
@@ -202,35 +198,6 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     }
 
     /**
-     * Mục đích method: Khởi tạo và hiện dialog máy tính
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
-    private void showDialogCalculator() {
-        try {
-            CalcDialog calcDialog = new CalcDialog();
-            calcDialog.getSettings()
-                    .setRequestCode(0)
-                    .setInitialValue(null)
-                    .setNumberFormat(NumberFormat.getInstance())
-                    .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
-                    .setExpressionShown(false)
-                    .setExpressionEditable(false)
-                    .setMinValue(new BigDecimal(0))
-                    .setZeroShownWhenNoValue(true)
-                    .setAnswerBtnShown(false)
-                    .setSignBtnShown(true)
-                    .setShouldEvaluateOnOperation(true)
-                    .setOrderOfOperationsApplied(true);
-            FragmentManager fm = getSupportFragmentManager();
-            calcDialog.setCancelable(false);
-            calcDialog.show(fm, "fragment_cal");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Mục đích method: Khởi tạo hiện dialog để chọn màu
      *
      * @created_by Hoàng Hiệp on 3/27/2019
@@ -255,10 +222,10 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
             case R.id.rlIconContainer2:
                 showDialogPickIcon();
                 break;
-            case R.id.tvCost:
-                showKeyboardDialog();
+            case R.id.lnCost:
+                showCalDialog();
                 break;
-            case R.id.tvUnit:
+            case R.id.lnUnit:
                 startActivity(ChooseUnitActivity.getIntent(this, tvUnit.getText().toString()));
                 break;
             case R.id.ivBack:
@@ -276,25 +243,33 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
                 break;
         }
     }
+
     /**
      * Phương thức hiển thị hộp thoại bàn phím nhập giá sản phẩm
      *
-     * @created_by lxphuoc on 3/27/2019
+     * @created_by Hoàng Hiệp on 3/27/2019
      */
-    public void showKeyboardDialog() {
+    public void showCalDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        KeyboarFragment keyboarFragment = KeyboarFragment.createInstance("0", new KeyboarFragment.IOnClickDone() {
+        CalculatorFragment calculatorFragment = CalculatorFragment.createInstance(tvCost.getText().toString(), new CalculatorFragment.IOnClickDone() {
             @Override
             public void onClickDone(long price, String priceShow) {
-                setPrice(price,priceShow);
+                setPrice(price, priceShow);
             }
         });
-        keyboarFragment.show(fm, "dialog_fragment_keyboard");
+        calculatorFragment.show(fm, getString(R.string.dialog_calculator));
     }
+
+    /**
+     * Mục đích method: Hiển thị và thêm giá trị trả về của máy tính
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     public void setPrice(long price, String priceShow) {
         currentDish.setCost((long) price);
         tvCost.setText(priceShow);
     }
+
     /**
      * Mục đích method: Hiển thị dialog xác nhận
      *
@@ -308,13 +283,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
                 removeDish();
             }
         });
-        inputDialog.show(fragmentManager, "confirm_dialog");
-    }
-
-    @Override
-    public void onValueEntered(int requestCode, @Nullable BigDecimal value) {
-        currentDish.setCost(value.longValue());
-        tvCost.setText(NumberFormat.getNumberInstance(Locale.US).format(value));
+        inputDialog.show(fragmentManager, getString(R.string.confirm_dialog));
     }
 
     /**

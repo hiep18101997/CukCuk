@@ -31,5 +31,5 @@ public interface DishDAO {
     Dish getDishByUnitId(int unitId);
 
     @Query("SELECT * FROM dishes WHERE id=:id")
-    Dish getDishById(int  id);
+    Dish getDishById(int id);
 }

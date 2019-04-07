@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "dish_order")
 public class DishOrder implements Serializable {

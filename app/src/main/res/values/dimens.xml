@@ -105,4 +105,9 @@
     <dimen name="icon_h">25dp</dimen>
     <dimen name="dp_0_1">0.1dp</dimen>
     <dimen name="item_sale_margin">8dp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="item_input_min_w">64dp</dimen>
+    <dimen name="item_input_padding">10dp</dimen>
+    <dimen name="tv_padding_end">8dp</dimen>
+    <dimen name="ln_pick_h">60dp</dimen>
 </resources>

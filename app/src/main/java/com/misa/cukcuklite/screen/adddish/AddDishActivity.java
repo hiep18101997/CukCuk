@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.maltaisn.calcdialog.CalcDialog;
-import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
 import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.screen.calculator.CalculatorFragment;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
 import com.thebluealliance.spectrum.SpectrumDialog;
@@ -111,11 +111,11 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
         try {
             rlLayoutColor.setOnClickListener(this);
             rlLayoutIcon.setOnClickListener(this);
-            tvCost.setOnClickListener(this);
-            tvUnit.setOnClickListener(this);
             findViewById(R.id.ivBack).setOnClickListener(this);
             findViewById(R.id.tvDone).setOnClickListener(this);
             findViewById(R.id.tvSave).setOnClickListener(this);
+            findViewById(R.id.lnCost).setOnClickListener(this);
+            findViewById(R.id.lnUnit).setOnClickListener(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -193,10 +193,10 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
                 case R.id.rlIconContainer2:
                     showDialogPickIcon();
                     break;
-                case R.id.tvCost:
-                    showDialogCalculator();
+                case R.id.lnCost:
+                    showCalDialog();
                     break;
-                case R.id.tvUnit:
+                case R.id.lnUnit:
                     startActivity(ChooseUnitActivity.getIntent(this, tvUnit.getText().toString()));
                     break;
                 case R.id.ivBack:
@@ -215,32 +215,29 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
     }
 
     /**
-     * Mục đích method: Khởi tạo và hiện dialog máy tính
+     * Phương thức hiển thị hộp thoại bàn phím nhập giá sản phẩm
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
-    private void showDialogCalculator() {
-        try {
-            CalcDialog calcDialog = new CalcDialog();
-            calcDialog.getSettings()
-                    .setRequestCode(0)
-                    .setInitialValue(null)
-                    .setNumberFormat(NumberFormat.getInstance())
-                    .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
-                    .setExpressionShown(false)
-                    .setExpressionEditable(false)
-                    .setZeroShownWhenNoValue(true)
-                    .setAnswerBtnShown(false)
-                    .setMinValue(new BigDecimal(0))
-                    .setSignBtnShown(true)
-                    .setShouldEvaluateOnOperation(true)
-                    .setOrderOfOperationsApplied(true);
-            FragmentManager fm = getSupportFragmentManager();
-            calcDialog.setCancelable(false);
-            calcDialog.show(fm, getString(R.string.fragment_cal));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void showCalDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        CalculatorFragment calculatorFragment = CalculatorFragment.createInstance("0", new CalculatorFragment.IOnClickDone() {
+            @Override
+            public void onClickDone(long price, String priceShow) {
+                setPrice(price, priceShow);
+            }
+        });
+        calculatorFragment.show(fm, getString(R.string.dialog_calculator));
+    }
+
+    /**
+     * Mục đích method: Hiển thị và thêm giá trị trả về của máy tính
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+    public void setPrice(long price, String priceShow) {
+        mBuilder.setCost(price);
+        tvCost.setText(priceShow);
     }
 
     /**

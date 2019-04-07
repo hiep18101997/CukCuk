@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.screen.keyboard;
+package com.misa.cukcuklite.screen.calculator;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -11,20 +11,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.screen.keyboard.model.InputKeys;
+import com.misa.cukcuklite.screen.calculator.model.InputKeys;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class KeyboardAdapter extends RecyclerView.Adapter<KeyboardAdapter.ViewHoder> {
+public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.ViewHoder> {
 
     private static OnclickInputKey mOnclickInputKey;
     private ArrayList<InputKeys> mDatasets;
     private Context mContext;
 
-    public KeyboardAdapter(ArrayList<InputKeys> mDatasets) {
+    public CalculatorAdapter(ArrayList<InputKeys> mDatasets) {
         this.mDatasets = mDatasets;
     }
 
@@ -48,7 +48,7 @@ public class KeyboardAdapter extends RecyclerView.Adapter<KeyboardAdapter.ViewHo
     }
 
     void onChangelabel() {
-        mDatasets.get(19).setName("Xong");
+        mDatasets.get(19).setName(mContext.getString(R.string.done));
         notifyItemChanged(19);
     }
 
@@ -59,7 +59,7 @@ public class KeyboardAdapter extends RecyclerView.Adapter<KeyboardAdapter.ViewHo
      * @created_by Hoàng Hiệp on 3/26/2019
      */
     public void setOnClickListener(OnclickInputKey onClickListener) {
-        KeyboardAdapter.mOnclickInputKey = onClickListener;
+        CalculatorAdapter.mOnclickInputKey = onClickListener;
     }
 
     public interface OnclickInputKey {

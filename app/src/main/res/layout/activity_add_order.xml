@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -72,8 +72,8 @@
                 android:id="@+id/rcvInventoryItems"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:listitem="@layout/item_add_order"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:listitem="@layout/item_add_order" />
 
             <View
                 android:id="@+id/vDividerTablePersonTotalAmount"

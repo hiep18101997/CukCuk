@@ -28,17 +28,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
     private CallbackManager mCallbackManager;
     private ProgressDialog mDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initComponent();
-
         initFacebookSDK();
     }
 
     private void initComponent() {
-        mDialog=new ProgressDialog(this);
+        mDialog = new ProgressDialog(this);
         mPresenter = new LoginPresenter(this);
         lnFacebook = findViewById(R.id.lnLoginFacebook);
         lnGoogle = findViewById(R.id.lnLoginGoogle);

@@ -237,6 +237,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         }
     }
 
+    @Override
+    public void navigateBillActivity(Order mOrder) {
+        startActivity(BillActivity.getIntent(this, mOrder));
+    }
+
     /**
      * Mục đích method:Sử ly sự kiện khi click
      *
@@ -258,7 +263,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                     break;
                 case R.id.btnTakeMoney:
                 case R.id.btnActionTakeMoney:
-                    startActivity(BillActivity.getIntent(this, currentOrder));
+                    if (currentOrder != null) {
+                        startActivity(BillActivity.getIntent(this, currentOrder));
+                    } else {
+                        mPresenter.takeMoney(tvTable.getText().toString(), tvPerson.getText().toString(), mAdapter.getList());
+                    }
                     break;
                 case R.id.tvTable:
                     showDialogCalculator(FLAG_TABLE);

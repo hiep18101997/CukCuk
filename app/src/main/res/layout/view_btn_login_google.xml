@@ -4,9 +4,9 @@
     android:id="@+id/lnLoginGoogle"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_btn_login"
+    android:layout_marginStart="@dimen/btn_login_margin"
     android:layout_marginTop="@dimen/btn_login_margin_top"
     android:layout_marginEnd="@dimen/btn_login_margin"
-    android:layout_marginStart="@dimen/btn_login_margin"
     android:background="@drawable/selector_btn_login_google"
     android:baselineAligned="false"
     android:orientation="horizontal">
@@ -30,11 +30,11 @@
         android:layout_weight="1">
 
         <TextView
-            android:layout_marginStart="8dp"
             style="@style/FontBodyTextRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
             android:text="@string/content_login_google"
             android:textColor="@color/white"
             android:textSize="@dimen/btn_login_text_size" />

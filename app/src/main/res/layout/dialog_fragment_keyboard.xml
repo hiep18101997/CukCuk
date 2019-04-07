@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
         <EditText
             android:id="@+id/etInputNumber"
             style="@style/FontHeaderTitle"
@@ -53,6 +54,7 @@
             tools:ignore="LabelFor" />
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvKeyboard"
         android:layout_width="match_parent"

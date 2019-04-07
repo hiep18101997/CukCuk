@@ -1,6 +1,7 @@
 package com.misa.cukcuklite.screen.addorder;
 
 import com.misa.cukcuklite.data.db.model.DishOrder;
+import com.misa.cukcuklite.data.db.model.Order;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ interface IAddOrderContract {
         void onSaveOrderDone();
 
         void onEditOrderDone();
+
+        void navigateBillActivity(Order mOrder);
     }
 
     interface IPresenter {
@@ -29,5 +32,7 @@ interface IAddOrderContract {
         void saveOrder(String table, String person, List<DishOrder> list);
 
         void editOrder(int idOrder, String table, String person, List<DishOrder> list);
+
+        void takeMoney(String toString, String toString1, List<DishOrder> list);
     }
 }

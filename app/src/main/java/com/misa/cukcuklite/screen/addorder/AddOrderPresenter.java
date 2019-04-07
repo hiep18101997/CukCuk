@@ -100,10 +100,10 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
 
     @SuppressLint("StaticFieldLeak")
     private void saveDishOrderByOrderId(final List<DishOrder> list, final Long orderId) {
-        new AsyncTask<Void,Void,Void>(){
+        new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                for (DishOrder dishOrder:list){
+                for (DishOrder dishOrder : list) {
                     dishOrder.setOrderId(Integer.parseInt(orderId.toString()));
                     DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().insertDishOrder(dishOrder);
                 }
@@ -122,10 +122,10 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
     /**
      * Mục đích method: Lưu đối tượng Đặt món
      *
-     * @param idOrder: id của đối tượng đặt món cần sửa
-     * @param table:   số bàn
-     * @param person:  số người
-     * @param dishOrders:    danh sách các món đã order
+     * @param idOrder:    id của đối tượng đặt món cần sửa
+     * @param table:      số bàn
+     * @param person:     số người
+     * @param dishOrders: danh sách các món đã order
      * @created_by Hoàng Hiệp on 4/5/2019
      */
     @SuppressLint("StaticFieldLeak")
@@ -158,12 +158,24 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
 
     }
 
+    @Override
+    public void takeMoney(String table, String person, List<DishOrder> list) {
+        if (isValidData(table, person, list)) {
+            Order mOrder = new Order.Builder()
+                    .setNumberTable(Integer.valueOf(table))
+                    .setNumberPerson(Integer.valueOf(person))
+                    .setOrders(list)
+                    .build();
+            mView.navigateBillActivity(mOrder);
+        }
+    }
+
     @SuppressLint("StaticFieldLeak")
     private void updateDishOrders(final List<DishOrder> dishOrders) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                for (DishOrder dishOrder:dishOrders){
+                for (DishOrder dishOrder : dishOrders) {
                     DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().updateDishOrder(dishOrder);
                 }
                 return null;
