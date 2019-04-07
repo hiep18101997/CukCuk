@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
-import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.model.Dish;
 
 import java.util.List;
 

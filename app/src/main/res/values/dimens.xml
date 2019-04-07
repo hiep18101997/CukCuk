@@ -110,4 +110,8 @@
     <dimen name="item_input_padding">10dp</dimen>
     <dimen name="tv_padding_end">8dp</dimen>
     <dimen name="ln_pick_h">60dp</dimen>
+    <dimen name="iv_empty_report_w">80dp</dimen>
+    <dimen name="iv_empty_report_h">80dp</dimen>
+    <dimen name="iv_drop_down_w">25dp</dimen>
+    <dimen name="iv_drop_down_h">20dp</dimen>
 </resources>

@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.maltaisn.calcdialog.CalcDialog;
 import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -25,7 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.EXTRA_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_ORDER;
 
 /**
  * - Mục đích Class : Activity của màn hóa đơn

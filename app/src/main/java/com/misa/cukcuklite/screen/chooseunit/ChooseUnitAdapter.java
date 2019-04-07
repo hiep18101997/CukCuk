@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Unit;
 
 import java.util.List;
 

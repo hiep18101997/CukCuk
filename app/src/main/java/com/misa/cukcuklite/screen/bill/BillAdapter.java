@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.DishOrder;
+import com.misa.cukcuklite.data.model.DishOrder;
 
 import java.util.List;
 

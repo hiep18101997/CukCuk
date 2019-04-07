@@ -34,7 +34,7 @@
     <string name="hint_unit_input">Nhập đơn vị tính</string>
     <string name="hiep">Đinh Nguyễn Hoàng Hiệp</string>
     <string name="sell">Bán hàng</string>
-    <string name="report">Bác cáo</string>
+    <string name="report">Báo cáo</string>
     <string name="setting">Thiết lập</string>
     <string name="sync">Đồng bộ dữ liệu</string>
     <string name="connect">Liên kết tài khoản</string>
@@ -92,4 +92,16 @@
     <string name="zero">0</string>
     <string name="error_money">Giá tiền phải lớn hơn 0</string>
     <string name="dialog_calculator">dialog_calculator</string>
+    <string name="msg_empty_report">Báo cáo doanh thu không có số liệu.</string>
+    <string name="time_param">Thời gian</string>
+    <string name="param_report_current">Gần đây</string>
+    <string name="param_report_last_month">Tháng trước</string>
+    <string name="param_report_last_week">Tuần trước</string>
+    <string name="param_report_last_year">Năm trước</string>
+    <string name="param_report_other">Khác</string>
+    <string name="param_report_this_month">Tháng này</string>
+    <string name="param_report_this_week">Tuần này</string>
+    <string name="param_report_this_year">Năm nay</string>
+    <string name="param_report_today">Hôm nay</string>
+    <string name="param_report_yesterday">Hôm qua</string>
 </resources>

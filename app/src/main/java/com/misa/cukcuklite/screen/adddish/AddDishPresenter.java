@@ -9,13 +9,13 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.misa.cukcuklite.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
 
 /**
  * ‐ Presenter trong mô hình MVP cho màn hình Thêm món

@@ -1,6 +1,6 @@
 package com.misa.cukcuklite.data.db;
 
-import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.model.Dish;
 
 import java.util.List;
 

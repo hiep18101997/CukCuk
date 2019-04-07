@@ -110,6 +110,7 @@
                 android:layout_height="@dimen/iv_navi_w"
                 android:background="@drawable/bg_item"
                 android:clickable="true"
+                android:id="@+id/lnReport"
                 android:focusable="true"
                 android:orientation="horizontal">
 

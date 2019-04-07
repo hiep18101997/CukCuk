@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.Order;
 import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.bill.BillActivity;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
@@ -27,8 +27,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_ADD_ORDER;
-import static com.misa.cukcuklite.AppConstant.ACTION_EDIT_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_EDIT_ORDER;
 
 public class SaleFragment extends Fragment implements ISaleContract.IView, SaleAdapter.OnClickItem {
     private static final String TAG = SaleFragment.class.getName();

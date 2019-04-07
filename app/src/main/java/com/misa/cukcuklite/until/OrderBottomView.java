@@ -1,4 +1,4 @@
-package com.misa.cukcuklite;
+package com.misa.cukcuklite.until;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.misa.cukcuklite.R;
 
 public class OrderBottomView extends View {
     public OrderBottomView(Context context, AttributeSet attributeSet) {

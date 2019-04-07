@@ -18,9 +18,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
 
 import java.util.List;
 
@@ -32,12 +32,14 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     private List<Order> mOrders;
     private LayoutInflater layoutInflater;
     private OnClickItem mOnClickItem;
+    private int[] colorBg;
 
     public SaleAdapter(Context context, List<Order> orders, OnClickItem onClickItem) {
         mContext = context;
         this.mOrders = orders;
         layoutInflater = LayoutInflater.from(context);
         mOnClickItem = onClickItem;
+        colorBg = context.getResources().getIntArray(R.array.arr_colors);
     }
 
     @NonNull
@@ -73,7 +75,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
             holder.tvAmount.setText(String.valueOf(getAmount(dishOrders)));
             holder.tvTable.setText(String.valueOf(mOrders.get(position).getNumberTable()));
             Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_table);
-            drawableBg.setColorFilter(-14235942, PorterDuff.Mode.SRC);
+            drawableBg.setColorFilter(colorBg[position % colorBg.length], PorterDuff.Mode.SRC);
             holder.imgBackground.setImageDrawable(drawableBg);
             holder.rlContent.setOnClickListener(new View.OnClickListener() {
                 @Override

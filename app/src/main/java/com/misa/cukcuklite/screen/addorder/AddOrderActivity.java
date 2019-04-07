@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.maltaisn.calcdialog.CalcDialog;
 import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
 import com.misa.cukcuklite.screen.bill.BillActivity;
 
 import java.math.BigDecimal;
@@ -27,9 +27,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_ADD_ORDER;
-import static com.misa.cukcuklite.AppConstant.ACTION_EDIT_ORDER;
-import static com.misa.cukcuklite.AppConstant.EXTRA_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_EDIT_ORDER;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_ORDER;
 
 public class AddOrderActivity extends AppCompatActivity implements IAddOrderContract.IView,
         AddOrderAdapter.OnClickItem, View.OnClickListener, CalcDialog.CalcDialogCallback {

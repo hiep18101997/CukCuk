@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Unit;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialoginput.InputDialog;
 
@@ -20,8 +20,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_PICK_UNIT;
-import static com.misa.cukcuklite.AppConstant.EXTRA_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_PICK_UNIT;
 
 /**
  * ‐ Màn hình chọn đơn vị

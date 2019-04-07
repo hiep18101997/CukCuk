@@ -1,6 +1,6 @@
 package com.misa.cukcuklite.screen.sale;
 
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.Order;
 
 import java.util.List;
 

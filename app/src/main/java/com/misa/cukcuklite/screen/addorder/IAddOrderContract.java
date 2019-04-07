@@ -1,7 +1,7 @@
 package com.misa.cukcuklite.screen.addorder;
 
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
 
 import java.util.List;
 

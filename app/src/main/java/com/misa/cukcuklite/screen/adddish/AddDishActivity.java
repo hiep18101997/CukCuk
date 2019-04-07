@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.maltaisn.calcdialog.CalcDialog;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.Unit;
 import com.misa.cukcuklite.screen.calculator.CalculatorFragment;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
@@ -35,9 +35,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_ADD_DISH;
-import static com.misa.cukcuklite.AppConstant.ACTION_PICK_UNIT;
-import static com.misa.cukcuklite.AppConstant.EXTRA_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_DISH;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_PICK_UNIT;
 
 /**
  * - Mục đích Class : Thêm món ăn

@@ -20,8 +20,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.DishOrder;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.DishOrder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +31,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
 
 /**
  * - Mục đích Class : Adapter của RecyclerView đặt món
@@ -42,6 +42,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
     private Context mContext;
     private OnClickItem mOnClickItem;
     private LayoutInflater mLayoutInflater;
+
 
     public AddOrderAdapter(Context context, List<DishOrder> list, OnClickItem onClickItem) {
         mList = list;

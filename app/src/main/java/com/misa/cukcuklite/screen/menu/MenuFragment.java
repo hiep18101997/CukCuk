@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.screen.editdish.EditDishActivity;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_ADD_DISH;
-import static com.misa.cukcuklite.AppConstant.ACTION_EDIT_DISH;
-import static com.misa.cukcuklite.AppConstant.ACTION_REMOVE_DISH;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_DISH;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_EDIT_DISH;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_REMOVE_DISH;
 
 /**
  * ‐ Màn hình danh sách món ăn

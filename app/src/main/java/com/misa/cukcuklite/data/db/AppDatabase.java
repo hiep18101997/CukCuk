@@ -1,9 +1,9 @@
 package com.misa.cukcuklite.data.db;
 
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
+import com.misa.cukcuklite.data.model.Unit;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.data.db.model;
+package com.misa.cukcuklite.data.model;
 
 import java.io.Serializable;
 

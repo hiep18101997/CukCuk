@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.model.Dish;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +25,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
 
 /**
  * ‐ Adapter RecyclerView cho màn hình danh sách món

@@ -3,8 +3,8 @@ package com.misa.cukcuklite.screen.editdish;
 import android.app.Activity;
 import android.graphics.Bitmap;
 
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.Unit;
 
 /**
  * ‐ Contract  trong mô hình MVP cho màn hình sửa món

@@ -13,6 +13,7 @@ import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.screen.adddish.AddDishActivity;
 import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.menu.MenuFragment;
+import com.misa.cukcuklite.screen.report.ReportFragment;
 import com.misa.cukcuklite.screen.sale.SaleFragment;
 
 import androidx.appcompat.app.ActionBar;
@@ -33,7 +34,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private IHomeContract.IPresenter mPresenter;
     private DrawerLayout mDrawerLayout;
     private TextView tvTitle;
-    private LinearLayout lnMenu, lnSale;
+    private LinearLayout lnMenu, lnSale, lnReport;
+    private boolean isVisible;
 
     /**
      * Mục đích method: Lấy Intent
@@ -55,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         initComponent();
         initListener();
         setupToolbar();
-        loadFragment(SaleFragment.newInstance());
+        loadFragment(MenuFragment.newInstance());
     }
 
     /**
@@ -66,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private void initListener() {
         lnSale.setOnClickListener(this);
         lnMenu.setOnClickListener(this);
+        lnReport.setOnClickListener(this);
     }
 
     /**
@@ -76,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private void initComponent() {
         lnMenu = findViewById(R.id.lnMenu);
         lnSale = findViewById(R.id.lnSale);
+        lnReport = findViewById(R.id.lnReport);
         mDrawerLayout = findViewById(R.id.drawer);
         tvTitle = findViewById(R.id.titleToolbar);
         mPresenter = new HomePresenter(this);
@@ -106,7 +110,14 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
         getMenuInflater().inflate(R.menu.menu_add, menu);
+        if (isVisible) {
+            menu.findItem(R.id.action_add).setVisible(true);
+        }else {
+            menu.findItem(R.id.action_add).setVisible(false);
+        }
+
         return true;
     }
 
@@ -148,15 +159,22 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private void loadFragment(Fragment fragment) {
         try {
             if (fragment instanceof MenuFragment) {
+                isVisible=true;
                 tvTitle.setText(getString(R.string.menu));
             } else if (fragment instanceof SaleFragment) {
+                isVisible=true;
                 tvTitle.setText(getString(R.string.sale));
+            } else if (fragment instanceof ReportFragment) {
+                isVisible=false;
+                tvTitle.setText(getString(R.string.report));
             }
+            invalidateOptionsMenu();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             transaction.replace(R.id.frHome, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,6 +200,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
                     mDrawerLayout.closeDrawer(GravityCompat.START);
                     if (!(currentFragment instanceof MenuFragment)) {
                         loadFragment(MenuFragment.newInstance());
+                    }
+                    break;
+                case R.id.lnReport:
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                    if (!(currentFragment instanceof ReportFragment)) {
+                        loadFragment(ReportFragment.newInstance());
                     }
                     break;
             }

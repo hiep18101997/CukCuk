@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.DishOrder;
-import com.misa.cukcuklite.data.db.model.Order;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.DishOrder;
+import com.misa.cukcuklite.data.model.Order;
 
 import java.util.ArrayList;
 import java.util.List;

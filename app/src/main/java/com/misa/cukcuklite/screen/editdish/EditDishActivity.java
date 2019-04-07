@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.db.model.Dish;
-import com.misa.cukcuklite.data.db.model.Unit;
+import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.Unit;
 import com.misa.cukcuklite.screen.calculator.CalculatorFragment;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
@@ -33,10 +33,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import static com.misa.cukcuklite.AppConstant.ACTION_PICK_UNIT;
-import static com.misa.cukcuklite.AppConstant.ACTION_REMOVE_DISH;
-import static com.misa.cukcuklite.AppConstant.EXTRA_DISH;
-import static com.misa.cukcuklite.AppConstant.EXTRA_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_PICK_UNIT;
+import static com.misa.cukcuklite.until.AppConstant.ACTION_REMOVE_DISH;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_DISH;
+import static com.misa.cukcuklite.until.AppConstant.EXTRA_PICK_UNIT;
 
 /**
  * ‐ Màn hình sừa món ăn
