@@ -21,8 +21,6 @@ interface IAddOrderContract {
         void onSaveOrderDone();
 
         void onEditOrderDone();
-
-        void onLoadListDishOrderDone(List<DishOrder> dishOrders);
     }
 
     interface IPresenter {
@@ -31,7 +29,5 @@ interface IAddOrderContract {
         void saveOrder(String table, String person, List<DishOrder> list);
 
         void editOrder(int idOrder, String table, String person, List<DishOrder> list);
-
-        void getDishOrderByOrderId(int id);
     }
 }

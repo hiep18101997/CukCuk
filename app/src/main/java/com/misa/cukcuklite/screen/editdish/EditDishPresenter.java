@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -104,5 +105,22 @@ public class EditDishPresenter implements IEditDishContract.IPresenter {
             e.printStackTrace();
         }
 
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    @Override
+    public void getNameUnitFromId(final int unit) {
+        new AsyncTask<Void, Void, Unit>() {
+            @Override
+            protected Unit doInBackground(Void... voids) {
+                return DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().getUnitById(unit);
+            }
+
+            @Override
+            protected void onPostExecute(Unit unit) {
+                super.onPostExecute(unit);
+                mView.onGetNameDone(unit);
+            }
+        }.execute();
     }
 }

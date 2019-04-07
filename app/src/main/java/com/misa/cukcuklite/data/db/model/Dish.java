@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -19,20 +20,33 @@ public class Dish implements Serializable {
     private String mName;
     @ColumnInfo(name = "cost")
     private long mCost;
-    @ColumnInfo(name = "unit")
-    private String mUnit;
+    @ColumnInfo(name = "unit_id")
+    private int mUnitId;
     @ColumnInfo(name = "color")
     private int mColor;
     @ColumnInfo(name = "icon")
     private String mIcon;
     @ColumnInfo(name = "is_sell")
     private boolean isSell;
+    @Ignore
+    private String mUnitName;
 
-    public Dish(int id, String name, long cost, String unit, int color, String icon, boolean isSell) {
+    public String getUnitName() {
+        return mUnitName;
+    }
+
+    public void setUnitName(String unitName) {
+        mUnitName = unitName;
+    }
+
+    public Dish() {
+    }
+
+    public Dish(int id, String name, long cost, int unit, int color, String icon, boolean isSell) {
         this.id = id;
         mName = name;
         mCost = cost;
-        mUnit = unit;
+        mUnitId = unit;
         mColor = color;
         mIcon = icon;
         this.isSell = isSell;
@@ -41,10 +55,11 @@ public class Dish implements Serializable {
     private Dish(Builder builder) {
         mName = builder.mName;
         mCost = builder.mCost;
-        mUnit = builder.mUnit;
+        mUnitId = builder.mUnitId;
         mColor = builder.mColor;
         mIcon = builder.mIcon;
         isSell = builder.isSell;
+        mUnitName=builder.mUnitName;
     }
 
     public int getId() {
@@ -71,12 +86,12 @@ public class Dish implements Serializable {
         mCost = cost;
     }
 
-    public String getUnit() {
-        return mUnit;
+    public int getUnitId() {
+        return mUnitId;
     }
 
-    public void setUnit(String unit) {
-        mUnit = unit;
+    public void setUnitId(int unitId) {
+        mUnitId = unitId;
     }
 
     public int getColor() {
@@ -109,7 +124,7 @@ public class Dish implements Serializable {
                 "id=" + id +
                 ", mName='" + mName + '\'' +
                 ", mCost=" + mCost +
-                ", mUnit='" + mUnit + '\'' +
+                ", mUnit='" + mUnitId + '\'' +
                 ", mColor=" + mColor +
                 ", mIcon='" + mIcon + '\'' +
                 ", isSell=" + isSell +
@@ -119,10 +134,11 @@ public class Dish implements Serializable {
     public static class Builder {
         private String mName;
         private long mCost;
-        private String mUnit;
+        private int mUnitId;
         private int mColor;
         private String mIcon;
         private boolean isSell;
+        private String mUnitName;
 
         public Builder setName(String name) {
             mName = name;
@@ -134,8 +150,8 @@ public class Dish implements Serializable {
             return this;
         }
 
-        public Builder setUnit(String unit) {
-            mUnit = unit;
+        public Builder setUnitId(int unit) {
+            mUnitId = unit;
             return this;
         }
 
@@ -152,6 +168,10 @@ public class Dish implements Serializable {
         public Builder setSell(boolean sell) {
             isSell = sell;
             return this;
+        }
+
+        public void setUnitName(String unitName) {
+            mUnitName = unitName;
         }
 
         public Dish build() {

@@ -69,7 +69,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
      */
     private void showBill() {
         try {
-            tvTotalAmount.setText(String.valueOf(getAmount(mOrder.getListDish())));
+            tvTotalAmount.setText(String.valueOf(getAmount(mOrder.getOrders())));
             tvTableName.setText(String.valueOf(mOrder.getNumberTable()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
             tvCustomerAmount = findViewById(R.id.tvCustomerAmount);
             tvRefNo = findViewById(R.id.tvRefNo);
             tvRefDate = findViewById(R.id.tvRefDate);
-            mAdapter = new BillAdapter(this, getOderDish(mOrder.getListDish()));
+            mAdapter = new BillAdapter(this, getOderDish(mOrder.getOrders()));
             RecyclerView rcvBill = findViewById(R.id.rcvBill);
             rcvBill.setAdapter(mAdapter);
             rcvBill.setLayoutManager(new LinearLayoutManager(this));

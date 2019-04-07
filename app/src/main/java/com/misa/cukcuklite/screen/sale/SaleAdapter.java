@@ -50,7 +50,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         try {
-            List<DishOrder> dishOrders = mOrders.get(position).getListDish();
+            List<DishOrder> dishOrders = mOrders.get(position).getOrders();
             SpannableStringBuilder builder = new SpannableStringBuilder();
             for (DishOrder dishOrder : dishOrders) {
                 if (dishOrder.getQuantity() != 0) {
@@ -66,10 +66,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                             s.length() - 2, 0);
                     builder.append(span);
                 } else {
-
                 }
             }
-            holder.tvContent.setText(builder.delete(builder.length()-2,builder.length()-1));
+            holder.tvContent.setText(builder.delete(builder.length() - 2, builder.length() - 1));
             holder.tvPerson.setText(String.valueOf(mOrders.get(position).getNumberPerson()));
             holder.tvAmount.setText(String.valueOf(getAmount(dishOrders)));
             holder.tvTable.setText(String.valueOf(mOrders.get(position).getNumberTable()));

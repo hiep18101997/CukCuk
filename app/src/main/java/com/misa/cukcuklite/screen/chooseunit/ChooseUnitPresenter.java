@@ -56,6 +56,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
     @SuppressLint("StaticFieldLeak")
     @Override
     public void saveUnit(final String text) {
+        final int[] unitId = new int[1];
         new AsyncTask<Void, Boolean, Void>() {
             @SuppressLint("WrongThread")
             @Override
@@ -63,7 +64,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
                 Unit unit = new Unit(text);
                 Unit existUnit = DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().getUnitByName(text);
                 if (existUnit == null) {
-                    DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().insertUnit(unit);
+                    unitId[0] = (int) DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().insertUnit(unit);
                     publishProgress(true);
                 } else {
                     publishProgress(false);
@@ -75,7 +76,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
             protected void onProgressUpdate(Boolean... values) {
                 super.onProgressUpdate(values);
                 if (values[0]) {
-                    mView.onInsertUnitSuccess(text);
+                    mView.onInsertUnitSuccess(unitId[0]);
                 } else {
                     mView.onInsertUnitError();
                 }
@@ -102,7 +103,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                mView.onEditUnitDone(unitEdit.getName());
+                mView.onEditUnitDone(unitEdit.getId());
             }
         }.execute();
     }
@@ -120,7 +121,7 @@ public class ChooseUnitPresenter implements IChooseUnitContract.IPresenter {
             @SuppressLint("WrongThread")
             @Override
             protected Void doInBackground(Void... voids) {
-                Dish dish = DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().getDishByUnit(unit.getName());
+                Dish dish = DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().getDishById(unit.getId());
                 if (dish == null) {
                     DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().deleteUnit(unit);
                     publishProgress(true);

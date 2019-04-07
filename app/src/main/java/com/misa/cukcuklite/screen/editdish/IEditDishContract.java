@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 
 /**
  * ‐ Contract  trong mô hình MVP cho màn hình sửa món
@@ -15,6 +16,8 @@ interface IEditDishContract {
         void onRemoveDishDone();
 
         void onEditDishDone();
+
+        void onGetNameDone(Unit unit);
     }
 
     interface IPresenter {
@@ -23,5 +26,7 @@ interface IEditDishContract {
         Bitmap getBitmapFromAssets(Activity activity, String icon);
 
         void removeDish(Dish currentDish);
+
+        void getNameUnitFromId(int unit);
     }
 }

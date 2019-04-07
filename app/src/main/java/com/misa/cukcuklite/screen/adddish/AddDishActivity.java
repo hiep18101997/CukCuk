@@ -20,6 +20,7 @@ import com.maltaisn.calcdialog.CalcDialog;
 import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
 import com.thebluealliance.spectrum.SpectrumDialog;
@@ -90,9 +91,9 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
             mReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    String unit = intent.getStringExtra(EXTRA_PICK_UNIT);
-                    mBuilder.setUnit(unit);
-                    tvUnit.setText(unit);
+                    int unitID = intent.getIntExtra(EXTRA_PICK_UNIT, -1);
+                    mBuilder.setUnitId(unitID);
+                    mPresenter.getNameUnitFromId(unitID);
                 }
             };
             LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
@@ -321,5 +322,12 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onGetNameDone(Unit unit) {
+        tvUnit.setText(unit.getName());
+        mBuilder.setUnitId(unit.getId());
+        mBuilder.setUnitName(unit.getName());
     }
 }

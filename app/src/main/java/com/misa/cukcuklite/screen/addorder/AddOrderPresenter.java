@@ -98,7 +98,24 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
         }
     }
 
-    private void saveDishOrderByOrderId(List<DishOrder> list, Long aLong) {
+    @SuppressLint("StaticFieldLeak")
+    private void saveDishOrderByOrderId(final List<DishOrder> list, final Long orderId) {
+        new AsyncTask<Void,Void,Void>(){
+            @Override
+            protected Void doInBackground(Void... voids) {
+                for (DishOrder dishOrder:list){
+                    dishOrder.setOrderId(Integer.parseInt(orderId.toString()));
+                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().insertDishOrder(dishOrder);
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                mView.onSaveOrderDone();
+            }
+        }.execute();
 
     }
 
@@ -108,19 +125,19 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
      * @param idOrder: id của đối tượng đặt món cần sửa
      * @param table:   số bàn
      * @param person:  số người
-     * @param list:    danh sách các món đã order
+     * @param dishOrders:    danh sách các món đã order
      * @created_by Hoàng Hiệp on 4/5/2019
      */
     @SuppressLint("StaticFieldLeak")
     @Override
-    public void editOrder(int idOrder, String table, String person, List<DishOrder> list) {
+    public void editOrder(int idOrder, String table, String person, final List<DishOrder> dishOrders) {
         try {
-            if (isValidData(table, person, list)) {
+            if (isValidData(table, person, dishOrders)) {
                 final Order mOrder = new Order.Builder()
                         .setId(idOrder)
                         .setNumberTable(Integer.valueOf(table))
                         .setNumberPerson(Integer.valueOf(person))
-                        .setListDish(list).build();
+                        .build();
                 new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... voids) {
@@ -131,7 +148,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         super.onPostExecute(aVoid);
-                        mView.onEditOrderDone();
+                        updateDishOrders(dishOrders);
                     }
                 }.execute();
             }
@@ -142,20 +159,23 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
     }
 
     @SuppressLint("StaticFieldLeak")
-    @Override
-    public void getDishOrderByOrderId(final int id) {
-        new AsyncTask<Void, Void, List<DishOrder>>() {
+    private void updateDishOrders(final List<DishOrder> dishOrders) {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            protected List<DishOrder> doInBackground(Void... voids) {
-                return DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().getDishOrderByOrderId(id);
+            protected Void doInBackground(Void... voids) {
+                for (DishOrder dishOrder:dishOrders){
+                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().updateDishOrder(dishOrder);
+                }
+                return null;
             }
 
             @Override
-            protected void onPostExecute(List<DishOrder> dishOrders) {
-                super.onPostExecute(dishOrders);
-                mView.onLoadListDishOrderDone(dishOrders);
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                mView.onEditOrderDone();
             }
         }.execute();
+
     }
 
     /**

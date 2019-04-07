@@ -13,7 +13,7 @@ import androidx.room.RoomDatabase;
  * <p>
  * ‐ @created_by dhhiep on 3/22/2019
  */
-@Database(entities = {Dish.class, Unit.class, Order.class, DishOrder.class}, version = 4)
+@Database(entities = {Dish.class, Unit.class, Order.class, DishOrder.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DishDAO mDishDAO();
 

@@ -19,7 +19,7 @@ public interface UnitDAO {
     List<Unit> getAllUnit();
 
     @Insert
-    void insertUnit(Unit unit);
+    long insertUnit(Unit unit);
 
     @Delete
     void deleteUnit(Unit unit);
@@ -29,4 +29,7 @@ public interface UnitDAO {
 
     @Query("SELECT * FROM units WHERE name=:text")
     Unit getUnitByName(String text);
+
+    @Query("SELECT * FROM units WHERE id=:id")
+    Unit getUnitById(int id);
 }

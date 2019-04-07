@@ -10,6 +10,7 @@ import android.text.TextUtils;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,6 +79,23 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
+    @Override
+    public void getNameUnitFromId(final int unitID) {
+        new AsyncTask<Void, Void, Unit>() {
+            @Override
+            protected Unit doInBackground(Void... voids) {
+                return DatabaseClient.getInstance(mContext).getAppDatabase().mUnitDAO().getUnitById(unitID);
+            }
+
+            @Override
+            protected void onPostExecute(Unit unit) {
+                super.onPostExecute(unit);
+                mView.onGetNameDone(unit);
+            }
+        }.execute();
+    }
+
     /**
      * Mục đích method thực hiện việc kiểm tra dữ liệu nhập vào
      *
@@ -90,7 +108,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
             mView.onEmptyName();
             return false;
         }
-        if (TextUtils.isEmpty(dish.getUnit())) {
+        if (TextUtils.isEmpty(dish.getUnitName())) {
             mView.onEmptyUnit();
             return false;
         }

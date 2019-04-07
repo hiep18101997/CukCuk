@@ -27,6 +27,9 @@ public interface DishDAO {
     @Update
     void updateDish(Dish dish);
 
-    @Query("SELECT * FROM dishes WHERE unit=:unit")
-    Dish getDishByUnit(String unit);
+    @Query("SELECT * FROM dishes WHERE unit_id=:unitId")
+    Dish getDishByUnitId(int unitId);
+
+    @Query("SELECT * FROM dishes WHERE id=:id")
+    Dish getDishById(int  id);
 }

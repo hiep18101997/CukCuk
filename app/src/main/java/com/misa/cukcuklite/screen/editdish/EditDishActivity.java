@@ -20,6 +20,7 @@ import com.maltaisn.calcdialog.CalcDialog;
 import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
@@ -57,6 +58,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
     private BroadcastReceiver mReceiver;
     private Dish currentDish;
     private CheckBox mCheckBox;
+    private int unitId;
 
     /**
      * Mục đích method: Lấy intent
@@ -91,8 +93,9 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                String unit = intent.getStringExtra(EXTRA_PICK_UNIT);
-                tvUnit.setText(unit);
+                int unit = intent.getIntExtra(EXTRA_PICK_UNIT,-1);
+                unitId=unit;
+                mPresenter.getNameUnitFromId(unit);
             }
         };
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
@@ -146,8 +149,10 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     private void loadDataExist() {
         try {
+            unitId=currentDish.getUnitId();
+            mPresenter.getNameUnitFromId(unitId);
             edtName.setText(currentDish.getName());
-            tvUnit.setText(currentDish.getUnit());
+            tvUnit.setText(currentDish.getUnitName());
             tvCost.setText(NumberFormat.getNumberInstance(Locale.US).format(currentDish.getCost()));
             Drawable drawableBg = getResources().getDrawable(R.drawable.bg_circle);
             drawableBg.setColorFilter(currentDish.getColor(), PorterDuff.Mode.SRC);
@@ -265,7 +270,7 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
             case R.id.tvDone:
             case R.id.tvSave:
                 currentDish.setName(edtName.getText().toString());
-                currentDish.setUnit(tvUnit.getText().toString());
+                currentDish.setUnitId(unitId);
                 currentDish.setSell(!mCheckBox.isChecked());
                 mPresenter.editDish(currentDish);
                 break;
@@ -353,5 +358,10 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
         Intent intent = new Intent(ACTION_REMOVE_DISH);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
         finish();
+    }
+
+    @Override
+    public void onGetNameDone(Unit unit) {
+        tvUnit.setText(unit.getName());
     }
 }

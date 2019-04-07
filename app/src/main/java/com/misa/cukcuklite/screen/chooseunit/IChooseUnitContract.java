@@ -13,11 +13,11 @@ interface IChooseUnitContract {
     interface IView {
         void onGetUnitSuccess(List<Unit> units);
 
-        void onInsertUnitSuccess(String unit);
+        void onInsertUnitSuccess(int unit);
 
         void onInsertUnitError();
 
-        void onEditUnitDone(String unit);
+        void onEditUnitDone(int id);
 
         void onRemoveUnitSuccess();
 

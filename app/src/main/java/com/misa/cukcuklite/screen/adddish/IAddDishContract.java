@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.misa.cukcuklite.data.db.model.Dish;
+import com.misa.cukcuklite.data.db.model.Unit;
 
 /**
  * ‐ Contract  trong mô hình MVP cho màn hình Thêm món
@@ -17,11 +18,15 @@ interface IAddDishContract {
         void onEmptyUnit();
 
         void onAddDishDone();
+
+        void onGetNameDone(Unit unit);
     }
 
     interface IPresenter {
         Bitmap getBitmapFromAssets(Context context, String icon);
 
         void addDish(Dish dish);
+
+        void getNameUnitFromId(int unitID);
     }
 }

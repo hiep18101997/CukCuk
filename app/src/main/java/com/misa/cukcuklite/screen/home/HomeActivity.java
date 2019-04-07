@@ -164,15 +164,20 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
       */
     @Override
     public void onClick(View v) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
         try {
             switch (v.getId()) {
                 case R.id.lnSale:
                     mDrawerLayout.closeDrawer(GravityCompat.START);
-                    loadFragment(SaleFragment.newInstance());
+                    if (!(currentFragment instanceof SaleFragment)) {
+                        loadFragment(SaleFragment.newInstance());
+                    }
                     break;
                 case R.id.lnMenu:
                     mDrawerLayout.closeDrawer(GravityCompat.START);
-                    loadFragment(MenuFragment.newInstance());
+                    if (!(currentFragment instanceof MenuFragment)) {
+                        loadFragment(MenuFragment.newInstance());
+                    }
                     break;
             }
         } catch (Exception e) {

@@ -106,12 +106,14 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             tvTable = findViewById(R.id.tvTable);
             tvPerson = findViewById(R.id.tvPerson);
             currentOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
-            list = new ArrayList<>();
             if (currentOrder != null) {
+                showCurrentOrder();
                 isEdit = true;
-                mPresenter.getDishOrderByOrderId(currentOrder.getId());
+                list = new ArrayList<>();
+                list.addAll(currentOrder.getOrders());
             } else {
                 isEdit = false;
+                list = new ArrayList<>();
                 mPresenter.getMenu();
             }
             mAdapter = new AddOrderAdapter(this, list, this);
@@ -233,17 +235,6 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    /**
-     * Mục đích method:Trả về khi lấy danh sách dishorder theo order id
-     *
-     * @created_by Hoàng Hiệp on 4/5/2019
-     */
-    @Override
-    public void onLoadListDishOrderDone(List<DishOrder> dishOrders) {
-        list.addAll(dishOrders);
-        mAdapter.setData(dishOrders);
-        showCurrentOrder();
     }
 
     /**

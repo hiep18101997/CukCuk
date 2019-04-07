@@ -1,6 +1,5 @@
 package com.misa.cukcuklite.data.db.model;
 
-
 import java.io.Serializable;
 
 import androidx.room.ColumnInfo;
@@ -11,7 +10,7 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "dish_order", foreignKeys = @ForeignKey(entity = Order.class, parentColumns = "id", childColumns = "order_id", onDelete = CASCADE))
+@Entity(tableName = "dish_order")
 public class DishOrder implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;

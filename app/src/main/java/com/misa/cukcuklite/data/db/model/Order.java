@@ -1,9 +1,11 @@
 package com.misa.cukcuklite.data.db.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "orders")
@@ -15,6 +17,16 @@ public class Order implements Serializable {
     private int mNumberTable;
     @ColumnInfo(name = "person")
     private int mNumberPerson;
+    @Ignore
+    private List<DishOrder> mOrders;
+
+    public List<DishOrder> getOrders() {
+        return mOrders;
+    }
+
+    public void setOrders(List<DishOrder> orders) {
+        mOrders = orders;
+    }
 
     public Order(int mNumberTable, int mNumberPerson) {
         this.mNumberTable = mNumberTable;

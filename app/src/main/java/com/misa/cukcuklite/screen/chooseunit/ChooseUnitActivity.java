@@ -157,9 +157,9 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
                     inputDialog.show(fragmentManager, getString(R.string.input_dialogl));
                     break;
                 case R.id.tvDone:
-                    String s = mAdapter.getUnit().getName();
+                    int unitId = mAdapter.getUnit().getId();
                     Intent intent = new Intent(ACTION_PICK_UNIT);
-                    intent.putExtra(EXTRA_PICK_UNIT, s);
+                    intent.putExtra(EXTRA_PICK_UNIT, unitId);
                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                     finish();
                     break;
@@ -183,14 +183,14 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     /**
      * Mục đích method gửi Broadcast để load lại list sau khi thêm đơn vị tính thành công
      *
-     * @param unit Danh sách các đơn vị tính
+     * @param unitId Danh sách các đơn vị tính
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @Override
-    public void onInsertUnitSuccess(String unit) {
+    public void onInsertUnitSuccess(int unitId) {
         try {
             Intent intent = new Intent(ACTION_PICK_UNIT);
-            intent.putExtra(EXTRA_PICK_UNIT, unit);
+            intent.putExtra(EXTRA_PICK_UNIT, unitId);
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
             finish();
         } catch (Exception e) {
@@ -211,14 +211,14 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     /**
      * Mục đích method gửi Broadcast để load lại list sau khi sửa đơn vị tính thành công
      *
-     * @param unit Đơn vị tính được thêm
+     * @param unitId Đơn vị tính được thêm
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     @Override
-    public void onEditUnitDone(String unit) {
+    public void onEditUnitDone(int unitId) {
         try {
             Intent intent = new Intent(ACTION_PICK_UNIT);
-            intent.putExtra(EXTRA_PICK_UNIT, unit);
+            intent.putExtra(EXTRA_PICK_UNIT, unitId);
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
             finish();
         } catch (Exception e) {
