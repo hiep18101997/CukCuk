@@ -24,9 +24,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_DISH;
-import static com.misa.cukcuklite.until.AppConstant.ACTION_EDIT_DISH;
-import static com.misa.cukcuklite.until.AppConstant.ACTION_REMOVE_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_ADD_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_REMOVE_DISH;
 
 /**
  * ‐ Màn hình danh sách món ăn

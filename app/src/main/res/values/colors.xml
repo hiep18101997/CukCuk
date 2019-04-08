@@ -39,7 +39,14 @@
     <color name="color_primary_15">#ffdaeaf5</color>
     <color name="color_background_for_bill">#ffcac9cf</color>
     <color name="color_header_table">#f2f2f2</color>
-
+    <color name="color_report_1">#2a93f3</color>
+    <color name="color_report_2">#4faa52</color>
+    <color name="color_report_3">#ff582b</color>
+    <color name="color_report_4">#ffc000</color>
+    <color name="color_report_5">#4471c4</color>
+    <color name="color_report_6">#2a93f3</color>
+    <color name="color_report_7">#a4a4a4</color>
+    <color name="color_report_8">#ff9700</color>
     <array name="arr_colors">
         <item>#26C6DA</item>
         <item>#0097A7</item>

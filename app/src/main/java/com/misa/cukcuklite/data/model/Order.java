@@ -17,6 +17,8 @@ public class Order implements Serializable {
     private int mNumberTable;
     @ColumnInfo(name = "person")
     private int mNumberPerson;
+    @ColumnInfo(name = "is_pay")
+    private boolean isPay;
     @Ignore
     private List<DishOrder> mOrders;
 
@@ -29,7 +31,16 @@ public class Order implements Serializable {
         mNumberPerson = builder.mNumberPerson;
         mNumberTable = builder.mNumberTable;
         id = builder.mId;
-        mOrders=builder.mOrders;
+        mOrders = builder.mOrders;
+        isPay = builder.isPay;
+    }
+
+    public boolean isPay() {
+        return isPay;
+    }
+
+    public void setPay(boolean pay) {
+        isPay = pay;
     }
 
     public List<DishOrder> getOrders() {
@@ -68,7 +79,13 @@ public class Order implements Serializable {
         private int mId;
         private int mNumberTable;
         private int mNumberPerson;
+        private boolean isPay;
         private List<DishOrder> mOrders;
+
+        public Builder setPay(boolean pay) {
+            isPay = pay;
+            return this;
+        }
 
         public Builder setId(int id) {
             mId = id;

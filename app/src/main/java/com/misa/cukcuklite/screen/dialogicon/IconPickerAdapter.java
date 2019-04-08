@@ -18,7 +18,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.utils.AppConstant.IMAGE_ASSETS;
 
 /**
  * - Mục đích Class :Adapter cho dialog chọn icon

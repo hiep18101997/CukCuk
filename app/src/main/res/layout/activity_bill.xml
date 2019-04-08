@@ -335,7 +335,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.misa.cukcuklite.until.OrderBottomView
+                <com.misa.cukcuklite.utils.OrderBottomView
                     android:layout_width="match_parent"
                     android:layout_height="8dp" />
             </LinearLayout>

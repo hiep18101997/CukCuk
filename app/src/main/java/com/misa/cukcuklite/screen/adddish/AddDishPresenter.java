@@ -15,7 +15,7 @@ import com.misa.cukcuklite.data.model.Unit;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.utils.AppConstant.IMAGE_ASSETS;
 
 /**
  * ‐ Presenter trong mô hình MVP cho màn hình Thêm món

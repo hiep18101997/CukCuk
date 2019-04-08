@@ -78,6 +78,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                 final Order mOrder = new Order.Builder()
                         .setNumberTable(Integer.valueOf(table))
                         .setNumberPerson(Integer.valueOf(person))
+                        .setPay(false)
                         .build();
                 new AsyncTask<Void, Void, Long>() {
                     @Override
@@ -137,6 +138,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                         .setId(idOrder)
                         .setNumberTable(Integer.valueOf(table))
                         .setNumberPerson(Integer.valueOf(person))
+                        .setPay(false)
                         .build();
                 new AsyncTask<Void, Void, Void>() {
                     @Override
@@ -165,6 +167,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                     .setNumberTable(Integer.valueOf(table))
                     .setNumberPerson(Integer.valueOf(person))
                     .setOrders(list)
+                    .setPay(false)
                     .build();
             mView.navigateBillActivity(mOrder);
         }

@@ -51,8 +51,8 @@
         android:layout_height="match_parent"
         android:background="@color/background_color_dark_gray"
         android:paddingTop="@dimen/margin_normal">
-        <RelativeLayout
-            android:id="@+id/rlContent"
+        <FrameLayout
+            android:id="@+id/frContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>

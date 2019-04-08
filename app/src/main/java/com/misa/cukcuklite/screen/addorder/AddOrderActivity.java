@@ -27,9 +27,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_ORDER;
-import static com.misa.cukcuklite.until.AppConstant.ACTION_EDIT_ORDER;
-import static com.misa.cukcuklite.until.AppConstant.EXTRA_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_ADD_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.EXTRA_ORDER;
 
 public class AddOrderActivity extends AppCompatActivity implements IAddOrderContract.IView,
         AddOrderAdapter.OnClickItem, View.OnClickListener, CalcDialog.CalcDialogCallback {

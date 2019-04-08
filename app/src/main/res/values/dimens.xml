@@ -114,4 +114,7 @@
     <dimen name="iv_empty_report_h">80dp</dimen>
     <dimen name="iv_drop_down_w">25dp</dimen>
     <dimen name="iv_drop_down_h">20dp</dimen>
+    <dimen name="item_report_height">45dp</dimen>
+    <dimen name="icon_bg_report_size">40dp</dimen>
+    <dimen name="icon_report_size">24dp</dimen>
 </resources>

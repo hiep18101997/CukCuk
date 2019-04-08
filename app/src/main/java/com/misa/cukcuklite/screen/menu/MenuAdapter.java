@@ -25,7 +25,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.IMAGE_ASSETS;
+import static com.misa.cukcuklite.utils.AppConstant.IMAGE_ASSETS;
 
 /**
  * ‐ Adapter RecyclerView cho màn hình danh sách món

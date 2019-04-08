@@ -36,7 +36,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.JSON_ASSETS;
+import static com.misa.cukcuklite.utils.AppConstant.JSON_ASSETS;
 
 /**
  * Màn hình bàn phím nhập đơn vị tính

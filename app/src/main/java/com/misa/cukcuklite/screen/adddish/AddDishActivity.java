@@ -35,9 +35,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import static com.misa.cukcuklite.until.AppConstant.ACTION_ADD_DISH;
-import static com.misa.cukcuklite.until.AppConstant.ACTION_PICK_UNIT;
-import static com.misa.cukcuklite.until.AppConstant.EXTRA_PICK_UNIT;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_ADD_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_PICK_UNIT;
+import static com.misa.cukcuklite.utils.AppConstant.EXTRA_PICK_UNIT;
 
 /**
  * - Mục đích Class : Thêm món ăn

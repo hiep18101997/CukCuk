@@ -33,10 +33,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import static com.misa.cukcuklite.until.AppConstant.ACTION_PICK_UNIT;
-import static com.misa.cukcuklite.until.AppConstant.ACTION_REMOVE_DISH;
-import static com.misa.cukcuklite.until.AppConstant.EXTRA_DISH;
-import static com.misa.cukcuklite.until.AppConstant.EXTRA_PICK_UNIT;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_PICK_UNIT;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_REMOVE_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.EXTRA_DISH;
+import static com.misa.cukcuklite.utils.AppConstant.EXTRA_PICK_UNIT;
 
 /**
  * ‐ Màn hình sừa món ăn

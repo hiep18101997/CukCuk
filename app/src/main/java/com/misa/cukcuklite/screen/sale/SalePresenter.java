@@ -27,7 +27,7 @@ public class SalePresenter implements ISaleContract.IPresenter {
         new AsyncTask<Void, Void, List<Order>>() {
             @Override
             protected List<Order> doInBackground(Void... voids) {
-                return DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().getAllOrder();
+                return DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().getAllOrderNotPay();
             }
 
             @Override

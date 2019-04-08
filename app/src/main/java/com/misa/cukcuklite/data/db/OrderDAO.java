@@ -15,8 +15,8 @@ import androidx.room.Update;
  */
 @Dao
 public interface OrderDAO {
-    @Query("SELECT * FROM orders")
-    List<Order> getAllOrder();
+    @Query("SELECT * FROM orders WHERE is_pay=0")
+    List<Order> getAllOrderNotPay();
 
     @Insert
     long insertOrder(Order unit);

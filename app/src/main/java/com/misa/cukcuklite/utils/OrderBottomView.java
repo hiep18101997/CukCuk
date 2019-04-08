@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.until;
+package com.misa.cukcuklite.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

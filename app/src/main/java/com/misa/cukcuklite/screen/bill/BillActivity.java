@@ -12,6 +12,7 @@ import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
+import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -22,10 +23,12 @@ import java.util.Locale;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.misa.cukcuklite.until.AppConstant.EXTRA_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.EXTRA_ORDER;
 
 /**
  * - Mục đích Class : Activity của màn hóa đơn
@@ -100,7 +103,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
     private void initComponent() {
         try {
             mOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
-            mPresenter = new BillPresenter(this);
+            mPresenter = new BillPresenter(this,this);
             lnCustomerAmount = findViewById(R.id.lnCustomerAmount);
             tvTotalAmount = findViewById(R.id.tvTotalAmount);
             tvTableName = findViewById(R.id.tvTableName);
@@ -143,6 +146,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
                     break;
                 case R.id.btnDone:
                 case R.id.btnDoneBelow:
+                    mPresenter.saveBill(mOrder);
                     break;
                 case R.id.lnCustomerAmount:
                     showDialogCal(Long.parseLong(tvTotalAmount.getText().toString()));
@@ -218,6 +222,16 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onSaveBillDone() {
+        finish();
+        Intent intent1 = new Intent(ACTION_EDIT_ORDER);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
+        Intent intent=new Intent(this, AddOrderActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
 
