@@ -106,7 +106,15 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:minHeight">0dp</item>
     </style>
-
+    <style name="TextViewNumberDark" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">@dimen/btn_payment_fragment_10</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ff212121</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_gray_with_border_radius_selector</item>
+        <item name="android:paddingTop">@dimen/padding_top_textview_number_dark</item>
+        <item name="android:paddingBottom">@dimen/padding_top_textview_number_dark</item>
+    </style>
     <style name="TextViewDefaultSingleLine" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:textSize">@dimen/font_size_normal</item>
         <item name="android:textColor">@color/color_text_main</item>

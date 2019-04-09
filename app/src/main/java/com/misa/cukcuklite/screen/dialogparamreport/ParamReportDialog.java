@@ -21,6 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ParamReportDialog extends DialogFragment implements ParamReportAdapter.OnClickParam {
     private ParamReportAdapter mAdapter;
+    private ParamCallBack mCallBack;
+    private List<ParamReport> mParamReports;
+
+    public void setParamReports(List<ParamReport> paramReports) {
+        mParamReports = paramReports;
+    }
 
     @Nullable
     @Override
@@ -39,24 +45,12 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
     }
 
     private void initComponent(View rootView) {
-        mAdapter = new ParamReportAdapter(getContext(), getListParam(), this);
+        mAdapter = new ParamReportAdapter(getContext(), mParamReports, this);
         RecyclerView rvDialogReport = rootView.findViewById(R.id.rvDialogReport);
         rvDialogReport.setAdapter(mAdapter);
         rvDialogReport.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private List<ParamReport> getListParam() {
-        List<ParamReport> paramReports = new ArrayList<>();
-        paramReports.add(new ParamReport(ParamReportEnum.CURRENT));
-        paramReports.add(new ParamReport(ParamReportEnum.THIS_WEEK));
-        paramReports.add(new ParamReport(ParamReportEnum.LAST_WEEK));
-        paramReports.add(new ParamReport(ParamReportEnum.THIS_MONTH));
-        paramReports.add(new ParamReport(ParamReportEnum.LAST_MONTH));
-        paramReports.add(new ParamReport(ParamReportEnum.THIS_YEAR));
-        paramReports.add(new ParamReport(ParamReportEnum.LAST_YEAR));
-        paramReports.add(new ParamReport(ParamReportEnum.OTHER));
-        return paramReports;
-    }
 
     @Override
     public void onResume() {
@@ -71,7 +65,16 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
         }
     }
 
+    public void setCallBack(ParamCallBack callBack) {
+        mCallBack = callBack;
+    }
+
     @Override
     public void onClick(ParamReport paramReport) {
+      mCallBack.onClick(paramReport);
+      dismiss();
+    }
+    public interface ParamCallBack{
+       void onClick(ParamReport paramReport);
     }
 }

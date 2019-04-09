@@ -1,4 +1,9 @@
 package com.misa.cukcuklite.screen.reportcurrent;
+
+import com.misa.cukcuklite.data.model.ReportCurrent;
+
+import java.util.List;
+
 /**
  * ‐ Contract  trong mô hình MVP cho màn hình Báo cáo
  *
@@ -6,8 +11,10 @@ package com.misa.cukcuklite.screen.reportcurrent;
  */
 interface IReportCurrentContract {
     interface IView {
+        void onLoadReportCurrentDone(List<ReportCurrent> reportCurrents);
     }
 
     interface IPresenter {
+        void getListReportCurrent();
     }
 }

@@ -3,10 +3,12 @@ package com.misa.cukcuklite.data.model;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.aplication.CukCukApplication;
 import com.misa.cukcuklite.enums.ParamReportEnum;
+import com.misa.cukcuklite.utils.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ParamReport {
+public class ParamReport implements Serializable {
     private Date fromDate;
     private boolean isSelected;
     private ParamReportEnum paramType;
@@ -15,124 +17,92 @@ public class ParamReport {
 
     public ParamReport(ParamReportEnum paramType) {
         this.paramType = paramType;
-        setSetTitle();
-        setDate();
-    }
-
-    private void setDate() {
-        switch (paramType) {
-            case OTHER:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_other);
-                break;
-            case CURRENT:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_current);
-                break;
-            case TODAY:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_today);
-                break;
-            case LAST_WEEK:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_week);
-                break;
-            case LAST_YEAR:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_year);
-                break;
-            case THIS_WEEK:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_week);
-                break;
-            case THIS_YEAR:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_year);
-                break;
-            case YESTERDAY:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_yesterday);
-                break;
-            case LAST_MONTH:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_month);
-                break;
-            case THIS_MONTH:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_month);
-                break;
-        }
-
+        setData();
     }
 
     public Date getFromDate() {
         return fromDate;
     }
 
-    public ParamReport setFromDate(Date fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
-        return this;
     }
 
     public boolean isSelected() {
         return isSelected;
     }
 
-    public ParamReport setSelected(boolean selected) {
+    public void setSelected(boolean selected) {
         isSelected = selected;
-        return this;
     }
 
     public ParamReportEnum getParamType() {
         return paramType;
     }
 
-    public ParamReport setParamType(ParamReportEnum paramType) {
+    public void setParamType(ParamReportEnum paramType) {
         this.paramType = paramType;
-        return this;
     }
 
     public String getTitleReportDetail() {
         return titleReportDetail;
     }
 
-    public ParamReport setTitleReportDetail(String titleReportDetail) {
+    public void setTitleReportDetail(String titleReportDetail) {
         this.titleReportDetail = titleReportDetail;
-        return this;
     }
 
     public Date getToDate() {
         return toDate;
     }
 
-    public ParamReport setToDate(Date toDate) {
+    public void setToDate(Date toDate) {
         this.toDate = toDate;
-        return this;
     }
 
-    private void setSetTitle() {
+    private void setData() {
+        Date[] dates = new Date[2];
         switch (paramType) {
             case OTHER:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_other);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_other);
                 break;
             case CURRENT:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_current);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_current);
                 break;
             case TODAY:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_today);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_today);
+                dates = DateUtil.getToday();
                 break;
             case LAST_WEEK:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_week);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_last_week);
+                dates = DateUtil.getLastWeek();
                 break;
             case LAST_YEAR:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_year);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_last_year);
+                dates = DateUtil.getLastYear();
                 break;
             case THIS_WEEK:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_week);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_week);
+                dates = DateUtil.getThisWeek();
                 break;
             case THIS_YEAR:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_year);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_year);
+                dates = DateUtil.getThisYear();
                 break;
             case YESTERDAY:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_yesterday);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_yesterday);
+                dates = DateUtil.getYesterday();
                 break;
             case LAST_MONTH:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_last_month);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_last_month);
+                dates = DateUtil.getLastMonth();
                 break;
             case THIS_MONTH:
-                titleReportDetail=CukCukApplication.getContext().getString(R.string.param_report_this_month);
+                titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_month);
+                dates = DateUtil.getThisMonth();
                 break;
         }
-
+        fromDate = dates[0];
+        toDate = dates[1];
     }
 }

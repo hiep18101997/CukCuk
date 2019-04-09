@@ -13,6 +13,7 @@ import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
 import com.misa.cukcuklite.screen.bill.BillActivity;
+import com.misa.cukcuklite.screen.calculator.InputNumberFragment;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -270,7 +271,9 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                     }
                     break;
                 case R.id.tvTable:
-                    showDialogCalculator(FLAG_TABLE);
+                    InputNumberFragment inputNumberFragment=new InputNumberFragment();
+                    FragmentManager fm = getSupportFragmentManager();
+                    inputNumberFragment.show(fm, getString(R.string.fragment_cal));
                     break;
                 case R.id.tvPerson:
                     showDialogCalculator(FLAG_PERSON);

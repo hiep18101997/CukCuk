@@ -15,7 +15,7 @@ import androidx.room.TypeConverters;
  * <p>
  * ‐ @created_by dhhiep on 3/22/2019
  */
-@Database(entities = {Dish.class, Unit.class, Order.class, DishOrder.class, Bill.class}, version = 3)
+@Database(entities = {Dish.class, Unit.class, Order.class, DishOrder.class, Bill.class}, version = 1)
 @TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DishDAO mDishDAO();

@@ -12,6 +12,6 @@ interface IBillContract {
     }
 
     interface IPresenter {
-        void saveBill(Order order);
+        void saveBill(Order order, long l);
     }
 }
