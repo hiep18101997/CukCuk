@@ -104,4 +104,6 @@
     <string name="param_report_this_year">Năm nay</string>
     <string name="param_report_today">Hôm nay</string>
     <string name="param_report_yesterday">Hôm qua</string>
+    <string name="vertical_label_chart">(Nghìn đồng)</string>
+    <string name="horizon_label_chart">(Ngày)</string>
 </resources>

@@ -20,7 +20,6 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
     private Context mContext;
     private OnClickParam mOnClickParam;
     private LayoutInflater mInflater;
-    private int indexSelect;
 
     public ParamReportAdapter(Context context, List<ParamReport> paramReports, OnClickParam onClickParam) {
         mParamReports = paramReports;
@@ -39,7 +38,7 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvName.setText(mParamReports.get(position).getTitleReportDetail());
-        if (position == indexSelect) {
+        if (mParamReports.get(position).isSelected()) {
             holder.ivCheck.setVisibility(View.VISIBLE);
         } else {
             holder.ivCheck.setVisibility(View.INVISIBLE);
@@ -47,10 +46,17 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                indexSelect = position;
-                notifyDataSetChanged();
+                setSelected(position);
+                mOnClickParam.onClick(mParamReports.get(position));
             }
         });
+    }
+    private void setSelected(int position){
+        for (ParamReport paramReport:mParamReports){
+            paramReport.setSelected(false);
+        }
+        mParamReports.get(position).setSelected(true);
+        notifyDataSetChanged();
     }
 
     @Override

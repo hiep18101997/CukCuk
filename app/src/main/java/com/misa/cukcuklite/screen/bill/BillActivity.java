@@ -146,7 +146,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
                     break;
                 case R.id.btnDone:
                 case R.id.btnDoneBelow:
-                    mPresenter.saveBill(mOrder);
+                    mPresenter.saveBill(mOrder,Long.parseLong(tvTotalAmount.getText().toString()));
                     break;
                 case R.id.lnCustomerAmount:
                     showDialogCal(Long.parseLong(tvTotalAmount.getText().toString()));

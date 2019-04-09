@@ -19,6 +19,16 @@ public class Bill {
     @TypeConverters({DateConverter.class})
     private Date date;
 
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    @ColumnInfo(name = "amount")
+    private long amount;
     public Bill() {
     }
 

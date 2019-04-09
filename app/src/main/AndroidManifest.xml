@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".screen.report.ReportActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".screen.bill.BillActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />

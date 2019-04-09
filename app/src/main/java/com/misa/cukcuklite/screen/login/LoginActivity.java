@@ -3,6 +3,7 @@ package com.misa.cukcuklite.screen.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.facebook.login.LoginResult;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.screen.home.HomeActivity;
 import com.misa.cukcuklite.screen.loginphoneemail.LoginPhoneEmailActivity;
+import com.misa.cukcuklite.utils.DateUtil;
 
 import java.util.Arrays;
 
@@ -35,6 +37,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
         setContentView(R.layout.activity_login);
         initComponent();
         initFacebookSDK();
+        Log.d(TAG, "Start: "+ DateUtil.getLastMonth()[0].toString());
+        Log.d(TAG, "End: "+ DateUtil.getLastMonth()[1].toString());
     }
 
     private void initComponent() {

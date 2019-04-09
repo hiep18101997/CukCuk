@@ -8,7 +8,6 @@ import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Bill;
 import com.misa.cukcuklite.data.model.Order;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -27,12 +26,13 @@ public class BillPresenter implements IBillContract.IPresenter {
 
     @SuppressLint("StaticFieldLeak")
     @Override
-    public void saveBill(final Order order) {
+    public void saveBill(final Order order, final long amount) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
                 order.setPay(true);
                 Bill bill = new Bill(order.getId(), Calendar.getInstance().getTime());
+                bill.setAmount(amount);
                 DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().updateOrder(order);
                 DatabaseClient.getInstance(mContext).getAppDatabase().mBillDAO().saveBill(bill);
                 return null;

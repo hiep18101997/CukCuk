@@ -117,4 +117,5 @@
     <dimen name="item_report_height">45dp</dimen>
     <dimen name="icon_bg_report_size">40dp</dimen>
     <dimen name="icon_report_size">24dp</dimen>
+    <dimen name="label_chart_size">10sp</dimen>
 </resources>
