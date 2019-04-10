@@ -8,6 +8,7 @@ import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Bill;
 import com.misa.cukcuklite.data.model.ParamReport;
 import com.misa.cukcuklite.data.model.ReportTotal;
+import com.misa.cukcuklite.enums.ReportTotalEnum;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,9 +56,13 @@ public class ReportTotalPresenter implements IReportTotalContract.IPresenter {
                     case THIS_WEEK:
                         calendar.setTime(paramReport.getFromDate());
                         while (calendar.getTime().compareTo(paramReport.getToDate())<0) {
-                            ReportTotal reportTotal=new ReportTotal();
+                            ReportTotal reportTotal=new ReportTotal(ReportTotalEnum.WEEK);
                             Date from = calendar.getTime();
-                            reportTotal.setTitleReportDetail("Thứ "+calendar.get(Calendar.DAY_OF_WEEK));
+                            if (calendar.get(Calendar.DAY_OF_WEEK)==1){
+                                reportTotal.setTitleReportDetail("CN");
+                            }else {
+                                reportTotal.setTitleReportDetail("Thứ "+calendar.get(Calendar.DAY_OF_WEEK));
+                            }
                             calendar.add(Calendar.DATE, 1);
                             calendar.add(Calendar.SECOND, -1);
                             Date to = calendar.getTime();
@@ -73,7 +78,7 @@ public class ReportTotalPresenter implements IReportTotalContract.IPresenter {
                     case THIS_MONTH:
                         calendar.setTime(paramReport.getFromDate());
                         while (calendar.getTime().compareTo(paramReport.getToDate())<0) {
-                            ReportTotal reportTotal=new ReportTotal();
+                            ReportTotal reportTotal=new ReportTotal(ReportTotalEnum.MONTH);
                             Date from = calendar.getTime();
                             reportTotal.setTitleReportDetail("Ngày "+calendar.get(Calendar.DAY_OF_MONTH));
                             calendar.add(Calendar.DATE, 1);
@@ -91,7 +96,7 @@ public class ReportTotalPresenter implements IReportTotalContract.IPresenter {
                     case THIS_YEAR:
                         calendar.setTime(paramReport.getFromDate());
                         while (calendar.getTime().compareTo(paramReport.getToDate())<0) {
-                            ReportTotal reportTotal=new ReportTotal();
+                            ReportTotal reportTotal=new ReportTotal(ReportTotalEnum.YEAR);
                             Date from = calendar.getTime();
                             reportTotal.setTitleReportDetail("Tháng "+(calendar.get(Calendar.MONTH)+1));
                             calendar.add(Calendar.MONTH, 1);

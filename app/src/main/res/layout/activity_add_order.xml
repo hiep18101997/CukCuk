@@ -147,7 +147,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:gravity="end"
-                    android:text="@string/key1"
                     android:textSize="@dimen/font_size_medium_small" />
             </LinearLayout>
 

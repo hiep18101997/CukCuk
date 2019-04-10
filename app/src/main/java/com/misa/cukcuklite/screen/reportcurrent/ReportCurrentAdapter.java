@@ -28,11 +28,12 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
     private Context mContext;
     private List<ReportCurrent> mReportCurrents;
     private LayoutInflater mLayoutInflater;
-
-    public ReportCurrentAdapter(Context context) {
+    private OnCLickReport mCLickReport;
+    public ReportCurrentAdapter(Context context,OnCLickReport cLickReport) {
         mContext = context;
         mReportCurrents = new ArrayList<>();
         mLayoutInflater = LayoutInflater.from(context);
+        mCLickReport=cLickReport;
     }
 
     @NonNull
@@ -44,7 +45,7 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ReportCurrent reportCurrent = mReportCurrents.get(position);
+        final ReportCurrent reportCurrent = mReportCurrents.get(position);
         holder.tvTitle.setText(reportCurrent.getTitleReportDetail());
         holder.tvAmount.setText(String.valueOf(reportCurrent.getAmount()));
         Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_circle);
@@ -74,7 +75,7 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
         holder.lnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mCLickReport.onClick(reportCurrent);
             }
         });
     }
@@ -106,5 +107,8 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAmount = itemView.findViewById(R.id.tvAmount);
         }
+    }
+    interface OnCLickReport{
+        void onClick(ReportCurrent reportCurrent);
     }
 }
