@@ -1,5 +1,7 @@
 package com.misa.cukcuklite.data.model;
 
+import com.misa.cukcuklite.enums.ReportTotalEnum;
+
 import java.util.Date;
 
 public class ReportTotal {
@@ -7,8 +9,18 @@ public class ReportTotal {
     private Date toDate;
     private String titleReportDetail;
     private long amount;
+    private ReportTotalEnum mType;
 
-    public ReportTotal() {
+    public ReportTotalEnum getType() {
+        return mType;
+    }
+
+    public void setType(ReportTotalEnum type) {
+        mType = type;
+    }
+
+    public ReportTotal(ReportTotalEnum type) {
+        mType=type;
     }
 
     public Date getFromDate() {

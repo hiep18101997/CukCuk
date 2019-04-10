@@ -121,4 +121,6 @@
     <string name="key9">9</string>
     <string name="keyClear">C</string>
     <string name="key0">0</string>
+    <string name="title_table">Nhập số bàn</string>
+    <string name="title_person">Nhập số người</string>
 </resources>
