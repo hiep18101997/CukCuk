@@ -11,10 +11,14 @@ import android.widget.TextView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ParamReport;
 import com.misa.cukcuklite.data.model.ReportCurrent;
+import com.misa.cukcuklite.data.model.ReportTotal;
 import com.misa.cukcuklite.enums.ParamReportEnum;
+import com.misa.cukcuklite.enums.ReportTotalEnum;
 import com.misa.cukcuklite.screen.dialogparamreport.ParamReportDialog;
 import com.misa.cukcuklite.screen.dialogpickdate.FromToPickerDialog;
 import com.misa.cukcuklite.screen.reportcurrent.ReportCurrentFragment;
+import com.misa.cukcuklite.screen.reportdetail.ReportDetailActivity;
+import com.misa.cukcuklite.screen.reportdetail.ReportDetailFragment;
 import com.misa.cukcuklite.screen.reporttotal.ReportTotalFragment;
 
 import java.text.DateFormat;
@@ -55,11 +59,19 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
         loadFragment(ReportCurrentFragment.newInstance(this));
         return view;
     }
-
+    /**
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void initView(View view) {
         tvTimeValue = view.findViewById(R.id.tvTimeValue);
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -78,6 +90,10 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
                             fromToPickerDialog.setOnClickAcceptPickDate(new FromToPickerDialog.OnClickAcceptPickDate() {
                                 @Override
                                 public void onPickDate(Date fromDate, Date toDate) {
+                                    Date[] dates=new Date[2];
+                                    dates[0]=fromDate;
+                                    dates[1]=toDate;
+                                    loadFragment(ReportDetailFragment.newInstance(dates));
                                     @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
                                     tvTimeValue.setText(dateFormat.format(fromDate)+"-"+dateFormat.format(toDate));
                                     setSelected(7, mParamReports);
@@ -125,11 +141,19 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(ReportCurrent reportCurrent) {
         switch (reportCurrent.getParamType()) {
             case TODAY:
+                ReportTotal reportTotalToday=new ReportTotal(ReportTotalEnum.TODAY);
+                reportTotalToday.setFromDate(reportCurrent.getFromDate());
+                reportTotalToday.setToDate(reportCurrent.getToDate());
+                startActivity(ReportDetailActivity.getIntent(getContext(),reportTotalToday));
                 break;
             case THIS_WEEK:
                 setSelected(1, mParamReports);
@@ -142,6 +166,10 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
                 loadFragment(ReportTotalFragment.newInstance(mParamReports.get(5)));
                 break;
             case YESTERDAY:
+                ReportTotal reportTotalYes=new ReportTotal(ReportTotalEnum.YESTERDAY);
+                reportTotalYes.setFromDate(reportCurrent.getFromDate());
+                reportTotalYes.setToDate(reportCurrent.getToDate());
+                startActivity(ReportDetailActivity.getIntent(getContext(),reportTotalYes));
                 break;
             case THIS_MONTH:
                 setSelected(3, mParamReports);

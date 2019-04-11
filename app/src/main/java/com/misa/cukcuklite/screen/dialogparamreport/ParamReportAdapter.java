@@ -14,7 +14,10 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+/**
+ * - Mục đích Class :Adapter của list khoảng thời gian
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.ViewHolder> {
     private List<ParamReport> mParamReports;
     private Context mContext;
@@ -37,26 +40,35 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tvName.setText(mParamReports.get(position).getTitleReportDetail());
-        if (mParamReports.get(position).isSelected()) {
-            holder.ivCheck.setVisibility(View.VISIBLE);
-        } else {
-            holder.ivCheck.setVisibility(View.INVISIBLE);
-        }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mParamReports.get(position).isSelected()) {
-                    if (position!=7){
-                        setSelected(position);
-                    }
-                    mOnClickParam.onClick(mParamReports.get(position));
-                }else {
-
-                }
+        try {
+            holder.tvName.setText(mParamReports.get(position).getTitleReportDetail());
+            if (mParamReports.get(position).isSelected()) {
+                holder.ivCheck.setVisibility(View.VISIBLE);
+            } else {
+                holder.ivCheck.setVisibility(View.INVISIBLE);
             }
-        });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!mParamReports.get(position).isSelected()) {
+                        if (position!=7){
+                            setSelected(position);
+                        }
+                        mOnClickParam.onClick(mParamReports.get(position));
+                    }else {
+
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+     /**
+          * Mục đích method: Set lại select cho list
+          * @param position: vị trí cần set
+          * @created_by Hoàng Hiệp on 4/12/2019
+          */
     private void setSelected(int position){
         for (ParamReport paramReport:mParamReports){
             paramReport.setSelected(false);

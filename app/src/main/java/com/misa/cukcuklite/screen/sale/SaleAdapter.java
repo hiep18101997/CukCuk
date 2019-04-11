@@ -95,7 +95,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                     mOnClickItem.onClickTakeMoney(mOrders.get(position));
                 }
             });
-        } catch (Resources.NotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

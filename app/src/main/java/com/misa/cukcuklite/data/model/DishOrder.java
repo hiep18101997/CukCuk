@@ -6,7 +6,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
+/**
+ * - Mục đích Class :Trừu tượng đối tượng DishOrder
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 @Entity(tableName = "dish_order")
 public class DishOrder implements Serializable {
     @PrimaryKey(autoGenerate = true)

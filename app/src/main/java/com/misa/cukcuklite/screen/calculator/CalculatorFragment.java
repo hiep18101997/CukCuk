@@ -68,15 +68,26 @@ public class CalculatorFragment extends DialogFragment {
     public CalculatorFragment() {
 
     }
-
+     /**
+          * Mục đích method: Hàm khởi tạo Dialog bàn phím
+          * @param textInput: giá trị ban đầu
+          * @param mIOnClickDone: Call back
+          * @return calculatorFragment: đối tượng máy tính
+          * @created_by Hoàng Hiệp on 4/12/2019
+          */
     public static CalculatorFragment createInstance(String textInput, IOnClickDone mIOnClickDone) {
-        CalculatorFragment calculatorFragment = new CalculatorFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(NUMBER_COLUMN, 4);
-        bundle.putString(TEXT_INPUT, textInput);
-        calculatorFragment.setArguments(bundle);
-        calculatorFragment.setOnClickDone(mIOnClickDone);
-        return calculatorFragment;
+        try {
+            CalculatorFragment calculatorFragment = new CalculatorFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(NUMBER_COLUMN, 4);
+            bundle.putString(TEXT_INPUT, textInput);
+            calculatorFragment.setArguments(bundle);
+            calculatorFragment.setOnClickDone(mIOnClickDone);
+            return calculatorFragment;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Nullable
@@ -106,61 +117,53 @@ public class CalculatorFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        createItems();
-
-        mCalculatorAdapter = new CalculatorAdapter(mDatasets);
-
-        setOnClickItem();
-
-        rcvKeyboard = view.findViewById(R.id.rcvKeyboard);
-        etInputNumber = view.findViewById(R.id.etInputNumber);
-        ivButtonCloseKeyboard = view.findViewById(R.id.ivButtonCloseKeyboard);
-
-        Bundle bundle = getArguments();
-
-        int numberColumn = 4;
-        if (bundle != null) {
-            if (bundle.containsKey(NUMBER_COLUMN)) {
-                numberColumn = bundle.getInt(NUMBER_COLUMN);
-            }
-            if (bundle.containsKey(TEXT_INPUT)) {
-                textInput = bundle.getString(TEXT_INPUT);
-                if (textInput != null && textInput.isEmpty()) {
+        try {
+            createItems();
+            mCalculatorAdapter = new CalculatorAdapter(mDatasets);
+            setOnClickItem();
+            rcvKeyboard = view.findViewById(R.id.rcvKeyboard);
+            etInputNumber = view.findViewById(R.id.etInputNumber);
+            ivButtonCloseKeyboard = view.findViewById(R.id.ivButtonCloseKeyboard);
+            Bundle bundle = getArguments();
+            int numberColumn = 4;
+            if (bundle != null) {
+                if (bundle.containsKey(NUMBER_COLUMN)) {
+                    numberColumn = bundle.getInt(NUMBER_COLUMN);
+                }
+                if (bundle.containsKey(TEXT_INPUT)) {
+                    textInput = bundle.getString(TEXT_INPUT);
+                    if (textInput != null && textInput.isEmpty()) {
+                        etInputNumber.setSelection(etInputNumber.getText().length());
+                        etInputNumber.selectAll();
+                        return;
+                    }
+                    etInputNumber.setText(textInput);
                     etInputNumber.setSelection(etInputNumber.getText().length());
                     etInputNumber.selectAll();
-                    return;
                 }
-                etInputNumber.setText(textInput);
-                etInputNumber.setSelection(etInputNumber.getText().length());
-                etInputNumber.selectAll();
             }
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), numberColumn);
+            rcvKeyboard.setLayoutManager(gridLayoutManager);
+            rcvKeyboard.setAdapter(mCalculatorAdapter);
+            operators = new ArrayList<>();
+            ivButtonCloseKeyboard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismiss();
+                }
+            });
+            etInputNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if (b) {
+                        hideKeyboard();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), numberColumn);
-        rcvKeyboard.setLayoutManager(gridLayoutManager);
-        rcvKeyboard.setAdapter(mCalculatorAdapter);
-
-        operators = new ArrayList<>();
-
-        ivButtonCloseKeyboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-
-        etInputNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    hideKeyboard();
-                }
-            }
-        });
-
     }
 
     /**
@@ -169,13 +172,17 @@ public class CalculatorFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        View view = getActivity().getCurrentFocus();
-        if (view == null) {
-            view = new View(getActivity());
-        }
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        try {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = getActivity().getCurrentFocus();
+            if (view == null) {
+                view = new View(getActivity());
+            }
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -186,24 +193,28 @@ public class CalculatorFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/26/2019
      */
     private void createItems() {
-        mDatasets = new ArrayList<>();
-        String jsonString = loadJSONFromAsset(getContext(), JSON_ASSETS);
-        if (jsonString != null) {
-            try {
-                JSONObject jsonObject = new JSONObject(jsonString);
-                JSONArray datas = jsonObject.getJSONArray(DATA);
-                for (int i = 0; i < datas.length(); i++) {
-                    JSONObject o = (JSONObject) datas.get(i);
-                    mDatasets.add(new InputKeys(o.getInt(ID), o.getString(NAME)));
-                }
+        try {
+            mDatasets = new ArrayList<>();
+            String jsonString = loadJSONFromAsset(getContext(), JSON_ASSETS);
+            if (jsonString != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonString);
+                    JSONArray datas = jsonObject.getJSONArray(DATA);
+                    for (int i = 0; i < datas.length(); i++) {
+                        JSONObject o = (JSONObject) datas.get(i);
+                        mDatasets.add(new InputKeys(o.getInt(ID), o.getString(NAME)));
+                    }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                for (int i = 0; i < 10; i++) {
+                    mDatasets.add(new InputKeys((i + 1), String.valueOf(i)));
+                }
             }
-        } else {
-            for (int i = 0; i < 10; i++) {
-                mDatasets.add(new InputKeys((i + 1), String.valueOf(i)));
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -213,14 +224,18 @@ public class CalculatorFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     private void setOnClickItem() {
-        mCalculatorAdapter.setOnClickListener(new CalculatorAdapter.OnclickInputKey() {
-            @Override
-            public void onClickItem(int id) {
-                onChangeText(id);
-            }
+        try {
+            mCalculatorAdapter.setOnClickListener(new CalculatorAdapter.OnclickInputKey() {
+                @Override
+                public void onClickItem(int id) {
+                    onChangeText(id);
+                }
 
 
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -366,30 +381,34 @@ public class CalculatorFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     private void onCaculate() {
-        if (operators.size() > 0) {
-            String txt = etInputNumber.getText().toString();
-            txt = txt.replaceAll(",", "");
-            Expression expression = new ExpressionBuilder(txt).build();
-            try {
-                // Calculate the result and display
-                double result = expression.evaluate();
-                textInput = formatAmount((long) result);
-                etInputNumber.setText(textInput);
-                operators.clear();
+        try {
+            if (operators.size() > 0) {
+                String txt = etInputNumber.getText().toString();
+                txt = txt.replaceAll(",", "");
+                Expression expression = new ExpressionBuilder(txt).build();
+                try {
+                    // Calculate the result and display
+                    double result = expression.evaluate();
+                    textInput = formatAmount((long) result);
+                    etInputNumber.setText(textInput);
+                    operators.clear();
 
-                mCalculatorAdapter.onChangelabel();
-            } catch (ArithmeticException ex) {
-                ex.fillInStackTrace();
-            }
-        } else {
-            long price = getNumberInput(etInputNumber.getText().toString());
-            if (price < 0) {
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_money), Toast.LENGTH_SHORT).show();
+                    mCalculatorAdapter.onChangelabel();
+                } catch (ArithmeticException ex) {
+                    ex.fillInStackTrace();
+                }
             } else {
-                mIOnClickDone.onClickDone(price, etInputNumber.getText().toString());
-                dismiss();
-            }
+                long price = getNumberInput(etInputNumber.getText().toString());
+                if (price < 0) {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_money), Toast.LENGTH_SHORT).show();
+                } else {
+                    mIOnClickDone.onClickDone(price, etInputNumber.getText().toString());
+                    dismiss();
+                }
 
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
         }
 
     }
@@ -445,11 +464,16 @@ public class CalculatorFragment extends DialogFragment {
      * @created_by Hoàng Hiệp on 3/28/2019
      */
     private String formatAmount(long num) {
-        DecimalFormat decimalFormat = new DecimalFormat();
-        DecimalFormatSymbols decimalFormateSymbol = new DecimalFormatSymbols();
-        decimalFormateSymbol.setGroupingSeparator(',');
-        decimalFormat.setDecimalFormatSymbols(decimalFormateSymbol);
-        return decimalFormat.format(num);
+        try {
+            DecimalFormat decimalFormat = new DecimalFormat();
+            DecimalFormatSymbols decimalFormateSymbol = new DecimalFormatSymbols();
+            decimalFormateSymbol.setGroupingSeparator(',');
+            decimalFormat.setDecimalFormatSymbols(decimalFormateSymbol);
+            return decimalFormat.format(num);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

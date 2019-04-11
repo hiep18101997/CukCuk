@@ -20,7 +20,9 @@ import com.misa.cukcuklite.data.model.Dish;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,7 +64,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         return mDishes != null ? mDishes.size() : 0;
     }
 
-    Bitmap getBitmapFromAssets(String fileName) {
+    /**
+     * Mục đích method: Lấy Bitmap từ assets
+     *
+     * @param fileName: tên file trong assets
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
+    private Bitmap getBitmapFromAssets(String fileName) {
         AssetManager assetManager = mContext.getAssets();
         InputStream istr = null;
         try {
@@ -73,6 +81,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         return BitmapFactory.decodeStream(istr);
     }
 
+    /**
+     * Mục đích method: Cập nhật danh sách
+     *
+     * @param
+     * @return
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     public void addData(List<Dish> dishes) {
         if (dishes == null) {
             return;
@@ -106,7 +121,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         void bindView(Context context, final Dish dish, View itemView) {
             mDish = dish;
             mName.setText(dish.getName());
-            mCost.setText("Giá bán: " + dish.getCost());
+            mCost.setText("Giá bán: " + NumberFormat.getNumberInstance(Locale.US).format(dish.getCost()));
             if (!dish.isSell()) {
                 mState.setVisibility(View.VISIBLE);
             } else {

@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Unit;
 
 import java.io.IOException;
@@ -88,25 +89,39 @@ public class EditDishPresenter implements IEditDishContract.IPresenter {
     @Override
     public void removeDish(final Dish currentDish) {
         try {
-            new AsyncTask<Void, Void, Void>() {
+            new AsyncTask<Void, Boolean, Void>() {
+                @SuppressLint("WrongThread")
                 @Override
                 protected Void doInBackground(Void... voids) {
-                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().deleteDish(currentDish);
+                    DishOrder dishOrder = DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().getDishOrderByDishId(currentDish.getId());
+                    if (dishOrder == null) {
+                        DatabaseClient.getInstance(mContext).getAppDatabase().mDishDAO().deleteDish(currentDish);
+                        publishProgress(true);
+                    } else {
+                        publishProgress(false);
+                    }
                     return null;
                 }
 
                 @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    mView.onRemoveDishDone();
+                protected void onProgressUpdate(Boolean... values) {
+                    super.onProgressUpdate(values);
+                    if (values[0]) {
+                        mView.onRemoveDishDone();
+                    } else {
+                        mView.onRemoveUnitError();
+                    }
                 }
             }.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
+    /**
+     * Mục đích method: Lấy tên đơn vị từ id
+     * @param unit id unit
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void getNameUnitFromId(final int unit) {

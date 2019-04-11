@@ -90,36 +90,61 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.lnLoginFacebook:
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "user_friends"));
-                break;
-            case R.id.lnLoginGoogle:
-                break;
-            case R.id.lnLoginPhoneEmail:
-                startActivity(LoginPhoneEmailActivity.getIntent(this));
-                break;
+        try {
+            switch (v.getId()) {
+                case R.id.lnLoginFacebook:
+                    LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "user_friends"));
+                    break;
+                case R.id.lnLoginGoogle:
+                    break;
+                case R.id.lnLoginPhoneEmail:
+                    startActivity(LoginPhoneEmailActivity.getIntent(this));
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
+     /**
+          * Mục đích method: Chuyển màn hình
+          * @created_by Hoàng Hiệp on 4/12/2019
+          */
     @Override
     public void navigateHomeScreen() {
         startActivity(HomeActivity.getIntent(this));
     }
-
+    /**
+     * Mục đích method: Hiển thị loading
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void showLoading() {
-        mDialog.setMessage(getString(R.string.loading));
-        mDialog.setCancelable(false);
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
+        try {
+            mDialog.setMessage(getString(R.string.loading));
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(false);
+            mDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
+    /**
+     * Mục đích method: Ẩn loading
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void hideLoading() {
-        mDialog.dismiss();
+        try {
+            mDialog.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

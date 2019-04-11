@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
+import com.misa.cukcuklite.screen.adddish.AddDishActivity;
+import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.editdish.EditDishActivity;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -33,13 +37,15 @@ import static com.misa.cukcuklite.utils.AppConstant.ACTION_REMOVE_DISH;
  * <p>
  * ‐ @created_by Hoàng Hiệp on 3/27/2019
  */
-public class MenuFragment extends Fragment implements IMenuContract.IView, MenuAdapter.OnItemClick {
+public class MenuFragment extends Fragment implements IMenuContract.IView, MenuAdapter.OnItemClick, View.OnClickListener {
     private static final String TAG = MenuFragment.class.getName();
     private IMenuContract.IPresenter mPresenter;
     private MenuAdapter mAdapter;
     private List<Dish> mDishes;
     private BroadcastReceiver mReceiver;
     private DrawerLayout mDrawerLayout;
+    private ConstraintLayout clWaterMark;
+    private TextView tvNotification2;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -83,6 +89,9 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initComponent() {
+        clWaterMark = getView().findViewById(R.id.clWaterMark);
+        tvNotification2 = getView().findViewById(R.id.tvNotification2);
+        tvNotification2.setOnClickListener(this);
         mDrawerLayout = getView().findViewById(R.id.drawer);
         mDishes = new ArrayList<>();
         mPresenter = new MenuPresenter(this, getContext());
@@ -110,7 +119,12 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
      */
     @Override
     public void onLoadListDishSuccess(List<Dish> dishes) {
-        mAdapter.addData(dishes);
+        if (dishes.size() > 0) {
+            mAdapter.addData(dishes);
+            clWaterMark.setVisibility(View.GONE);
+        } else {
+            clWaterMark.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -122,5 +136,18 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
     public void onDestroyView() {
         super.onDestroyView();
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mReceiver);
+    }
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvNotification2:
+                startActivity(AddDishActivity.getIntent(getContext()));
+                break;
+        }
     }
 }

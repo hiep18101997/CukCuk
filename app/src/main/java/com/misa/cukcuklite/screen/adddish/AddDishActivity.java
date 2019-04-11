@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.maltaisn.calcdialog.CalcDialog;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.Unit;
@@ -25,12 +24,7 @@ import com.misa.cukcuklite.screen.chooseunit.ChooseUnitActivity;
 import com.misa.cukcuklite.screen.dialogicon.IconPickerDialog;
 import com.thebluealliance.spectrum.SpectrumDialog;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -45,7 +39,7 @@ import static com.misa.cukcuklite.utils.AppConstant.EXTRA_PICK_UNIT;
  * - @created_by Hoàng Hiệp on 3/27/2019
  */
 public class AddDishActivity extends AppCompatActivity implements IAddDishContract.IView,
-        View.OnClickListener, CalcDialog.CalcDialogCallback {
+        View.OnClickListener {
     private static final String TAG = AddDishActivity.class.getName();
     private static final int COLOR_DEF = -14235942;
     private static final String ICON_DEF = "ic_def";
@@ -268,17 +262,10 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void onValueEntered(int requestCode, @Nullable BigDecimal value) {
-        try {
-            mBuilder.setCost(value.longValue());
-            tvCost.setText(NumberFormat.getNumberInstance(Locale.US).format(value));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+ /**
+      * Mục đích method:Hủy đăng kí BroadCast
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -320,11 +307,19 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Xử lý khi lấy tên thành công
+     * @param unit đơn vị
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onGetNameDone(Unit unit) {
-        tvUnit.setText(unit.getName());
-        mBuilder.setUnitId(unit.getId());
-        mBuilder.setUnitName(unit.getName());
+        try {
+            tvUnit.setText(unit.getName());
+            mBuilder.setUnitId(unit.getId());
+            mBuilder.setUnitName(unit.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

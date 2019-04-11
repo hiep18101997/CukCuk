@@ -7,7 +7,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
+/**
+ * - Mục đích Class :Trừu tượng đối tượng gọi món
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 @Entity(tableName = "orders")
 public class Order implements Serializable {
     @PrimaryKey(autoGenerate = true)

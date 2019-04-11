@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportDetail;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +42,7 @@ public class ReportDetailAdapter extends RecyclerView.Adapter<ReportDetailAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ReportDetail reportDetail = mReportDetails.get(position);
-        holder.tvAmount.setText(String.valueOf(reportDetail.getAmount()));
+        holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportDetail.getAmount()));
         holder.tvInventoryItemName.setText(reportDetail.getName());
         holder.tvNumber.setText(String.valueOf(position+1));
         holder.tvQuantity.setText(String.valueOf(reportDetail.getQuantity()+" "+reportDetail.getUnit()));

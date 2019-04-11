@@ -9,7 +9,9 @@ import android.widget.TextView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.DishOrder;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,10 +40,14 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvInventoryItemName.setText(mOrders.get(position).getDish().getName());
-        holder.tvQuantity.setText(String.valueOf(mOrders.get(position).getQuantity()));
-        holder.tvUnitPrice.setText(String.valueOf(mOrders.get(position).getDish().getCost()));
-        holder.tvAmount.setText(String.valueOf(mOrders.get(position).getDish().getCost() * mOrders.get(position).getQuantity()));
+        try {
+            holder.tvInventoryItemName.setText(mOrders.get(position).getDish().getName());
+            holder.tvQuantity.setText(String.valueOf(mOrders.get(position).getQuantity()));
+            holder.tvUnitPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(mOrders.get(position).getDish().getCost()));
+            holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(mOrders.get(position).getDish().getCost() * mOrders.get(position).getQuantity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

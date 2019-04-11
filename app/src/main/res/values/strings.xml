@@ -128,4 +128,12 @@
     <string name="from_date">Từ ngày</string>
     <string name="title_dialog_pick_time">Thời gian</string>
     <string name="report_sale_inventoryitem_title">Doanh thu theo mặt hàng</string>
+    <string name="title_suggest_money">Gợi ý tiền mặt</string>
+    <string name="accept">Đồng ý</string>
+    <string name="you_have_not_dish_in_menu">Chưa có khách nào gọi món</string>
+    <string name="click_here">Bấm vào đây hoặc dấu + để chọn món</string>
+    <string name="you_have_not_dish_in_menu_1">Chưa có món nào trong thực đơn</string>
+    <string name="click_here_1">Bấm vào đây hoặc bấm vào + để thêm món</string>
+    <string name="msg_dialog_pick_date">Giá trị Từ ngày phải nhỏ hơn hoặc bằng Đến ngày</string>
+    <string name="used_dish">Món ăn đã được sử dụng, bạn không được phép xóa</string>
 </resources>

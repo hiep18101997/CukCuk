@@ -1,10 +1,9 @@
 package com.misa.cukcuklite.screen.calculator.model;
 
 /**
- * ‐ Class được tạo ra dể người dùng đăng nhập vào hệ thống
+ * ‐ Class được tạo ra dể lưu lại phép tính
  * <p>
  * ‐ @created_by Hoàng Hiệp on 3/26/2019.
- * ‐ @modified_by Hoàng Hiệp on 3/26/2019.
  */
 
 public class Operators {

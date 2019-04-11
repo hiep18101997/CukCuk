@@ -8,9 +8,7 @@ import android.view.Window;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ParamReport;
-import com.misa.cukcuklite.enums.ParamReportEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -19,6 +17,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * - Mục đích Class :Dialog chọn khoảng thời gian
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class ParamReportDialog extends DialogFragment implements ParamReportAdapter.OnClickParam {
     private ParamReportAdapter mAdapter;
     private ParamCallBack mCallBack;
@@ -42,6 +44,11 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
 
     }
 
+    /**
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void initComponent(View rootView) {
         mAdapter = new ParamReportAdapter(getContext(), mParamReports, this);
         RecyclerView rvDialogReport = rootView.findViewById(R.id.rvDialogReport);
@@ -49,7 +56,11 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
         rvDialogReport.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-
+    /**
+     * Mục đích method: Thay đổi kích cỡ cho dialog
+     *
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -63,16 +74,27 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
         }
     }
 
+    /**
+     * Mục đích method: Truyền vào Callback
+     *
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     public void setCallBack(ParamCallBack callBack) {
         mCallBack = callBack;
     }
 
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(ParamReport paramReport) {
-      mCallBack.onClick(paramReport);
-      dismiss();
+        mCallBack.onClick(paramReport);
+        dismiss();
     }
-    public interface ParamCallBack{
-       void onClick(ParamReport paramReport);
+
+    public interface ParamCallBack {
+        void onClick(ParamReport paramReport);
     }
 }

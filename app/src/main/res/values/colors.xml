@@ -48,6 +48,8 @@
     <color name="color_report_6">#2a93f3</color>
     <color name="color_report_7">#a4a4a4</color>
     <color name="color_report_8">#ff9700</color>
+    <color name="color_green_dark_selected">#08ba69</color>
+    <color name="color_green_dark">#05a055</color>
     <array name="arr_colors">
         <item>#26C6DA</item>
         <item>#0097A7</item>

@@ -232,7 +232,11 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method:Chuyển màn hình
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     @Override
     public void navigateBillActivity(Order mOrder) {
         startActivity(BillActivity.getIntent(this, mOrder));
@@ -286,10 +290,18 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method:Hiển thị dialog nhập só
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private void showDialogNumber(int flag,CharSequence input, InputNumberFragment.DialogCallBack dialogCallBack) {
-        InputNumberFragment inputNumberFragment = new InputNumberFragment(flag, dialogCallBack,input);
-        FragmentManager fm = getSupportFragmentManager();
-        inputNumberFragment.show(fm, getString(R.string.fragment_cal));
+        try {
+            InputNumberFragment inputNumberFragment = new InputNumberFragment(flag, dialogCallBack,input);
+            FragmentManager fm = getSupportFragmentManager();
+            inputNumberFragment.show(fm, getString(R.string.fragment_cal));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportTotal;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,13 +51,17 @@ public class ReportTotalAdapter extends RecyclerView.Adapter<ReportTotalAdapter.
 
         final ReportTotal reportTotal = mReportTotals.get(position);
         holder.tvTitle.setText(reportTotal.getTitleReportDetail());
-        holder.tvAmount.setText(String.valueOf(reportTotal.getAmount()));
+        holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportTotal.getAmount()));
+
         holder.lnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnClickItemTotalReport.onClickItem(reportTotal);
+                if (reportTotal.getAmount() > 0) {
+                    mOnClickItemTotalReport.onClickItem(reportTotal);
+                }
             }
         });
+
     }
 
     @Override

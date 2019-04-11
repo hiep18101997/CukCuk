@@ -7,7 +7,10 @@ import com.misa.cukcuklite.utils.DateUtil;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * - Mục đích Class : Đối tượng các loại báo cáo
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class ParamReport implements Serializable {
     private Date fromDate;
     private boolean isSelected;
