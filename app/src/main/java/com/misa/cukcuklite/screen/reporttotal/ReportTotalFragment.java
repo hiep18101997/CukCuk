@@ -40,10 +40,26 @@ public class ReportTotalFragment extends Fragment implements IReportTotalContrac
         View v = inflater.inflate(R.layout.fragment_report_total, container, false);
         Bundle args = getArguments();
         ParamReport paramReport= (ParamReport) args.getSerializable(EXTRA_PARAM_REPORT);
+        loadData(paramReport);
         initView(v);
         return v;
     }
- /**
+
+    private void loadData(ParamReport paramReport) {
+        switch (paramReport.getParamType()){
+            case THIS_WEEK:
+            case LAST_WEEK:
+                break;
+            case THIS_MONTH:
+            case LAST_MONTH:
+                break;
+            case LAST_YEAR:
+            case THIS_YEAR:
+                break;
+        }
+    }
+
+    /**
       * Mục đích method: Khai báo ánh xạ view
       * @param v View
       * @created_by Hoàng Hiệp on 4/9/2019
