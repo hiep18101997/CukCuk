@@ -78,7 +78,12 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
             }.execute();
         }
     }
-
+    /**
+     * Mục đích method get tên đơn vị từ id
+     *
+     * @param unitID Id đơn vị
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void getNameUnitFromId(final int unitID) {
@@ -104,14 +109,19 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private boolean validateData(Dish dish) {
-        if (TextUtils.isEmpty(dish.getName())) {
-            mView.onEmptyName();
-            return false;
+        try {
+            if (TextUtils.isEmpty(dish.getName())) {
+                mView.onEmptyName();
+                return false;
+            }
+            if (TextUtils.isEmpty(dish.getUnitName())) {
+                mView.onEmptyUnit();
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (TextUtils.isEmpty(dish.getUnitName())) {
-            mView.onEmptyUnit();
-            return false;
-        }
-        return true;
+        return false;
     }
 }

@@ -82,22 +82,37 @@ public class IconPickerDialog extends DialogFragment implements IconPickerAdapte
             e.printStackTrace();
         }
     }
-
+ /**
+      * Mục đích method: Set kích cỡ cho dialog
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
     @Override
     public void onResume() {
         super.onResume();
-        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+        try {
+            ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tvCancel:
-                dismiss();
-                break;
+        try {
+            switch (view.getId()) {
+                case R.id.tvCancel:
+                    dismiss();
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -61,9 +61,13 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initListener() {
-        btnAcceptDialog.setOnClickListener(this);
-        ivClose.setOnClickListener(this);
-        btnCancelDialog.setOnClickListener(this);
+        try {
+            btnAcceptDialog.setOnClickListener(this);
+            ivClose.setOnClickListener(this);
+            btnCancelDialog.setOnClickListener(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,7 +90,10 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Set kích cỡ cho dialog
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -99,7 +106,11 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View view) {
         try {

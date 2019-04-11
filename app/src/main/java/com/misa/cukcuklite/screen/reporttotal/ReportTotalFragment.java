@@ -227,7 +227,11 @@ public class ReportTotalFragment extends Fragment implements IReportTotalContrac
 
         mLineChart.setData(lineData);
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClickItem(ReportTotal reportTotal) {
         startActivity(ReportDetailActivity.getIntent(getContext(),reportTotal));

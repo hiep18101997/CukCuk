@@ -15,8 +15,10 @@ import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportCurrent;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +50,7 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final ReportCurrent reportCurrent = mReportCurrents.get(position);
         holder.tvTitle.setText(reportCurrent.getTitleReportDetail());
-        holder.tvAmount.setText(String.valueOf(reportCurrent.getAmount()));
+        holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportCurrent.getAmount()));
         Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_circle);
         switch (reportCurrent.getParamType()) {
             case TODAY:
@@ -73,10 +75,14 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
                 break;
         }
         Glide.with(mContext).load(drawableBg).into(holder.ivBackgroundColor);
+
         holder.lnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCLickReport.onClick(reportCurrent);
+                if (reportCurrent.getAmount()>0){
+                    mCLickReport.onClick(reportCurrent);
+                }
+
             }
         });
     }

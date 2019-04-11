@@ -63,7 +63,11 @@ public class ConfirmRemoveDialog extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View view) {
         try {

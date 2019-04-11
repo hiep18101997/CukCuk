@@ -42,11 +42,11 @@ public class ReportDetailPresenter implements IReportDetailContract.IPresenter {
                         String unitName = unit.getName();
                         int quantity = dishOrder.getQuantity();
                         long amount = dishOrder.getCost();
-                        ReportDetail reportDetail=new ReportDetail.Builder().setAmount(amount).setName(name).setQuantity(quantity).setUnit(unitName).build();
+                        ReportDetail reportDetail = new ReportDetail.Builder().setAmount(amount).setName(name).setQuantity(quantity).setUnit(unitName).build();
                         reportDetails.add(reportDetail);
                     }
                 }
-                return  makeListBeautiful(reportDetails);
+                return makeListBeautiful(reportDetails);
             }
 
             @Override
@@ -58,21 +58,21 @@ public class ReportDetailPresenter implements IReportDetailContract.IPresenter {
     }
 
     private List<ReportDetail> makeListBeautiful(List<ReportDetail> reportDetails) {
-        List<ReportDetail> list=new ArrayList<>();
-        for (int i=0;i<reportDetails.size();i++){
-            ReportDetail reportDetail=reportDetails.get(i);
-            if (i==0){
+        List<ReportDetail> list = new ArrayList<>();
+        for (int i = 0; i < reportDetails.size(); i++) {
+            ReportDetail reportDetail = reportDetails.get(i);
+            if (i == 0) {
                 list.add(reportDetail);
-            }{
-                boolean isExist=false;
-                for (ReportDetail detail:list){
-                    if (reportDetail.getName().equals(detail.getName())){
-                        isExist=true;
+            } else {
+                boolean isExist = false;
+                for (ReportDetail detail : list) {
+                    if (reportDetail.getName().equals(detail.getName())) {
+                        isExist = true;
                         detail.addAmount(reportDetail.getAmount());
                         detail.addQuantity(reportDetail.getQuantity());
                     }
                 }
-                if (!isExist){
+                if (!isExist) {
                     list.add(reportDetail);
                 }
             }

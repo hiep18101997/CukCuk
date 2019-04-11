@@ -1,6 +1,7 @@
 package com.misa.cukcuklite.screen.calculator;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -17,7 +18,10 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+/**
+ * - Mục đích Class :Adapter của bàn phím
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.ViewHoder> {
 
     private static OnclickInputKey mOnclickInputKey;
@@ -59,7 +63,11 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
      * @created_by Hoàng Hiệp on 3/26/2019
      */
     public void setOnClickListener(OnclickInputKey onClickListener) {
-        CalculatorAdapter.mOnclickInputKey = onClickListener;
+        try {
+            CalculatorAdapter.mOnclickInputKey = onClickListener;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public interface OnclickInputKey {
@@ -83,12 +91,16 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    InputKeys input = mDatasets.get(getAdapterPosition());
-                    if (input.getId() == 8 || input.getId() == 12) {
-                        mDatasets.get(19).setName("=");
-                        notifyItemChanged(19);
+                    try {
+                        InputKeys input = mDatasets.get(getAdapterPosition());
+                        if (input.getId() == 8 || input.getId() == 12) {
+                            mDatasets.get(19).setName("=");
+                            notifyItemChanged(19);
+                        }
+                        mOnclickInputKey.onClickItem(mDatasets.get(getAdapterPosition()).getId());
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    mOnclickInputKey.onClickItem(mDatasets.get(getAdapterPosition()).getId());
                 }
             });
         }
@@ -101,18 +113,22 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
          */
         void initView(InputKeys inputKey) {
 
-            tvInputKey.setText(inputKey.getName());
+            try {
+                tvInputKey.setText(inputKey.getName());
 
-            if (inputKey.getId() == 20) {  // Button "Xong"
-                Drawable drawable = mContext.getResources().getDrawable(R.drawable.bg_border_radius_gray);
-                drawable.setColorFilter(mContext.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC);
-                rlItemContainer.setBackground(drawable);
+                if (inputKey.getId() == 20) {  // Button "Xong"
+                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.bg_border_radius_gray);
+                    drawable.setColorFilter(mContext.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC);
+                    rlItemContainer.setBackground(drawable);
 
-                tvInputKey.setAllCaps(true);
-                tvInputKey.setTextColor(mContext.getResources().getColor(R.color.color_white));
-            } else if (inputKey.getId() == 4) {  // Button "Xoa"
-                ivIconInput.setVisibility(View.VISIBLE);
-                tvInputKey.setVisibility(View.GONE);
+                    tvInputKey.setAllCaps(true);
+                    tvInputKey.setTextColor(mContext.getResources().getColor(R.color.color_white));
+                } else if (inputKey.getId() == 4) {  // Button "Xoa"
+                    ivIconInput.setVisibility(View.VISIBLE);
+                    tvInputKey.setVisibility(View.GONE);
+                }
+            } catch (Resources.NotFoundException e) {
+                e.printStackTrace();
             }
         }
     }

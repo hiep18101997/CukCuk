@@ -8,7 +8,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
-
+/**
+ * - Mục đích Class :Trừ tượng đối tượng Hóa đơn
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 @Entity(tableName = "bills")
 public class Bill {
     @PrimaryKey(autoGenerate = true)

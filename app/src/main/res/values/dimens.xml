@@ -129,4 +129,7 @@
     <dimen name="margin_5_dp">5dp</dimen>
     <dimen name="icon_bg_report_detail_size">35dp</dimen>
     <dimen name="font_size_normal_small">12sp</dimen>
+    <dimen name="water_mark_height">220dp</dimen>
+    <dimen name="direct_top_height">200dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
 </resources>

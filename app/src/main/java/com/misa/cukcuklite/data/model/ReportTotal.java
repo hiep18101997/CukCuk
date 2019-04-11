@@ -4,7 +4,10 @@ import com.misa.cukcuklite.enums.ReportTotalEnum;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * - Mục đích Class :Đối tượng báo cáo theo Mốc thời gian
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class ReportTotal implements Serializable {
     private Date fromDate;
     private Date toDate;

@@ -1,4 +1,4 @@
-package com.misa.cukcuklite.screen.calculator;
+package com.misa.cukcuklite.screen.dialogbillcal;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -8,48 +8,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
+import com.misa.cukcuklite.screen.calculator.InputNumberFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+/**
+ * - Mục đích Class :Máy tính hóa đơn
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
+public class BillCalculatorDialog extends DialogFragment implements BillCalculatorAdapter.OnClickSuggestMoney, View.OnClickListener {
 
-import static com.misa.cukcuklite.screen.addorder.AddOrderActivity.FLAG_PERSON;
-import static com.misa.cukcuklite.screen.addorder.AddOrderActivity.FLAG_TABLE;
-
-public class InputNumberFragment extends DialogFragment implements View.OnClickListener {
-    private TextView tvTitle;
+    private BillCalculatorAdapter mAdapter;
+    private List<Long> mSuggestMoneys;
     private EditText etInputNumber;
     private String textInput;
-    private int flag;
-    private DialogCallBack mCallBack;
-    /**
-     * Mục đích method: Hàm khởi tạo Dialog bàn phím
-     * @param flag: Cờ phân loại nhập số người hay số bàn
-     * @param callBack: Call back
-     * @param input: giá trị đầu
-     * @created_by Hoàng Hiệp on 4/12/2019
-     */
-    @SuppressLint("ValidFragment")
-    public InputNumberFragment(int flag, DialogCallBack callBack, CharSequence input) {
-        this.flag = flag;
-        mCallBack = callBack;
-        if (TextUtils.isEmpty(input)) {
-            textInput = "";
-        } else {
-            textInput = String.valueOf(input);
-        }
-    }
+    private InputNumberFragment.DialogCallBack mCallBack;
 
-    public InputNumberFragment() {
+    public BillCalculatorDialog() {
+    }
+ /**
+      * Mục đích method: Hàm khởi tạo
+      * @param callBack: Callback trả về
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
+    @SuppressLint("ValidFragment")
+    public BillCalculatorDialog(InputNumberFragment.DialogCallBack callBack) {
+        mCallBack = callBack;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dialog_keyboard_number_table_person, container);
+        View rootView = inflater.inflate(R.layout.dialog_bill_calculator, container);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
@@ -57,33 +55,7 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
         initListener(rootView);
         return rootView;
     }
-    /**
-     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
-    private void initView(View rootView) {
-        try {
-            etInputNumber = rootView.findViewById(R.id.edtScreen);
-            tvTitle = rootView.findViewById(R.id.tvTitle);
-            switch (flag) {
-                case FLAG_TABLE:
-                    tvTitle.setText(getString(R.string.title_table));
-                    break;
-                case FLAG_PERSON:
-                    tvTitle.setText(getString(R.string.title_person));
-                    break;
-            }
-            showResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * Mục đích method: Bắt sự kiện
-     *
-     * @created_by Hoàng Hiệp on 3/27/2019
-     */
+
     private void initListener(View rootView) {
         rootView.findViewById(R.id.btnClose).setOnClickListener(this);
         rootView.findViewById(R.id.btnKey0).setOnClickListener(this);
@@ -101,6 +73,30 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
         rootView.findViewById(R.id.btnKeyMinus).setOnClickListener(this);
         rootView.findViewById(R.id.btnKeyPlus).setOnClickListener(this);
         rootView.findViewById(R.id.btnKeyClear).setOnClickListener(this);
+
+    }
+    /**
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+    private void initView(View rootView) {
+        try {
+            etInputNumber = rootView.findViewById(R.id.edtScreen);
+            textInput = "";
+            showResult();
+            List<Long> longs=new ArrayList<>();
+            longs.add(new Long(10000));
+            longs.add(new Long(20000));
+            longs.add(new Long(50000));
+            longs.add(new Long(100000));
+            mAdapter=new BillCalculatorAdapter(getContext(),longs,this);
+            RecyclerView rcvSuggestMoney=rootView.findViewById(R.id.rcvSuggestMoney);
+            rcvSuggestMoney.setAdapter(mAdapter);
+            rcvSuggestMoney.setLayoutManager(new GridLayoutManager(getContext(),2));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -120,12 +116,16 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onClick(long money) {
+
+    }
     /**
      * Mục đích method: Xử lý sự kiện
      *
      * @created_by Hoàng Hiệp on 3/27/2019
      */
-    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         try {
@@ -206,20 +206,6 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
-
-    /**
-     * Create by Hoàng Hiệp on 4/4/2019
-     * Hiển thị số lượng
-     */
-    private void showResult() {
-        try {
-            etInputNumber.setText(textInput);
-            etInputNumber.setSelection(textInput.length());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Create by Hoàng Hiệp on 4/4/2019
      * Hiển thị số lượng
@@ -237,10 +223,18 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method: Interface Call back
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+    /**
+     * Create by Hoàng Hiệp on 4/4/2019
+     * Hiển thị số lượng
+     */
+    private void showResult() {
+        try {
+            etInputNumber.setText(textInput);
+            etInputNumber.setSelection(textInput.length());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public interface DialogCallBack {
         void setAmount(String amount);
     }

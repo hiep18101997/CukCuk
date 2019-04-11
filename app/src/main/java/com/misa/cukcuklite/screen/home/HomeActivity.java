@@ -110,15 +110,20 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
-        getMenuInflater().inflate(R.menu.menu_add, menu);
-        if (isVisible) {
-            menu.findItem(R.id.action_add).setVisible(true);
-        }else {
-            menu.findItem(R.id.action_add).setVisible(false);
-        }
+        try {
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frHome);
+            getMenuInflater().inflate(R.menu.menu_add, menu);
+            if (isVisible) {
+                menu.findItem(R.id.action_add).setVisible(true);
+            }else {
+                menu.findItem(R.id.action_add).setVisible(false);
+            }
 
-        return true;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**

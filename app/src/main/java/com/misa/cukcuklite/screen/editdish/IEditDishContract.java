@@ -18,6 +18,8 @@ interface IEditDishContract {
         void onEditDishDone();
 
         void onGetNameDone(Unit unit);
+
+        void onRemoveUnitError();
     }
 
     interface IPresenter {

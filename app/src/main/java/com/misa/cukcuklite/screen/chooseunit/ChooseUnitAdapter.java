@@ -94,23 +94,27 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void showPopUp(View view) {
-        MenuBuilder menuBuilder = new MenuBuilder(mContext);
-        MenuInflater inflater = new MenuInflater(mContext);
-        inflater.inflate(R.menu.menu_popup_unit, menuBuilder);
-        MenuPopupHelper optionsMenu = new MenuPopupHelper(mContext, menuBuilder, view);
-        optionsMenu.setForceShowIcon(true);
-        menuBuilder.setCallback(new MenuBuilder.Callback() {
-            @Override
-            public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
-                mOnClick.onClickRemove(mUnits.get(indexSelect));
-                return true;
-            }
+        try {
+            MenuBuilder menuBuilder = new MenuBuilder(mContext);
+            MenuInflater inflater = new MenuInflater(mContext);
+            inflater.inflate(R.menu.menu_popup_unit, menuBuilder);
+            MenuPopupHelper optionsMenu = new MenuPopupHelper(mContext, menuBuilder, view);
+            optionsMenu.setForceShowIcon(true);
+            menuBuilder.setCallback(new MenuBuilder.Callback() {
+                @Override
+                public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
+                    mOnClick.onClickRemove(mUnits.get(indexSelect));
+                    return true;
+                }
 
-            @Override
-            public void onMenuModeChange(MenuBuilder menu) {
-            }
-        });
-        optionsMenu.show();
+                @Override
+                public void onMenuModeChange(MenuBuilder menu) {
+                }
+            });
+            optionsMenu.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -175,19 +179,23 @@ public class ChooseUnitAdapter extends RecyclerView.Adapter<ChooseUnitAdapter.Vi
         }
 
         public void bindView(final Unit unit, final int position) {
-            tvUnit.setText(unit.getName());
-            if (position == indexSelect) {
-                ivCheck.setVisibility(View.VISIBLE);
-            } else {
-                ivCheck.setVisibility(View.INVISIBLE);
-            }
-            ivEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    indexSelect = position;
-                    mOnClick.onClickEdit(unit);
+            try {
+                tvUnit.setText(unit.getName());
+                if (position == indexSelect) {
+                    ivCheck.setVisibility(View.VISIBLE);
+                } else {
+                    ivCheck.setVisibility(View.INVISIBLE);
                 }
-            });
+                ivEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        indexSelect = position;
+                        mOnClick.onClickEdit(unit);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

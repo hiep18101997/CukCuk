@@ -37,6 +37,14 @@ public class ChooseUnitActivity extends AppCompatActivity implements IChooseUnit
     private ArrayList<Unit> mUnits;
     private Unit mUnit;
 
+    /**
+     * Mục đích method: Tạo ra intent trỏ đến ChooseUnitActivity
+     *
+     * @param context:
+     * @param unit:    đơn vị
+     * @return
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     public static Intent getIntent(Context context, String unit) {
         Intent intent = new Intent(context, ChooseUnitActivity.class);
         intent.putExtra(EXTRA_UNIT, unit);

@@ -1,14 +1,18 @@
 package com.misa.cukcuklite.screen.reportdetail;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.model.ParamReport;
 import com.misa.cukcuklite.data.model.ReportDetail;
-import com.misa.cukcuklite.screen.reporttotal.ReportTotalFragment;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +31,8 @@ public class ReportDetailFragment extends Fragment implements IReportDetailContr
     private IReportDetailContract.IPresenter mPresenter;
     private Date[] dates;
     private ReportDetailAdapter mAdapter;
+    private PieChart mPieChart;
+    private int[] colors;
 
     public static ReportDetailFragment newInstance(Date[] dates) {
         ReportDetailFragment reportTotalFragment = new ReportDetailFragment();
@@ -39,11 +45,49 @@ public class ReportDetailFragment extends Fragment implements IReportDetailContr
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_report_detail,container,false);
+        View view = inflater.inflate(R.layout.fragment_report_detail, container, false);
         Bundle args = getArguments();
-        dates= (Date[]) args.getSerializable(EXTRA_DATES);
+        dates = (Date[]) args.getSerializable(EXTRA_DATES);
         initView(view);
         return view;
+    }
+
+    private void setupPieChart(List<ReportDetail> reportDetails) {
+        colors = getContext().getResources().getIntArray(R.array.arr_colors);
+        mPieChart.setUsePercentValues(true);
+        mPieChart.setDescription(null);
+        mPieChart.setExtraOffsets(10.0f, 10.0f, 10.0f, 10.0f);
+        mPieChart.setDragDecelerationFrictionCoef(0.95f);
+        mPieChart.setDrawHoleEnabled(true);
+        mPieChart.setHoleColor(Color.TRANSPARENT);
+        mPieChart.setTransparentCircleColor(-1);
+        mPieChart.setTransparentCircleAlpha(110);
+        mPieChart.setHoleRadius(65.0f);
+        mPieChart.setTransparentCircleRadius(60.0f);
+        mPieChart.setDrawCenterText(true);
+        mPieChart.setRotationAngle(0.0f);
+        mPieChart.setRotationEnabled(false);
+        mPieChart.setHighlightPerTapEnabled(false);
+        mPieChart.setDrawSliceText(false);
+        List<PieEntry> entries = new ArrayList<>();
+        for (ReportDetail reportDetail:reportDetails){
+            PieEntry pieEntry=new PieEntry((float) reportDetail.getAmount());
+            entries.add(pieEntry);
+        }
+        PieDataSet pieDataSet = new PieDataSet(entries,"pie_chart");
+        pieDataSet.setColors(colors);
+        pieDataSet.setValueLinePart1OffsetPercentage(80.0f);
+        pieDataSet.setValueLinePart1Length(0.3f);
+        pieDataSet.setValueLinePart2Length(0.4f);
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        PieData data = new PieData(pieDataSet);
+        data.setValueFormatter(new PercentFormatter());
+        mPieChart.setData(data);
+        mPieChart.highlightValues(null);
+        mPieChart.setCenterText("Tổng doanh thu");
+        mPieChart.animateY(1400);
+        mPieChart.getLegend().setEnabled(false);
+        mPieChart.invalidate();
     }
 
     @Override
@@ -52,10 +96,11 @@ public class ReportDetailFragment extends Fragment implements IReportDetailContr
     }
 
     private void initView(View view) {
-        mPresenter = new ReportDetailPresenter(getContext(),this);
+        mPieChart = view.findViewById(R.id.pieChart);
+        mPresenter = new ReportDetailPresenter(getContext(), this);
         mPresenter.loadData(dates);
-        mAdapter=new ReportDetailAdapter(getContext(),new ArrayList<ReportDetail>());
-        RecyclerView rvReport=view.findViewById(R.id.rvReport);
+        mAdapter = new ReportDetailAdapter(getContext(), new ArrayList<ReportDetail>());
+        RecyclerView rvReport = view.findViewById(R.id.rvReport);
         rvReport.setAdapter(mAdapter);
         rvReport.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -63,5 +108,6 @@ public class ReportDetailFragment extends Fragment implements IReportDetailContr
     @Override
     public void onLoadDataDone(List<ReportDetail> reportDetails) {
         mAdapter.setData(reportDetails);
+        setupPieChart(reportDetails);
     }
 }

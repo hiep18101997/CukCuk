@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
@@ -85,16 +86,20 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initBroadcastReceiver() {
-        IntentFilter filter = new IntentFilter(ACTION_PICK_UNIT);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                int unit = intent.getIntExtra(EXTRA_PICK_UNIT, -1);
-                unitId = unit;
-                mPresenter.getNameUnitFromId(unit);
-            }
-        };
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
+        try {
+            IntentFilter filter = new IntentFilter(ACTION_PICK_UNIT);
+            mReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    int unit = intent.getIntExtra(EXTRA_PICK_UNIT, -1);
+                    unitId = unit;
+                    mPresenter.getNameUnitFromId(unit);
+                }
+            };
+            LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, filter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -203,9 +208,13 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void showDialogPickIcon() {
-        FragmentManager fm = getSupportFragmentManager();
-        IconPickerDialog tv = new IconPickerDialog(this);
-        tv.show(fm, "icon");
+        try {
+            FragmentManager fm = getSupportFragmentManager();
+            IconPickerDialog tv = new IconPickerDialog(this);
+            tv.show(fm, "icon");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -215,32 +224,36 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.rlIconContainer1:
-                showDialogPickColor();
-                break;
-            case R.id.rlIconContainer2:
-                showDialogPickIcon();
-                break;
-            case R.id.lnCost:
-                showCalDialog();
-                break;
-            case R.id.lnUnit:
-                startActivity(ChooseUnitActivity.getIntent(this, tvUnit.getText().toString()));
-                break;
-            case R.id.ivBack:
-                onBackPressed();
-                break;
-            case R.id.tvRemove:
-                showConfirmDialog();
-                break;
-            case R.id.tvDone:
-            case R.id.tvSave:
-                currentDish.setName(edtName.getText().toString());
-                currentDish.setUnitId(unitId);
-                currentDish.setSell(!mCheckBox.isChecked());
-                mPresenter.editDish(currentDish);
-                break;
+        try {
+            switch (view.getId()) {
+                case R.id.rlIconContainer1:
+                    showDialogPickColor();
+                    break;
+                case R.id.rlIconContainer2:
+                    showDialogPickIcon();
+                    break;
+                case R.id.lnCost:
+                    showCalDialog();
+                    break;
+                case R.id.lnUnit:
+                    startActivity(ChooseUnitActivity.getIntent(this, tvUnit.getText().toString()));
+                    break;
+                case R.id.ivBack:
+                    onBackPressed();
+                    break;
+                case R.id.tvRemove:
+                    showConfirmDialog();
+                    break;
+                case R.id.tvDone:
+                case R.id.tvSave:
+                    currentDish.setName(edtName.getText().toString());
+                    currentDish.setUnitId(unitId);
+                    currentDish.setSell(!mCheckBox.isChecked());
+                    mPresenter.editDish(currentDish);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -250,14 +263,18 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     public void showCalDialog() {
-        FragmentManager fm = getSupportFragmentManager();
-        CalculatorFragment calculatorFragment = CalculatorFragment.createInstance(tvCost.getText().toString(), new CalculatorFragment.IOnClickDone() {
-            @Override
-            public void onClickDone(long price, String priceShow) {
-                setPrice(price, priceShow);
-            }
-        });
-        calculatorFragment.show(fm, getString(R.string.dialog_calculator));
+        try {
+            FragmentManager fm = getSupportFragmentManager();
+            CalculatorFragment calculatorFragment = CalculatorFragment.createInstance(tvCost.getText().toString(), new CalculatorFragment.IOnClickDone() {
+                @Override
+                public void onClickDone(long price, String priceShow) {
+                    setPrice(price, priceShow);
+                }
+            });
+            calculatorFragment.show(fm, getString(R.string.dialog_calculator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -312,9 +329,13 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     @Override
     public void onRemoveDishDone() {
-        Intent intent = new Intent(ACTION_REMOVE_DISH);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-        finish();
+        try {
+            Intent intent = new Intent(ACTION_REMOVE_DISH);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -324,13 +345,22 @@ public class EditDishActivity extends AppCompatActivity implements IEditDishCont
      */
     @Override
     public void onEditDishDone() {
-        Intent intent = new Intent(ACTION_REMOVE_DISH);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-        finish();
+        try {
+            Intent intent = new Intent(ACTION_REMOVE_DISH);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onGetNameDone(Unit unit) {
         tvUnit.setText(unit.getName());
+    }
+
+    @Override
+    public void onRemoveUnitError() {
+        Toast.makeText(this, getString(R.string.used_dish), Toast.LENGTH_SHORT).show();
     }
 }

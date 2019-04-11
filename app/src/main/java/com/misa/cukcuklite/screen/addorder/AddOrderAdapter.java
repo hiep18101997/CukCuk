@@ -25,8 +25,10 @@ import com.misa.cukcuklite.data.model.DishOrder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,7 +66,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
             Dish dish = mList.get(position).getDish();
             final int quantity = mList.get(position).getQuantity();
             holder.tvName.setText(dish.getName());
-            holder.tvPrice.setText(String.valueOf(dish.getCost()));
+            holder.tvPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(dish.getCost()));
             holder.tvQuantity.setText(String.valueOf(quantity));
             Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_table);
             drawableBg.setColorFilter(dish.getColor(), PorterDuff.Mode.SRC);
@@ -128,7 +130,11 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
     public int getItemCount() {
         return mList != null ? mList.size() : 0;
     }
-
+    /**
+     * Mục đích method:get bitmap từ tên
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private Bitmap getBitmapFromAssets(String fileName) {
         AssetManager assetManager = mContext.getAssets();
         InputStream istr = null;

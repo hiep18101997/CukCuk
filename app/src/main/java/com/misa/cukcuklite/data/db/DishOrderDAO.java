@@ -1,5 +1,6 @@
 package com.misa.cukcuklite.data.db;
 
+import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.DishOrder;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface DishOrderDAO {
 
     @Query("SELECT * FROM dish_order WHERE order_id=:orderId")
     List<DishOrder> getDishOrderByOrderId(int orderId);
+
+    @Query("SELECT * FROM dish_order WHERE dish_id=:id")
+    DishOrder getDishOrderByDishId(int id);
 }

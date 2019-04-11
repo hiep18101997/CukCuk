@@ -23,7 +23,11 @@ public class LoginPresenter implements ILoginContract.IPresenter {
         mView = view;
         initSignInCallback();
     }
-
+ /**
+      * Mục đích method: Đăng nhập facebook
+      * @param accessToken
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
     @Override
     public void loginWithFacebook(AccessToken accessToken) {
         try {

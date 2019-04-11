@@ -160,36 +160,56 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
 
     }
 
+    /**
+     * Mục đích method: thực hiện việc Thu tiền
+     *
+     * @param table  : số bàn
+     * @param person : số người
+     * @param list   : danh sách món
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void takeMoney(String table, String person, List<DishOrder> list) {
-        if (isValidData(table, person, list)) {
-            Order mOrder = new Order.Builder()
-                    .setNumberTable(Integer.valueOf(table))
-                    .setNumberPerson(Integer.valueOf(person))
-                    .setOrders(list)
-                    .setPay(false)
-                    .build();
-            mView.navigateBillActivity(mOrder);
+        try {
+            if (isValidData(table, person, list)) {
+                Order mOrder = new Order.Builder()
+                        .setNumberTable(Integer.valueOf(table))
+                        .setNumberPerson(Integer.valueOf(person))
+                        .setOrders(list)
+                        .setPay(false)
+                        .build();
+                mView.navigateBillActivity(mOrder);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
     }
-
+ /**
+      * Mục đích method: Cập nhật đơn
+      * @param dishOrders: danh sách món trong đơn
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
     @SuppressLint("StaticFieldLeak")
     private void updateDishOrders(final List<DishOrder> dishOrders) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                for (DishOrder dishOrder : dishOrders) {
-                    DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().updateDishOrder(dishOrder);
+        try {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    for (DishOrder dishOrder : dishOrders) {
+                        DatabaseClient.getInstance(mContext).getAppDatabase().mDishOrderDAO().updateDishOrder(dishOrder);
+                    }
+                    return null;
                 }
-                return null;
-            }
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                mView.onEditOrderDone();
-            }
-        }.execute();
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    mView.onEditOrderDone();
+                }
+            }.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

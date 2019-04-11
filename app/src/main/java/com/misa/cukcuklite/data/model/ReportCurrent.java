@@ -6,7 +6,10 @@ import com.misa.cukcuklite.enums.ParamReportEnum;
 import com.misa.cukcuklite.utils.DateUtil;
 
 import java.util.Date;
-
+/**
+ * - Mục đích Class :Đối tượng báo cáo gần đây
+ * - @created_by Hoàng Hiệp on 4/12/2019
+ */
 public class ReportCurrent {
     private Date fromDate;
     private Date toDate;

@@ -39,18 +39,30 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         initComponent();
         initListener();
     }
-
+    /**
+     * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void initComponent() {
         progressDialog = new ProgressDialog(this);
         mUsername = findViewById(R.id.edUserName);
         mPassword = findViewById(R.id.edPassword);
     }
-
+    /**
+     * Mục đích method: Bắt sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void initListener() {
         findViewById(R.id.btnBack).setOnClickListener(this);
         findViewById(R.id.btnLogin).setOnClickListener(this);
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

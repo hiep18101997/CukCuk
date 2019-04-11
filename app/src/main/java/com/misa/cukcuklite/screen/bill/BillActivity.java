@@ -8,15 +8,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.maltaisn.calcdialog.CalcDialog;
-import com.maltaisn.calcdialog.CalcNumpadLayout;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
 import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
+import com.misa.cukcuklite.screen.calculator.InputNumberFragment;
+import com.misa.cukcuklite.screen.dialogbillcal.BillCalculatorDialog;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
+import static com.misa.cukcuklite.utils.AppConstant.DATE_FORMAT;
 import static com.misa.cukcuklite.utils.AppConstant.EXTRA_ORDER;
 
 /**
@@ -35,7 +40,7 @@ import static com.misa.cukcuklite.utils.AppConstant.EXTRA_ORDER;
  * - @created_by Hoàng Hiệp on 4/5/2019
  */
 public class BillActivity extends AppCompatActivity implements IBillContract.IView,
-        View.OnClickListener, CalcDialog.CalcDialogCallback {
+        View.OnClickListener{
     private static final String TAG = BillActivity.class.getName();
     private IBillContract.IPresenter mPresenter;
     private BillAdapter mAdapter;
@@ -55,7 +60,11 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
         intent.putExtra(EXTRA_ORDER, order);
         return intent;
     }
-
+    /**
+     * Mục dích method: Hàm khởi tạo
+     * @return Trả về intent trỏ tới AddDishActivity
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +112,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
     private void initComponent() {
         try {
             mOrder = (Order) getIntent().getSerializableExtra(EXTRA_ORDER);
-            mPresenter = new BillPresenter(this,this);
+            mPresenter = new BillPresenter(this, this);
             lnCustomerAmount = findViewById(R.id.lnCustomerAmount);
             tvTotalAmount = findViewById(R.id.tvTotalAmount);
             tvTableName = findViewById(R.id.tvTableName);
@@ -115,11 +124,17 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
             RecyclerView rcvBill = findViewById(R.id.rcvBill);
             rcvBill.setAdapter(mAdapter);
             rcvBill.setLayoutManager(new LinearLayoutManager(this));
+            DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+            tvRefDate.setText(dateFormat.format(Calendar.getInstance().getTime()));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Lấy danh danh sách món có số lượng !=0
+     *
+     * @created_by Hoàng Hiệp on 4/5/2019
+     */
     private List<DishOrder> getOderDish(List<DishOrder> listDish) {
         List<DishOrder> dishOrders = new ArrayList<>();
         for (DishOrder dishOrder : listDish) {
@@ -146,7 +161,7 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
                     break;
                 case R.id.btnDone:
                 case R.id.btnDoneBelow:
-                    mPresenter.saveBill(mOrder,Long.parseLong(tvTotalAmount.getText().toString()));
+                    mPresenter.saveBill(mOrder, Long.parseLong(tvTotalAmount.getText().toString()));
                     break;
                 case R.id.lnCustomerAmount:
                     showDialogCal(Long.parseLong(tvTotalAmount.getText().toString()));
@@ -164,23 +179,16 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
      */
     private void showDialogCal(long amount) {
         try {
-            CalcDialog calcDialog = new CalcDialog();
-            calcDialog.getSettings()
-                    .setRequestCode(0)
-                    .setInitialValue(null)
-                    .setNumberFormat(NumberFormat.getInstance())
-                    .setNumpadLayout(CalcNumpadLayout.CALCULATOR)
-                    .setExpressionShown(false)
-                    .setExpressionEditable(false)
-                    .setMinValue(new BigDecimal(amount))
-                    .setZeroShownWhenNoValue(true)
-                    .setAnswerBtnShown(false)
-                    .setSignBtnShown(true)
-                    .setShouldEvaluateOnOperation(true)
-                    .setOrderOfOperationsApplied(true);
+            BillCalculatorDialog billCalculatorDialog = new BillCalculatorDialog(new InputNumberFragment.DialogCallBack() {
+                @Override
+                public void setAmount(String amount) {
+                    tvCustomerAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(Long.parseLong(amount)));
+                    tvReturnAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(Long.parseLong(amount) - Long.parseLong(tvTotalAmount.getText().toString())));
+                }
+            });
             FragmentManager fm = getSupportFragmentManager();
-            calcDialog.setCancelable(false);
-            calcDialog.show(fm, getString(R.string.fragment_cal));
+            billCalculatorDialog.setCancelable(false);
+            billCalculatorDialog.show(fm, getString(R.string.fragment_cal));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -205,33 +213,22 @@ public class BillActivity extends AppCompatActivity implements IBillContract.IVi
         }
         return 0;
     }
-
-    /**
-     * Mục đích method: Tính toán tiền thừa khi bấm ok Dialog máy tính
-     *
-     * @param value       số trả về
-     * @param requestCode code
-     * @return amount tổng số tiền
-     * @created_by Hoàng Hiệp on 4/5/2019
-     */
-    @Override
-    public void onValueEntered(int requestCode, @Nullable BigDecimal value) {
-        try {
-            tvCustomerAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(value));
-            tvReturnAmount.setText(String.valueOf(value.longValue() - Long.parseLong(tvTotalAmount.getText().toString())));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
+ /**
+      * Mục đích method: Trả về khi lưu hóa đơn thành công
+      * @created_by Hoàng Hiệp on 4/12/2019
+      */
     @Override
     public void onSaveBillDone() {
-        finish();
-        Intent intent1 = new Intent(ACTION_EDIT_ORDER);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
-        Intent intent=new Intent(this, AddOrderActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        try {
+            finish();
+            Intent intent1 = new Intent(ACTION_EDIT_ORDER);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
+            Intent intent = new Intent(this, AddOrderActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

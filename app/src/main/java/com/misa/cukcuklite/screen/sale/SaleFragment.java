@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Order;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -30,12 +32,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.misa.cukcuklite.utils.AppConstant.ACTION_ADD_ORDER;
 import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
 
-public class SaleFragment extends Fragment implements ISaleContract.IView, SaleAdapter.OnClickItem {
+public class SaleFragment extends Fragment implements ISaleContract.IView, SaleAdapter.OnClickItem, View.OnClickListener {
     private static final String TAG = SaleFragment.class.getName();
     private ISaleContract.IPresenter mPresenter;
     private SaleAdapter mAdapter;
     private List<Order> mOrders;
     private BroadcastReceiver mReceiver;
+    private ConstraintLayout clWaterMark;
+    private TextView tvNotification2;
 
     public static SaleFragment newInstance() {
         return new SaleFragment();
@@ -56,6 +60,9 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     private void initComp() {
         try {
+            clWaterMark = getView().findViewById(R.id.clWaterMark);
+            tvNotification2 = getView().findViewById(R.id.tvNotification2);
+            tvNotification2.setOnClickListener(this);
             mOrders = new ArrayList<>();
             mPresenter = new SalePresenter(this, getContext());
             mPresenter.getAllOrder();
@@ -84,13 +91,21 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
             e.printStackTrace();
         }
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClickItem(Order order) {
         Log.d(TAG, "onClickItem: " + order.toString());
         startActivity(AddOrderActivity.getIntent(getContext(), order));
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClickCancel(final Order order) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -102,7 +117,11 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
         });
         inputDialog.show(fragmentManager, getString(R.string.confirm_dialog));
     }
-
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClickTakeMoney(Order order) {
         startActivity(BillActivity.getIntent(getContext(), order));
@@ -110,11 +129,30 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     @Override
     public void onLoadListOrderSuccess(List<Order> orders) {
-        mAdapter.addData(orders);
+        if (orders.size() > 0) {
+            mAdapter.addData(orders);
+            clWaterMark.setVisibility(View.GONE);
+        } else {
+            clWaterMark.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public void onRemoveOrderSuccess() {
         mPresenter.getAllOrder();
+    }
+    /**
+     * Mục đích method: Xử lý sự kiện
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvNotification2:
+                startActivity(AddOrderActivity.getIntent(getContext()));
+                break;
+        }
     }
 }
