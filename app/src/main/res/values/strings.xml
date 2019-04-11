@@ -106,4 +106,26 @@
     <string name="param_report_yesterday">Hôm qua</string>
     <string name="vertical_label_chart">(Nghìn đồng)</string>
     <string name="horizon_label_chart">(Ngày)</string>
+
+    <string name="btn_done">Xong</string>
+    <string name="str_minus">Giảm</string>
+    <string name="str_plus">Tăng</string>
+    <string name="key00">00</string>
+    <string name="key000">000</string>
+    <string name="key2">2</string>
+    <string name="key3">3</string>
+    <string name="key4">4</string>
+    <string name="key5">5</string>
+    <string name="key6">6</string>
+    <string name="key7">7</string>
+    <string name="key8">8</string>
+    <string name="key9">9</string>
+    <string name="keyClear">C</string>
+    <string name="key0">0</string>
+    <string name="title_table">Nhập số bàn</string>
+    <string name="title_person">Nhập số người</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="title_dialog_pick_time">Thời gian</string>
+    <string name="report_sale_inventoryitem_title">Doanh thu theo mặt hàng</string>
 </resources>

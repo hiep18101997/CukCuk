@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportCurrent;
 
@@ -27,53 +29,54 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
     private Context mContext;
     private List<ReportCurrent> mReportCurrents;
     private LayoutInflater mLayoutInflater;
-
-    public ReportCurrentAdapter(Context context) {
+    private OnCLickReport mCLickReport;
+    public ReportCurrentAdapter(Context context,OnCLickReport cLickReport) {
         mContext = context;
         mReportCurrents = new ArrayList<>();
         mLayoutInflater = LayoutInflater.from(context);
+        mCLickReport=cLickReport;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.item_report, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.item_report_current, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ReportCurrent reportCurrent = mReportCurrents.get(position);
+        final ReportCurrent reportCurrent = mReportCurrents.get(position);
         holder.tvTitle.setText(reportCurrent.getTitleReportDetail());
         holder.tvAmount.setText(String.valueOf(reportCurrent.getAmount()));
         Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_circle);
         switch (reportCurrent.getParamType()) {
             case TODAY:
                 drawableBg.setColorFilter(mContext.getResources().getColor(R.color.color_report_6), PorterDuff.Mode.SRC);
-                holder.ivIcon.setImageResource(R.drawable.ic_calendar_today);
+                Glide.with(mContext).load(R.drawable.ic_calendar_today).into(holder.ivIcon);
                 break;
             case THIS_WEEK:
                 drawableBg.setColorFilter(mContext.getResources().getColor(R.color.color_report_2), PorterDuff.Mode.SRC);
-                holder.ivIcon.setImageResource(R.drawable.ic_calendar_week);
+                Glide.with(mContext).load(R.drawable.ic_calendar_week).into(holder.ivIcon);
                 break;
             case THIS_YEAR:
                 drawableBg.setColorFilter(mContext.getResources().getColor(R.color.color_report_5), PorterDuff.Mode.SRC);
-                holder.ivIcon.setImageResource(R.drawable.ic_calendar_year);
+                Glide.with(mContext).load(R.drawable.ic_calendar_year).into(holder.ivIcon);
                 break;
             case YESTERDAY:
                 drawableBg.setColorFilter(mContext.getResources().getColor(R.color.color_report_8), PorterDuff.Mode.SRC);
-                holder.ivIcon.setImageResource(R.drawable.ic_calendar_yesterday);
+                Glide.with(mContext).load(R.drawable.ic_calendar_yesterday).into(holder.ivIcon);
                 break;
             case THIS_MONTH:
                 drawableBg.setColorFilter(mContext.getResources().getColor(R.color.color_report_3), PorterDuff.Mode.SRC);
-                holder.ivIcon.setImageResource(R.drawable.ic_calendar_month);
+                Glide.with(mContext).load(R.drawable.ic_calendar_month).into(holder.ivIcon);
                 break;
         }
-        holder.ivBackgroundColor.setImageDrawable(drawableBg);
+        Glide.with(mContext).load(drawableBg).into(holder.ivBackgroundColor);
         holder.lnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mCLickReport.onClick(reportCurrent);
             }
         });
     }
@@ -105,5 +108,8 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAmount = itemView.findViewById(R.id.tvAmount);
         }
+    }
+    interface OnCLickReport{
+        void onClick(ReportCurrent reportCurrent);
     }
 }

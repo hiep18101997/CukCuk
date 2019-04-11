@@ -1,19 +1,15 @@
 package com.misa.cukcuklite.screen.reporttotal;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.misa.cukcuklite.R;
-import com.misa.cukcuklite.data.model.ReportCurrent;
+import com.misa.cukcuklite.data.model.ReportTotal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -25,44 +21,72 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class ReportTotalAdapter extends RecyclerView.Adapter<ReportTotalAdapter.ViewHolder> {
     private Context mContext;
-    private List<ReportCurrent> mReportCurrents;
-    private LayoutInflater mLayoutInflater;
 
-    public ReportTotalAdapter(Context context) {
+    private List<ReportTotal> mReportTotals;
+    private LayoutInflater mLayoutInflater;
+    private OnClickItemTotalReport mOnClickItemTotalReport;
+
+    public ReportTotalAdapter(Context context, List<ReportTotal> reportTotals) {
         mContext = context;
-        mReportCurrents = new ArrayList<>();
+        mReportTotals = reportTotals;
         mLayoutInflater = LayoutInflater.from(context);
+    }
+
+    public void setOnClickItemTotalReport(OnClickItemTotalReport onClickItemTotalReport) {
+        mOnClickItemTotalReport = onClickItemTotalReport;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.item_report, parent, false);
+
+        View view = mLayoutInflater.inflate(R.layout.item_report_total, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        final ReportTotal reportTotal = mReportTotals.get(position);
+        holder.tvTitle.setText(reportTotal.getTitleReportDetail());
+        holder.tvAmount.setText(String.valueOf(reportTotal.getAmount()));
+        holder.lnContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnClickItemTotalReport.onClickItem(reportTotal);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mReportCurrents != null ? mReportCurrents.size() : 0;
+
+        return mReportTotals != null ? mReportTotals.size() : 0;
     }
 
-    public void setData(List<ReportCurrent> reportCurrents) {
-        if (reportCurrents == null) {
+    public void setData(List<ReportTotal> reportTotals) {
+        if (reportTotals == null) {
             return;
         }
-        mReportCurrents.clear();
-        mReportCurrents.addAll(reportCurrents);
+        mReportTotals.clear();
+        mReportTotals.addAll(reportTotals);
         notifyDataSetChanged();
+    }
+
+    public interface OnClickItemTotalReport {
+        void onClickItem(ReportTotal reportTotal);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private LinearLayout lnContent;
+        private TextView tvTitle, tvAmount;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            lnContent = itemView.findViewById(R.id.lnContent);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvAmount = itemView.findViewById(R.id.tvAmount);
         }
     }
 }

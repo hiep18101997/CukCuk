@@ -6,34 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_report_height"
     android:background="@drawable/bg_white_no_border_no_radius_selector"
-    android:orientation="horizontal">
-
-    <RelativeLayout
-        android:id="@+id/rlIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="@dimen/margin_normal"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small">
-
-        <ImageView
-            android:id="@+id/ivBackgroundColor"
-            android:layout_width="@dimen/icon_bg_report_size"
-            android:layout_height="@dimen/icon_bg_report_size"
-            android:contentDescription="@string/image_view" />
-
-        <ImageView
-            android:id="@+id/ivIcon"
-            android:layout_width="@dimen/icon_report_size"
-            android:layout_height="@dimen/icon_report_size"
-            android:layout_centerInParent="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_calendar_today"
-            android:contentDescription="@string/image_view" />
-    </RelativeLayout>
-
+    android:orientation="horizontal"
+    tools:ignore="MissingDefaultResource">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"

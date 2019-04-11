@@ -32,7 +32,6 @@
             android:paddingBottom="@dimen/margin_medium"
             android:scrollHorizontally="true"
             android:textSize="@dimen/font_size_medium">
-
             <requestFocus />
         </EditText>
     </LinearLayout>

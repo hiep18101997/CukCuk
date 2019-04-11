@@ -3,6 +3,7 @@ package com.misa.cukcuklite.screen.bill;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Bill;
@@ -33,6 +34,7 @@ public class BillPresenter implements IBillContract.IPresenter {
                 order.setPay(true);
                 Bill bill = new Bill(order.getId(), Calendar.getInstance().getTime());
                 bill.setAmount(amount);
+                Log.d(TAG, "doInBackground: "+order.getId());
                 DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().updateOrder(order);
                 DatabaseClient.getInstance(mContext).getAppDatabase().mBillDAO().saveBill(bill);
                 return null;

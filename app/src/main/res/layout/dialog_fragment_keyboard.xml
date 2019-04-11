@@ -51,6 +51,8 @@
             android:gravity="end"
             android:inputType="number"
             android:text="@string/zero"
+            android:clickable="false"
+            android:focusable="false"
             tools:ignore="LabelFor" />
 
     </LinearLayout>

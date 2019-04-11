@@ -46,8 +46,14 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setSelected(position);
-                mOnClickParam.onClick(mParamReports.get(position));
+                if (!mParamReports.get(position).isSelected()) {
+                    if (position!=7){
+                        setSelected(position);
+                    }
+                    mOnClickParam.onClick(mParamReports.get(position));
+                }else {
+
+                }
             }
         });
     }
@@ -71,10 +77,11 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvName;
         private ImageView ivCheck;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvName=itemView.findViewById(R.id.tvName);
-            ivCheck=itemView.findViewById(R.id.ivCheck);
+            tvName = itemView.findViewById(R.id.tvName);
+            ivCheck = itemView.findViewById(R.id.ivCheck);
         }
     }
 }

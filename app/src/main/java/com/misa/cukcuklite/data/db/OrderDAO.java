@@ -26,4 +26,7 @@ public interface OrderDAO {
 
     @Update
     void updateOrder(Order unit);
+
+    @Query("SELECT * FROM orders WHERE id=:id")
+    Order getOrderById(int id);
 }

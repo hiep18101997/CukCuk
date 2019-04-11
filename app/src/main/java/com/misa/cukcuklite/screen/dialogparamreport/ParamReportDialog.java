@@ -33,8 +33,6 @@ public class ParamReportDialog extends DialogFragment implements ParamReportAdap
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialog_param_report, container);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        getDialog().setCancelable(false);
-        getDialog().setCanceledOnTouchOutside(false);
         initComponent(rootView);
         initListener();
         return rootView;

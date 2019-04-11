@@ -39,6 +39,7 @@
     <color name="color_primary_15">#ffdaeaf5</color>
     <color name="color_background_for_bill">#ffcac9cf</color>
     <color name="color_header_table">#f2f2f2</color>
+    <color name="color_line_chart">#4FAA52</color>
     <color name="color_report_1">#2a93f3</color>
     <color name="color_report_2">#4faa52</color>
     <color name="color_report_3">#ff582b</color>

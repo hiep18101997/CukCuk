@@ -41,8 +41,11 @@ public class ReportCurrentPresenter implements IReportCurrentContract.IPresenter
                 reportCurrentList.add(new ReportCurrent(ParamReportEnum.THIS_MONTH));
                 reportCurrentList.add(new ReportCurrent(ParamReportEnum.THIS_YEAR));
                 for (ReportCurrent current : reportCurrentList) {
-                    List<Bill> bills = DatabaseClient.getInstance(mContext).getAppDatabase().mBillDAO().getBillBetweenDate(current.getFromDate(), current.getToDate());
-                    current.setAmount(getAmount(bills));
+
+                    current.setAmount(getAmount(DatabaseClient.getInstance(mContext)
+                            .getAppDatabase()
+                            .mBillDAO()
+                            .getBillBetweenDate(current.getFromDate(), current.getToDate())));
                 }
                 return reportCurrentList;
             }
