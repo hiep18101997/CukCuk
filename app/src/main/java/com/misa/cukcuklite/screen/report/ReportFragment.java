@@ -1,23 +1,25 @@
 package com.misa.cukcuklite.screen.report;
 
-import android.graphics.PorterDuff;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ParamReport;
 import com.misa.cukcuklite.data.model.ReportCurrent;
 import com.misa.cukcuklite.enums.ParamReportEnum;
 import com.misa.cukcuklite.screen.dialogparamreport.ParamReportDialog;
+import com.misa.cukcuklite.screen.dialogpickdate.FromToPickerDialog;
 import com.misa.cukcuklite.screen.reportcurrent.ReportCurrentFragment;
 import com.misa.cukcuklite.screen.reporttotal.ReportTotalFragment;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import static com.misa.cukcuklite.utils.AppConstant.DATE_FORMAT;
 
 /**
  * - Mục đích Class : Màn hình báo cáo
@@ -46,11 +50,9 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
         View view = inflater.inflate(R.layout.fragment_report, container, false);
         view.findViewById(R.id.lnTime).setOnClickListener(this);
         initView(view);
-        mParamReports=getListParam();
+        mParamReports = getListParam();
         loadFragment(ReportCurrentFragment.newInstance(this));
-
         return view;
-
     }
 
     private void initView(View view) {
@@ -61,16 +63,28 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lnTime:
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                ParamReportDialog dialog = new ParamReportDialog();
+                final FragmentManager fm = getActivity().getSupportFragmentManager();
+                final ParamReportDialog dialog = new ParamReportDialog();
                 dialog.setParamReports(mParamReports);
                 dialog.setCallBack(new ParamReportDialog.ParamCallBack() {
                     @Override
                     public void onClick(ParamReport paramReport) {
-                        tvTimeValue.setText(paramReport.getTitleReportDetail());
                         if (paramReport.getParamType() == ParamReportEnum.CURRENT) {
+                            tvTimeValue.setText(paramReport.getTitleReportDetail());
                             loadFragment(ReportCurrentFragment.newInstance(ReportFragment.this));
+                        } else if (paramReport.getParamType() == ParamReportEnum.OTHER) {
+                            FromToPickerDialog fromToPickerDialog = new FromToPickerDialog();
+                            fromToPickerDialog.setOnClickAcceptPickDate(new FromToPickerDialog.OnClickAcceptPickDate() {
+                                @Override
+                                public void onPickDate(Date fromDate, Date toDate) {
+                                    @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+                                    tvTimeValue.setText(dateFormat.format(fromDate)+"-"+dateFormat.format(toDate));
+                                    setSelected(7, mParamReports);
+                                }
+                            });
+                            fromToPickerDialog.show(fm, "date_picker");
                         } else {
+                            tvTimeValue.setText(paramReport.getTitleReportDetail());
                             loadFragment(ReportTotalFragment.newInstance(paramReport));
                         }
                     }
@@ -79,6 +93,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
                 break;
         }
     }
+
     private List<ParamReport> getListParam() {
         List<ParamReport> paramReports = new ArrayList<>();
         paramReports.add(new ParamReport(ParamReportEnum.CURRENT));
@@ -92,6 +107,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
         paramReports.get(0).setSelected(true);
         return paramReports;
     }
+
     /**
      * Mục đích method: Replace Fragment
      *
@@ -105,7 +121,6 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
             transaction.replace(R.id.frContent, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,28 +130,28 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
     public void onClick(ReportCurrent reportCurrent) {
         switch (reportCurrent.getParamType()) {
             case TODAY:
-
                 break;
             case THIS_WEEK:
-                setSelected(1,mParamReports);
+                setSelected(1, mParamReports);
                 tvTimeValue.setText(mParamReports.get(1).getTitleReportDetail());
                 loadFragment(ReportTotalFragment.newInstance(mParamReports.get(1)));
                 break;
             case THIS_YEAR:
-                setSelected(5,mParamReports);
+                setSelected(5, mParamReports);
                 tvTimeValue.setText(mParamReports.get(5).getTitleReportDetail());
                 loadFragment(ReportTotalFragment.newInstance(mParamReports.get(5)));
                 break;
             case YESTERDAY:
                 break;
             case THIS_MONTH:
-                setSelected(3,mParamReports);
+                setSelected(3, mParamReports);
                 tvTimeValue.setText(mParamReports.get(3).getTitleReportDetail());
                 loadFragment(ReportTotalFragment.newInstance(mParamReports.get(3)));
                 break;
         }
     }
-    private void setSelected(int position,List<ParamReport> mParamReports) {
+
+    private void setSelected(int position, List<ParamReport> mParamReports) {
         for (ParamReport paramReport : mParamReports) {
             paramReport.setSelected(false);
         }

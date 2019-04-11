@@ -47,8 +47,10 @@ public class ParamReportAdapter extends RecyclerView.Adapter<ParamReportAdapter.
             @Override
             public void onClick(View v) {
                 if (!mParamReports.get(position).isSelected()) {
-                    setSelected(position);
-                    mOnClickParam.onClick(mParamReports.get(position));
+                    if (position!=7){
+                        setSelected(position);
+                        mOnClickParam.onClick(mParamReports.get(position));
+                    }
                 }else {
 
                 }

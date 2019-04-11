@@ -123,4 +123,8 @@
     <string name="key0">0</string>
     <string name="title_table">Nhập số bàn</string>
     <string name="title_person">Nhập số người</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="title_dialog_pick_time">Thời gian</string>
+    <string name="report_sale_inventoryitem_title">Doanh thu theo mặt hàng</string>
 </resources>
