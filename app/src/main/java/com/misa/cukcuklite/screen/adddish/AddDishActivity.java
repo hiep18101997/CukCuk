@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -167,7 +166,7 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
                     }).build();
             dialog.setCancelable(false);
             dialog.show(getSupportFragmentManager(), getString(R.string.fragment_picker));
-        } catch (Resources.NotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -262,10 +261,12 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method:Hủy đăng kí BroadCast
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+
+    /**
+     * Mục đích method:Hủy đăng kí BroadCast
+     *
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -307,8 +308,10 @@ public class AddDishActivity extends AppCompatActivity implements IAddDishContra
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý khi lấy tên thành công
+     *
      * @param unit đơn vị
      * @created_by Hoàng Hiệp on 3/27/2019
      */

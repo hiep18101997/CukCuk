@@ -1,16 +1,13 @@
 package com.misa.cukcuklite.data.db;
 
 import com.misa.cukcuklite.data.model.Bill;
-import com.misa.cukcuklite.data.model.Dish;
 
 import java.util.Date;
 import java.util.List;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 /**
  * - @created_by Hoàng Hiệp on 3/27/2019

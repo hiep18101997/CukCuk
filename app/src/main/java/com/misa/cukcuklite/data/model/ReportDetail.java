@@ -1,4 +1,5 @@
 package com.misa.cukcuklite.data.model;
+
 /**
  * - Mục đích Class :Đối tượng Báo cáo chi tiết
  * - @created_by Hoàng Hiệp on 4/12/2019

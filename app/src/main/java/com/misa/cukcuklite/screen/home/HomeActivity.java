@@ -2,16 +2,22 @@ package com.misa.cukcuklite.screen.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.screen.adddish.AddDishActivity;
 import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
+import com.misa.cukcuklite.screen.dialogconfirm.ConfirmRemoveDialog;
+import com.misa.cukcuklite.screen.login.LoginActivity;
 import com.misa.cukcuklite.screen.menu.MenuFragment;
 import com.misa.cukcuklite.screen.report.ReportFragment;
 import com.misa.cukcuklite.screen.sale.SaleFragment;
@@ -22,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 /**
@@ -33,7 +40,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private static final int REQUEST_CODE = 914;
     private IHomeContract.IPresenter mPresenter;
     private DrawerLayout mDrawerLayout;
-    private TextView tvTitle;
+    private TextView tvTitle, tvName;
+    private ImageView ivAvatar;
     private LinearLayout lnMenu, lnSale, lnReport;
     private boolean isVisible;
 
@@ -69,6 +77,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         lnSale.setOnClickListener(this);
         lnMenu.setOnClickListener(this);
         lnReport.setOnClickListener(this);
+        findViewById(R.id.lnLogout).setOnClickListener(this);
     }
 
     /**
@@ -82,8 +91,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
         lnReport = findViewById(R.id.lnReport);
         mDrawerLayout = findViewById(R.id.drawer);
         tvTitle = findViewById(R.id.titleToolbar);
+        tvName = findViewById(R.id.tvName);
+        ivAvatar = findViewById(R.id.ivAvatar);
         mPresenter = new HomePresenter(this);
+        mPresenter.getInfoUser();
     }
+
 
     /**
      * Mục đích method: Khởi tạo và cài đặt toolbar
@@ -115,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
             getMenuInflater().inflate(R.menu.menu_add, menu);
             if (isVisible) {
                 menu.findItem(R.id.action_add).setVisible(true);
-            }else {
+            } else {
                 menu.findItem(R.id.action_add).setVisible(false);
             }
 
@@ -164,13 +177,13 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
     private void loadFragment(Fragment fragment) {
         try {
             if (fragment instanceof MenuFragment) {
-                isVisible=true;
+                isVisible = true;
                 tvTitle.setText(getString(R.string.menu));
             } else if (fragment instanceof SaleFragment) {
-                isVisible=true;
+                isVisible = true;
                 tvTitle.setText(getString(R.string.sale));
             } else if (fragment instanceof ReportFragment) {
-                isVisible=false;
+                isVisible = false;
                 tvTitle.setText(getString(R.string.report));
             }
             invalidateOptionsMenu();
@@ -213,9 +226,31 @@ public class HomeActivity extends AppCompatActivity implements IHomeContract.IVi
                         loadFragment(ReportFragment.newInstance());
                     }
                     break;
+                case R.id.lnLogout:
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    ConfirmRemoveDialog dialog = new ConfirmRemoveDialog("Bạn có chắc chắn muốn đăng xuất", new ConfirmRemoveDialog.OnClickAccept() {
+                        @Override
+                        public void onAccept() {
+                            mPresenter.logOut();
+                        }
+                    });
+                    dialog.show(fragmentManager, getString(R.string.confirm_dialog));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void showInfo(String name, Uri uri) {
+        tvName.setText(name);
+        Glide.with(this).load(uri).placeholder(R.drawable.logo_cukcuk_white).apply(RequestOptions.circleCropTransform()).into(ivAvatar);
+    }
+
+    @Override
+    public void navigateLoginScreen() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

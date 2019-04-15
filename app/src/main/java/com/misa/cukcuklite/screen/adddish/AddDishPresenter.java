@@ -12,7 +12,6 @@ import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.Unit;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static com.misa.cukcuklite.utils.AppConstant.IMAGE_ASSETS;
@@ -46,7 +45,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
         InputStream istr = null;
         try {
             istr = assetManager.open(IMAGE_ASSETS + icon);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return BitmapFactory.decodeStream(istr);
@@ -78,6 +77,7 @@ public class AddDishPresenter implements IAddDishContract.IPresenter {
             }.execute();
         }
     }
+
     /**
      * Mục đích method get tên đơn vị từ id
      *

@@ -18,7 +18,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.List;
@@ -75,7 +74,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         InputStream istr = null;
         try {
             istr = assetManager.open(IMAGE_ASSETS + fileName);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return BitmapFactory.decodeStream(istr);

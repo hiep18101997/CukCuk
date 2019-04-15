@@ -25,11 +25,13 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
     private String textInput;
     private int flag;
     private DialogCallBack mCallBack;
+
     /**
      * Mục đích method: Hàm khởi tạo Dialog bàn phím
-     * @param flag: Cờ phân loại nhập số người hay số bàn
+     *
+     * @param flag:     Cờ phân loại nhập số người hay số bàn
      * @param callBack: Call back
-     * @param input: giá trị đầu
+     * @param input:    giá trị đầu
      * @created_by Hoàng Hiệp on 4/12/2019
      */
     @SuppressLint("ValidFragment")
@@ -57,6 +59,7 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
         initListener(rootView);
         return rootView;
     }
+
     /**
      * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
@@ -79,6 +82,7 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Bắt sự kiện
      *
@@ -120,6 +124,7 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -237,10 +242,12 @@ public class InputNumberFragment extends DialogFragment implements View.OnClickL
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method: Interface Call back
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+
+    /**
+     * Mục đích method: Interface Call back
+     *
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     public interface DialogCallBack {
         void setAmount(String amount);
     }

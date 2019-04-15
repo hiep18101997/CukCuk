@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.screen.adddish.AddDishActivity;
-import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 import com.misa.cukcuklite.screen.editdish.EditDishActivity;
 
 import java.util.ArrayList;
@@ -70,17 +69,21 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initBroadcastReceiver() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_ADD_DISH);
-        filter.addAction(ACTION_REMOVE_DISH);
-        filter.addAction(ACTION_EDIT_DISH);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                mPresenter.getAllDish();
-            }
-        };
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mReceiver, filter);
+        try {
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(ACTION_ADD_DISH);
+            filter.addAction(ACTION_REMOVE_DISH);
+            filter.addAction(ACTION_EDIT_DISH);
+            mReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    mPresenter.getAllDish();
+                }
+            };
+            LocalBroadcastManager.getInstance(getContext()).registerReceiver(mReceiver, filter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -89,17 +92,21 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
      * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initComponent() {
-        clWaterMark = getView().findViewById(R.id.clWaterMark);
-        tvNotification2 = getView().findViewById(R.id.tvNotification2);
-        tvNotification2.setOnClickListener(this);
-        mDrawerLayout = getView().findViewById(R.id.drawer);
-        mDishes = new ArrayList<>();
-        mPresenter = new MenuPresenter(this, getContext());
-        mPresenter.getAllDish();
-        RecyclerView recyclerView = getView().findViewById(R.id.rvMenu);
-        mAdapter = new MenuAdapter(getContext(), mDishes, this);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        try {
+            clWaterMark = getView().findViewById(R.id.clWaterMark);
+            tvNotification2 = getView().findViewById(R.id.tvNotification2);
+            tvNotification2.setOnClickListener(this);
+            mDrawerLayout = getView().findViewById(R.id.drawer);
+            mDishes = new ArrayList<>();
+            mPresenter = new MenuPresenter(this, getContext());
+            mPresenter.getAllDish();
+            RecyclerView recyclerView = getView().findViewById(R.id.rvMenu);
+            mAdapter = new MenuAdapter(getContext(), mDishes, this);
+            recyclerView.setAdapter(mAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -137,6 +144,7 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
         super.onDestroyView();
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mReceiver);
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -144,10 +152,14 @@ public class MenuFragment extends Fragment implements IMenuContract.IView, MenuA
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tvNotification2:
-                startActivity(AddDishActivity.getIntent(getContext()));
-                break;
+        try {
+            switch (v.getId()) {
+                case R.id.tvNotification2:
+                    startActivity(AddDishActivity.getIntent(getContext()));
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

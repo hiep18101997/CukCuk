@@ -6,6 +6,7 @@ import com.misa.cukcuklite.enums.ParamReportEnum;
 import com.misa.cukcuklite.utils.DateUtil;
 
 import java.util.Date;
+
 /**
  * - Mục đích Class :Đối tượng báo cáo gần đây
  * - @created_by Hoàng Hiệp on 4/12/2019
@@ -27,27 +28,27 @@ public class ReportCurrent {
         switch (paramType) {
             case TODAY:
                 titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_today);
-                dates=DateUtil.getToday();
+                dates = DateUtil.getToday();
                 break;
             case THIS_WEEK:
                 titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_week);
-                dates=DateUtil.getThisWeek();
+                dates = DateUtil.getThisWeek();
                 break;
             case THIS_YEAR:
                 titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_year);
-                dates=DateUtil.getThisYear();
+                dates = DateUtil.getThisYear();
                 break;
             case YESTERDAY:
                 titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_yesterday);
-                dates=DateUtil.getYesterday();
+                dates = DateUtil.getYesterday();
                 break;
             case THIS_MONTH:
                 titleReportDetail = CukCukApplication.getContext().getString(R.string.param_report_this_month);
-                dates=DateUtil.getThisMonth();
+                dates = DateUtil.getThisMonth();
                 break;
         }
-        fromDate=dates[0];
-        toDate=dates[1];
+        fromDate = dates[0];
+        toDate = dates[1];
     }
 
     public Date getFromDate() {

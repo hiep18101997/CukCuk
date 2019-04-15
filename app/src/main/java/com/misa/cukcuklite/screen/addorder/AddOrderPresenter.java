@@ -94,7 +94,7 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
                 }.execute();
 
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -184,11 +184,13 @@ public class AddOrderPresenter implements IAddOrderContract.IPresenter {
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method: Cập nhật đơn
-      * @param dishOrders: danh sách món trong đơn
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+
+    /**
+     * Mục đích method: Cập nhật đơn
+     *
+     * @param dishOrders: danh sách món trong đơn
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @SuppressLint("StaticFieldLeak")
     private void updateDishOrders(final List<DishOrder> dishOrders) {
         try {

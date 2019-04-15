@@ -84,4 +84,23 @@
         <item>#607D8B</item>
         <item>#90A4AE</item>
     </array>
+    <array name="arr_colors_pie_chart">
+        <item>#E53A29</item>
+        <item>#E97834</item>
+        <item>#F0AC41</item>
+        <item>#F9E450</item>
+        <item>#79CB4B</item>
+        <item>#53A044</item>
+        <item>#66C17B</item>
+        <item>#69CFAE</item>
+        <item>#93D8DA</item>
+        <item>#75B4CF</item>
+        <item>#A4D8F9</item>
+        <item>#3D82CE</item>
+        <item>#869DE4</item>
+        <item>#877AE6</item>
+        <item>#8E5DC7</item>
+        <item>#B66CC8</item>
+        <item>#CA4580</item>
+    </array>
 </resources>

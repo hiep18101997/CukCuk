@@ -14,14 +14,16 @@ import androidx.appcompat.app.AppCompatDelegate;
  */
 public class CukCukApplication extends Application {
     private static Context sContext;
+
+    public static Context getContext() {
+        return sContext;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        sContext= getApplicationContext();
-    }
-    public static Context getContext() {
-        return sContext;
+        sContext = getApplicationContext();
     }
 }

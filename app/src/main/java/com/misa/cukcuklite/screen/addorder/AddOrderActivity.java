@@ -7,15 +7,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.maltaisn.calcdialog.CalcDialog;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
 import com.misa.cukcuklite.screen.bill.BillActivity;
 import com.misa.cukcuklite.screen.calculator.InputNumberFragment;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -28,7 +29,7 @@ import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
 import static com.misa.cukcuklite.utils.AppConstant.EXTRA_ORDER;
 
 public class AddOrderActivity extends AppCompatActivity implements IAddOrderContract.IView,
-        AddOrderAdapter.OnClickItem, View.OnClickListener{
+        AddOrderAdapter.OnClickItem, View.OnClickListener {
     public static final int RESULT_OK = 1997;
     public static final int FLAG_TABLE = 0;
     public static final int FLAG_PERSON = 1;
@@ -130,7 +131,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
     private void showCurrentOrder() {
         tvPerson.setText(String.valueOf(currentOrder.getNumberPerson()));
         tvTable.setText(String.valueOf(currentOrder.getNumberTable()));
-        tvTotalMoney.setText(String.valueOf(getAmount(list)));
+        tvTotalMoney.setText(NumberFormat.getNumberInstance(Locale.US).format(getAmount(list)));
     }
 
     /**
@@ -140,7 +141,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
      */
     @Override
     public void onClick(List<DishOrder> mList) {
-        tvTotalMoney.setText(String.valueOf(getAmount(mList)));
+        tvTotalMoney.setText(NumberFormat.getNumberInstance(Locale.US).format(getAmount(mList)));
     }
 
     /**
@@ -232,6 +233,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method:Chuyển màn hình
      *
@@ -270,7 +272,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                     }
                     break;
                 case R.id.tvTable:
-                    showDialogNumber(FLAG_TABLE,tvTable.getText(), new InputNumberFragment.DialogCallBack() {
+                    showDialogNumber(FLAG_TABLE, tvTable.getText(), new InputNumberFragment.DialogCallBack() {
                         @Override
                         public void setAmount(String amount) {
                             tvTable.setText(amount);
@@ -278,7 +280,7 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
                     });
                     break;
                 case R.id.tvPerson:
-                    showDialogNumber(FLAG_PERSON,tvPerson.getText(), new InputNumberFragment.DialogCallBack() {
+                    showDialogNumber(FLAG_PERSON, tvPerson.getText(), new InputNumberFragment.DialogCallBack() {
                         @Override
                         public void setAmount(String amount) {
                             tvPerson.setText(amount);
@@ -290,14 +292,15 @@ public class AddOrderActivity extends AppCompatActivity implements IAddOrderCont
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method:Hiển thị dialog nhập só
      *
      * @created_by Hoàng Hiệp on 4/5/2019
      */
-    private void showDialogNumber(int flag,CharSequence input, InputNumberFragment.DialogCallBack dialogCallBack) {
+    private void showDialogNumber(int flag, CharSequence input, InputNumberFragment.DialogCallBack dialogCallBack) {
         try {
-            InputNumberFragment inputNumberFragment = new InputNumberFragment(flag, dialogCallBack,input);
+            InputNumberFragment inputNumberFragment = new InputNumberFragment(flag, dialogCallBack, input);
             FragmentManager fm = getSupportFragmentManager();
             inputNumberFragment.show(fm, getString(R.string.fragment_cal));
         } catch (Exception e) {

@@ -20,5 +20,5 @@ public class AppConstant {
     public static final String ACTION_ADD_DISH = "com.misa.cukcuklite.action.add.disk";
     public static final String IMAGE_ASSETS = "images/";
     public static final String JSON_ASSETS = "json/inputkeys.json";
-    public static final String DATE_FORMAT ="dd/MM/yyyy";
+    public static final String DATE_FORMAT = "dd/MM/yyyy";
 }

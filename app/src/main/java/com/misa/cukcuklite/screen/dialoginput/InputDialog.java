@@ -90,8 +90,10 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Set kích cỡ cho dialog
+     *
      * @created_by Hoàng Hiệp on 4/12/2019
      */
     @Override
@@ -106,6 +108,7 @@ public class InputDialog extends DialogFragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *

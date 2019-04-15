@@ -136,4 +136,10 @@
     <string name="click_here_1">Bấm vào đây hoặc bấm vào + để thêm món</string>
     <string name="msg_dialog_pick_date">Giá trị Từ ngày phải nhỏ hơn hoặc bằng Đến ngày</string>
     <string name="used_dish">Món ăn đã được sử dụng, bạn không được phép xóa</string>
+    <string name="pie_chart">pie_chart</string>
+    <string name="total_amount">Tổng doanh thu</string>
+    <string name="password_re_hint">Nhập lại mật khẩu</string>
+    <string name="login_msg_re_password_empty">Xác nhận mật khẩu không được để trống</string>
+    <string name="login_msg_re_password_fail">Mật khẩu nhập lại không khớp</string>
+    <string name="login_msg_register_fail">Đăng kí tài khoản không thành công</string>
 </resources>

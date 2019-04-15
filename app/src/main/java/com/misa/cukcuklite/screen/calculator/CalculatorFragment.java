@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.calculator;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +20,8 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -68,13 +65,15 @@ public class CalculatorFragment extends DialogFragment {
     public CalculatorFragment() {
 
     }
-     /**
-          * Mục đích method: Hàm khởi tạo Dialog bàn phím
-          * @param textInput: giá trị ban đầu
-          * @param mIOnClickDone: Call back
-          * @return calculatorFragment: đối tượng máy tính
-          * @created_by Hoàng Hiệp on 4/12/2019
-          */
+
+    /**
+     * Mục đích method: Hàm khởi tạo Dialog bàn phím
+     *
+     * @param textInput:     giá trị ban đầu
+     * @param mIOnClickDone: Call back
+     * @return calculatorFragment: đối tượng máy tính
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     public static CalculatorFragment createInstance(String textInput, IOnClickDone mIOnClickDone) {
         try {
             CalculatorFragment calculatorFragment = new CalculatorFragment();
@@ -205,7 +204,7 @@ public class CalculatorFragment extends DialogFragment {
                         mDatasets.add(new InputKeys(o.getInt(ID), o.getString(NAME)));
                     }
 
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
@@ -370,7 +369,7 @@ public class CalculatorFragment extends DialogFragment {
                 default:
                     break;
             }
-        } catch (Resources.NotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -394,7 +393,7 @@ public class CalculatorFragment extends DialogFragment {
                     operators.clear();
 
                     mCalculatorAdapter.onChangelabel();
-                } catch (ArithmeticException ex) {
+                } catch (Exception ex) {
                     ex.fillInStackTrace();
                 }
             } else {
@@ -407,7 +406,7 @@ public class CalculatorFragment extends DialogFragment {
                 }
 
             }
-        } catch (Resources.NotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -450,7 +449,7 @@ public class CalculatorFragment extends DialogFragment {
             }
             text = text.replaceAll("\\,", "");
             return Long.parseLong(text);
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
@@ -527,7 +526,7 @@ public class CalculatorFragment extends DialogFragment {
 
             json = new String(buffer, "UTF-8");
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }

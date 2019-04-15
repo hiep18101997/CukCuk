@@ -49,18 +49,22 @@ public class ReportTotalAdapter extends RecyclerView.Adapter<ReportTotalAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final ReportTotal reportTotal = mReportTotals.get(position);
-        holder.tvTitle.setText(reportTotal.getTitleReportDetail());
-        holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportTotal.getAmount()));
+        try {
+            final ReportTotal reportTotal = mReportTotals.get(position);
+            holder.tvTitle.setText(reportTotal.getTitleReportDetail());
+            holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportTotal.getAmount()));
 
-        holder.lnContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (reportTotal.getAmount() > 0) {
-                    mOnClickItemTotalReport.onClickItem(reportTotal);
+            holder.lnContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (reportTotal.getAmount() > 0) {
+                        mOnClickItemTotalReport.onClickItem(reportTotal);
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

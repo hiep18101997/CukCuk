@@ -5,8 +5,8 @@ import com.misa.cukcuklite.data.model.ReportCurrent;
 import java.util.List;
 
 /**
- * ‐ Contract  trong mô hình MVP cho màn hình Báo cáo
- *
+ * ‐ Contract  trong mô hình MVP cho màn hình Báo cáo Gần đây
+ * <p>
  * ‐ @created_by Hoàng Hiệp on 7/4/2019
  */
 interface IReportCurrentContract {

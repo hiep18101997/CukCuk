@@ -3,7 +3,6 @@ package com.misa.cukcuklite.screen.bill;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.misa.cukcuklite.data.db.DatabaseClient;
 import com.misa.cukcuklite.data.model.Bill;
@@ -26,12 +25,14 @@ public class BillPresenter implements IBillContract.IPresenter {
         mView = view;
         mContext = context;
     }
- /**
-      * Mục đích method: Lưu hóa đơn
-      * @param amount:Tổng số tiền
-      * @param order: đối tượng đặt món
-      * @created_by Hoàng Hiệp on 4/6/2019
-      */
+
+    /**
+     * Mục đích method: Lưu hóa đơn
+     *
+     * @param amount:Tổng số tiền
+     * @param order:      đối tượng đặt món
+     * @created_by Hoàng Hiệp on 4/6/2019
+     */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void saveBill(final Order order, final long amount) {
@@ -40,11 +41,11 @@ public class BillPresenter implements IBillContract.IPresenter {
                 @Override
                 protected Void doInBackground(Void... voids) {
                     order.setPay(true);
-                    if (order.getId()==0){
-                        int orderId=(int)DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().insertOrder(order);
+                    if (order.getId() == 0) {
+                        int orderId = (int) DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().insertOrder(order);
                         order.setId(orderId);
                         saveDishOrderByOrderId(order.getOrders(), orderId);
-                    }else {
+                    } else {
                         DatabaseClient.getInstance(mContext).getAppDatabase().mOrderDAO().updateOrder(order);
                     }
                     Bill bill = new Bill(order.getId(), Calendar.getInstance().getTime());
@@ -63,10 +64,12 @@ public class BillPresenter implements IBillContract.IPresenter {
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Lưu hóa Món ăn theo danh sách đặt món
+     *
      * @param list:Danh sách món
-     * @param orderId: id món
+     * @param orderId:  id món
      * @created_by Hoàng Hiệp on 4/6/2019
      */
     @SuppressLint("StaticFieldLeak")

@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.screen.sale;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -27,6 +26,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * - Mục đích Class :Adapter cho màn hình bán hàng
+ * - @created_by Hoàng Hiệp on 4/15/2019
+ */
 public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     private Context mContext;
     private List<Order> mOrders;

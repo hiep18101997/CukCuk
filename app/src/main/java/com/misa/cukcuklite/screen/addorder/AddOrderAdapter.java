@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.addorder;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
@@ -23,7 +22,6 @@ import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.DishOrder;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -121,7 +119,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
                     mOnClickItem.onClick(mList);
                 }
             });
-        } catch (Resources.NotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -130,6 +128,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
     public int getItemCount() {
         return mList != null ? mList.size() : 0;
     }
+
     /**
      * Mục đích method:get bitmap từ tên
      *
@@ -140,7 +139,7 @@ public class AddOrderAdapter extends RecyclerView.Adapter<AddOrderAdapter.ViewHo
         InputStream istr = null;
         try {
             istr = assetManager.open(IMAGE_ASSETS + fileName);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return BitmapFactory.decodeStream(istr);

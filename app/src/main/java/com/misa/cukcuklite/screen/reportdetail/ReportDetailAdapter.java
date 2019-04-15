@@ -19,6 +19,10 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * - Mục đích Class :Adapter của màn báo cáo chi tiết
+ * - @created_by Hoàng Hiệp on 4/15/2019
+ */
 public class ReportDetailAdapter extends RecyclerView.Adapter<ReportDetailAdapter.ViewHolder> {
     private Context mContext;
     private List<ReportDetail> mReportDetails;
@@ -29,7 +33,7 @@ public class ReportDetailAdapter extends RecyclerView.Adapter<ReportDetailAdapte
         mContext = context;
         mReportDetails = reportDetails;
         mInflater = LayoutInflater.from(context);
-        colorBg = context.getResources().getIntArray(R.array.arr_colors);
+        colorBg = context.getResources().getIntArray(R.array.arr_colors_pie_chart);
     }
 
     @NonNull
@@ -44,8 +48,8 @@ public class ReportDetailAdapter extends RecyclerView.Adapter<ReportDetailAdapte
         ReportDetail reportDetail = mReportDetails.get(position);
         holder.tvAmount.setText(NumberFormat.getNumberInstance(Locale.US).format(reportDetail.getAmount()));
         holder.tvInventoryItemName.setText(reportDetail.getName());
-        holder.tvNumber.setText(String.valueOf(position+1));
-        holder.tvQuantity.setText(String.valueOf(reportDetail.getQuantity()+" "+reportDetail.getUnit()));
+        holder.tvNumber.setText(String.valueOf(position + 1));
+        holder.tvQuantity.setText(String.valueOf(reportDetail.getQuantity() + " " + reportDetail.getUnit()));
         Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_table);
         drawableBg.setColorFilter(colorBg[position % colorBg.length], PorterDuff.Mode.SRC);
         holder.ivBackgroundColor.setImageDrawable(drawableBg);

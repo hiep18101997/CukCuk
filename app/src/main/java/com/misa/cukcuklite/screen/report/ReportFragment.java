@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.report;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +58,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
         loadFragment(ReportCurrentFragment.newInstance(this));
         return view;
     }
+
     /**
      * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
@@ -67,6 +67,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
     private void initView(View view) {
         tvTimeValue = view.findViewById(R.id.tvTimeValue);
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -74,43 +75,52 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.lnTime:
-                final FragmentManager fm = getActivity().getSupportFragmentManager();
-                final ParamReportDialog dialog = new ParamReportDialog();
-                dialog.setParamReports(mParamReports);
-                dialog.setCallBack(new ParamReportDialog.ParamCallBack() {
-                    @Override
-                    public void onClick(ParamReport paramReport) {
-                        if (paramReport.getParamType() == ParamReportEnum.CURRENT) {
-                            tvTimeValue.setText(paramReport.getTitleReportDetail());
-                            loadFragment(ReportCurrentFragment.newInstance(ReportFragment.this));
-                        } else if (paramReport.getParamType() == ParamReportEnum.OTHER) {
-                            FromToPickerDialog fromToPickerDialog = new FromToPickerDialog();
-                            fromToPickerDialog.setOnClickAcceptPickDate(new FromToPickerDialog.OnClickAcceptPickDate() {
-                                @Override
-                                public void onPickDate(Date fromDate, Date toDate) {
-                                    Date[] dates=new Date[2];
-                                    dates[0]=fromDate;
-                                    dates[1]=toDate;
-                                    loadFragment(ReportDetailFragment.newInstance(dates));
-                                    @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-                                    tvTimeValue.setText(dateFormat.format(fromDate)+"-"+dateFormat.format(toDate));
-                                    setSelected(7, mParamReports);
-                                }
-                            });
-                            fromToPickerDialog.show(fm, "date_picker");
-                        } else {
-                            tvTimeValue.setText(paramReport.getTitleReportDetail());
-                            loadFragment(ReportTotalFragment.newInstance(paramReport));
+        try {
+            switch (v.getId()) {
+                case R.id.lnTime:
+                    final FragmentManager fm = getActivity().getSupportFragmentManager();
+                    final ParamReportDialog dialog = new ParamReportDialog();
+                    dialog.setParamReports(mParamReports);
+                    dialog.setCallBack(new ParamReportDialog.ParamCallBack() {
+                        @Override
+                        public void onClick(ParamReport paramReport) {
+                            if (paramReport.getParamType() == ParamReportEnum.CURRENT) {
+                                tvTimeValue.setText(paramReport.getTitleReportDetail());
+                                loadFragment(ReportCurrentFragment.newInstance(ReportFragment.this));
+                            } else if (paramReport.getParamType() == ParamReportEnum.OTHER) {
+                                FromToPickerDialog fromToPickerDialog = new FromToPickerDialog();
+                                fromToPickerDialog.setOnClickAcceptPickDate(new FromToPickerDialog.OnClickAcceptPickDate() {
+                                    @Override
+                                    public void onPickDate(Date fromDate, Date toDate) {
+                                        Date[] dates = new Date[2];
+                                        dates[0] = fromDate;
+                                        dates[1] = toDate;
+                                        loadFragment(ReportDetailFragment.newInstance(dates));
+                                        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+                                        tvTimeValue.setText(dateFormat.format(fromDate) + "-" + dateFormat.format(toDate));
+                                        setSelected(7, mParamReports);
+                                    }
+                                });
+                                fromToPickerDialog.show(fm, "date_picker");
+                            } else {
+                                tvTimeValue.setText(paramReport.getTitleReportDetail());
+                                loadFragment(ReportTotalFragment.newInstance(paramReport));
+                            }
                         }
-                    }
-                });
-                dialog.show(fm, getString(R.string.icon_fragment));
-                break;
+                    });
+                    dialog.show(fm, getString(R.string.icon_fragment));
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Mục đích method: Lấy danh sách mốc thời gian mặc định
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private List<ParamReport> getListParam() {
         List<ParamReport> paramReports = new ArrayList<>();
         paramReports.add(new ParamReport(ParamReportEnum.CURRENT));
@@ -124,6 +134,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
         paramReports.get(0).setSelected(true);
         return paramReports;
     }
+
     /**
      * Mục đích method: Replace Fragment
      *
@@ -141,6 +152,7 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -148,37 +160,46 @@ public class ReportFragment extends Fragment implements IReportContract.IView, V
      */
     @Override
     public void onClick(ReportCurrent reportCurrent) {
-        switch (reportCurrent.getParamType()) {
-            case TODAY:
-                ReportTotal reportTotalToday=new ReportTotal(ReportTotalEnum.TODAY);
-                reportTotalToday.setFromDate(reportCurrent.getFromDate());
-                reportTotalToday.setToDate(reportCurrent.getToDate());
-                startActivity(ReportDetailActivity.getIntent(getContext(),reportTotalToday));
-                break;
-            case THIS_WEEK:
-                setSelected(1, mParamReports);
-                tvTimeValue.setText(mParamReports.get(1).getTitleReportDetail());
-                loadFragment(ReportTotalFragment.newInstance(mParamReports.get(1)));
-                break;
-            case THIS_YEAR:
-                setSelected(5, mParamReports);
-                tvTimeValue.setText(mParamReports.get(5).getTitleReportDetail());
-                loadFragment(ReportTotalFragment.newInstance(mParamReports.get(5)));
-                break;
-            case YESTERDAY:
-                ReportTotal reportTotalYes=new ReportTotal(ReportTotalEnum.YESTERDAY);
-                reportTotalYes.setFromDate(reportCurrent.getFromDate());
-                reportTotalYes.setToDate(reportCurrent.getToDate());
-                startActivity(ReportDetailActivity.getIntent(getContext(),reportTotalYes));
-                break;
-            case THIS_MONTH:
-                setSelected(3, mParamReports);
-                tvTimeValue.setText(mParamReports.get(3).getTitleReportDetail());
-                loadFragment(ReportTotalFragment.newInstance(mParamReports.get(3)));
-                break;
+        try {
+            switch (reportCurrent.getParamType()) {
+                case TODAY:
+                    ReportTotal reportTotalToday = new ReportTotal(ReportTotalEnum.TODAY);
+                    reportTotalToday.setFromDate(reportCurrent.getFromDate());
+                    reportTotalToday.setToDate(reportCurrent.getToDate());
+                    startActivity(ReportDetailActivity.getIntent(getContext(), reportTotalToday));
+                    break;
+                case THIS_WEEK:
+                    setSelected(1, mParamReports);
+                    tvTimeValue.setText(mParamReports.get(1).getTitleReportDetail());
+                    loadFragment(ReportTotalFragment.newInstance(mParamReports.get(1)));
+                    break;
+                case THIS_YEAR:
+                    setSelected(5, mParamReports);
+                    tvTimeValue.setText(mParamReports.get(5).getTitleReportDetail());
+                    loadFragment(ReportTotalFragment.newInstance(mParamReports.get(5)));
+                    break;
+                case YESTERDAY:
+                    ReportTotal reportTotalYes = new ReportTotal(ReportTotalEnum.YESTERDAY);
+                    reportTotalYes.setFromDate(reportCurrent.getFromDate());
+                    reportTotalYes.setToDate(reportCurrent.getToDate());
+                    startActivity(ReportDetailActivity.getIntent(getContext(), reportTotalYes));
+                    break;
+                case THIS_MONTH:
+                    setSelected(3, mParamReports);
+                    tvTimeValue.setText(mParamReports.get(3).getTitleReportDetail());
+                    loadFragment(ReportTotalFragment.newInstance(mParamReports.get(3)));
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Mục đích method: Set vị trí chọn của dialog chọn khoảng thời gian
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void setSelected(int position, List<ParamReport> mParamReports) {
         for (ParamReport paramReport : mParamReports) {
             paramReport.setSelected(false);

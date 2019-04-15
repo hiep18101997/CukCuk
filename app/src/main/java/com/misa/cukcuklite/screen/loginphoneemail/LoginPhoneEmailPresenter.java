@@ -19,30 +19,48 @@ public class LoginPhoneEmailPresenter implements ILoginPhoneEmailContract.IPrese
         mView = view;
     }
 
+    /**
+     * Mục đích method: Đăng nhập bằng tài khoản, mật khẩu
+     *
+     * @param username: tên đăng nhập
+     * @param password: mật khẩu
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void login(String username, String password) {
-        if (isValidInput(username, password)) {
-            mView.showLoading();
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(username, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            mView.hideLoading();
-                            if (!task.isSuccessful()) {
-                                mView.onLoginFail();
-                                return;
+        try {
+            if (isValidInput(username, password)) {
+                mView.showLoading();
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(username, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                mView.hideLoading();
+                                if (!task.isSuccessful()) {
+                                    mView.onLoginFail();
+                                    return;
+                                }
+                                mView.navigateHomeScreen();
                             }
-                            mView.navigateHomeScreen();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                        }
-                    });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                            }
+                        });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Mục đích method: Kiểm tra dữ liệu đầu vào
+     *
+     * @param username: tên đăng nhập
+     * @param password: mật khẩu
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private boolean isValidInput(String username, String password) {
         try {
             if (TextUtils.isEmpty(username)) {

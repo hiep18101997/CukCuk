@@ -112,39 +112,48 @@
                     android:textSize="@dimen/font_size_medium_small"
                     tools:ignore="RtlSymmetry" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginStart="52dp"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edRePassword"
+                    style="@style/EditTextDefaultSingleLine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:gravity="center_vertical"
+                    android:hint="@string/password_re_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/margin_medium"
+                    android:paddingTop="@dimen/margin_medium"
+                    android:paddingBottom="@dimen/margin_medium"
+                    android:textSize="@dimen/font_size_medium_small"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             style="@style/ButtonDefault"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_btn_login"
             android:layout_marginTop="@dimen/margin_large"
             android:background="@drawable/selector_button_login"
-            android:text="@string/button_login"
+            android:text="@string/register"
             android:textAllCaps="true" />
 
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:gravity="center_horizontal"
-            android:text="@string/forgot_password"
-            android:textColor="@color/color_white"
-            android:textSize="@dimen/font_size_medium_small" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0" />
-
-        <ImageView
-            android:id="@+id/imgInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:contentDescription="@string/image_view"
-            app:srcCompat="@drawable/ic_about" />
     </LinearLayout>
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportTotal;
-import com.misa.cukcuklite.screen.addorder.AddOrderActivity;
 
 import java.util.Date;
 
@@ -18,6 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import static com.misa.cukcuklite.utils.AppConstant.EXTRA_REPORT_TOTAL;
 
+/**
+ * - Mục đích Class : Màn hình Báo các chi tiết
+ * - @created_by Hoàng Hiệp on 4/15/2019
+ */
 public class ReportDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -42,6 +45,7 @@ public class ReportDetailActivity extends AppCompatActivity implements View.OnCl
         initListener();
 
     }
+
     /**
      * Mục đích method: Bắt sự kiện
      *
@@ -50,6 +54,7 @@ public class ReportDetailActivity extends AppCompatActivity implements View.OnCl
     private void initListener() {
         findViewById(R.id.ivBack).setOnClickListener(this);
     }
+
     /**
      * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
@@ -57,9 +62,9 @@ public class ReportDetailActivity extends AppCompatActivity implements View.OnCl
      */
     private void initView() {
         ReportTotal reportTotal = (ReportTotal) getIntent().getSerializableExtra(EXTRA_REPORT_TOTAL);
-        Date[] dates=new Date[2];
-        dates[0]=reportTotal.getFromDate();
-        dates[1]=reportTotal.getToDate();
+        Date[] dates = new Date[2];
+        dates[0] = reportTotal.getFromDate();
+        dates[1] = reportTotal.getToDate();
         loadFragment(ReportDetailFragment.newInstance(dates));
     }
 
@@ -80,6 +85,7 @@ public class ReportDetailActivity extends AppCompatActivity implements View.OnCl
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -87,13 +93,18 @@ public class ReportDetailActivity extends AppCompatActivity implements View.OnCl
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ivBack:
-               finish();
+                finish();
                 break;
         }
     }
 
+    /**
+     * Mục đích method: Xử lý xự kiện khi ấn nút back
+     *
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     @Override
     public void onBackPressed() {
         finish();

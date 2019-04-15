@@ -32,6 +32,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.misa.cukcuklite.utils.AppConstant.ACTION_ADD_ORDER;
 import static com.misa.cukcuklite.utils.AppConstant.ACTION_EDIT_ORDER;
 
+/**
+ * - Mục đích Class :Màn hình bán hàng
+ * - @created_by Hoàng Hiệp on 4/15/2019
+ */
 public class SaleFragment extends Fragment implements ISaleContract.IView, SaleAdapter.OnClickItem, View.OnClickListener {
     private static final String TAG = SaleFragment.class.getName();
     private ISaleContract.IPresenter mPresenter;
@@ -58,6 +62,11 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
         initBroadcastReceiver();
     }
 
+    /**
+     * Mục đích method: Khỏi tạo và ánh xạ các view
+     *
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     private void initComp() {
         try {
             clWaterMark = getView().findViewById(R.id.clWaterMark);
@@ -75,6 +84,11 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
         }
     }
 
+    /**
+     * Mục đích method: Đăng kí lắng nghe BroadcastReceiver
+     *
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     private void initBroadcastReceiver() {
         try {
             IntentFilter filter = new IntentFilter();
@@ -91,6 +105,7 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -101,6 +116,7 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
         Log.d(TAG, "onClickItem: " + order.toString());
         startActivity(AddOrderActivity.getIntent(getContext(), order));
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -108,15 +124,20 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
      */
     @Override
     public void onClickCancel(final Order order) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        ConfirmRemoveDialog inputDialog = new ConfirmRemoveDialog(getString(R.string.confirm_remove_order), new ConfirmRemoveDialog.OnClickAccept() {
-            @Override
-            public void onAccept() {
-                mPresenter.removeOrder(order);
-            }
-        });
-        inputDialog.show(fragmentManager, getString(R.string.confirm_dialog));
+        try {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            ConfirmRemoveDialog inputDialog = new ConfirmRemoveDialog(getString(R.string.confirm_remove_order), new ConfirmRemoveDialog.OnClickAccept() {
+                @Override
+                public void onAccept() {
+                    mPresenter.removeOrder(order);
+                }
+            });
+            inputDialog.show(fragmentManager, getString(R.string.confirm_dialog));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -127,6 +148,12 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
         startActivity(BillActivity.getIntent(getContext(), order));
     }
 
+    /**
+     * Mục đích method: Xử lý sự kiện khi load danh sách Order xong
+     *
+     * @param orders: danh sách order
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     @Override
     public void onLoadListOrderSuccess(List<Order> orders) {
         if (orders.size() > 0) {
@@ -138,10 +165,16 @@ public class SaleFragment extends Fragment implements ISaleContract.IView, SaleA
 
     }
 
+    /**
+     * Mục đích method: Load loai data khi xóa thành công 1 Order
+     *
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     @Override
     public void onRemoveOrderSuccess() {
         mPresenter.getAllOrder();
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *

@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * - Mục đích Class :Máy tính hóa đơn
  * - @created_by Hoàng Hiệp on 4/12/2019
@@ -34,11 +35,13 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
 
     public BillCalculatorDialog() {
     }
- /**
-      * Mục đích method: Hàm khởi tạo
-      * @param callBack: Callback trả về
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+
+    /**
+     * Mục đích method: Hàm khởi tạo
+     *
+     * @param callBack: Callback trả về
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @SuppressLint("ValidFragment")
     public BillCalculatorDialog(InputNumberFragment.DialogCallBack callBack) {
         mCallBack = callBack;
@@ -75,6 +78,7 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
         rootView.findViewById(R.id.btnKeyClear).setOnClickListener(this);
 
     }
+
     /**
      * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
@@ -85,15 +89,15 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
             etInputNumber = rootView.findViewById(R.id.edtScreen);
             textInput = "";
             showResult();
-            List<Long> longs=new ArrayList<>();
+            List<Long> longs = new ArrayList<>();
             longs.add(new Long(10000));
             longs.add(new Long(20000));
             longs.add(new Long(50000));
             longs.add(new Long(100000));
-            mAdapter=new BillCalculatorAdapter(getContext(),longs,this);
-            RecyclerView rcvSuggestMoney=rootView.findViewById(R.id.rcvSuggestMoney);
+            mAdapter = new BillCalculatorAdapter(getContext(), longs, this);
+            RecyclerView rcvSuggestMoney = rootView.findViewById(R.id.rcvSuggestMoney);
             rcvSuggestMoney.setAdapter(mAdapter);
-            rcvSuggestMoney.setLayoutManager(new GridLayoutManager(getContext(),2));
+            rcvSuggestMoney.setLayoutManager(new GridLayoutManager(getContext(), 2));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,6 +125,7 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
     public void onClick(long money) {
 
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -206,6 +211,7 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
             e.printStackTrace();
         }
     }
+
     /**
      * Create by Hoàng Hiệp on 4/4/2019
      * Hiển thị số lượng
@@ -223,6 +229,7 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
             e.printStackTrace();
         }
     }
+
     /**
      * Create by Hoàng Hiệp on 4/4/2019
      * Hiển thị số lượng
@@ -235,6 +242,7 @@ public class BillCalculatorDialog extends DialogFragment implements BillCalculat
             e.printStackTrace();
         }
     }
+
     public interface DialogCallBack {
         void setAmount(String amount);
     }

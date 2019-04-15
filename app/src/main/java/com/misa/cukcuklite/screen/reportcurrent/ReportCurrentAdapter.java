@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.bumptech.glide.Glide;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.ReportCurrent;
@@ -32,11 +31,12 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
     private List<ReportCurrent> mReportCurrents;
     private LayoutInflater mLayoutInflater;
     private OnCLickReport mCLickReport;
-    public ReportCurrentAdapter(Context context,OnCLickReport cLickReport) {
+
+    public ReportCurrentAdapter(Context context, OnCLickReport cLickReport) {
         mContext = context;
         mReportCurrents = new ArrayList<>();
         mLayoutInflater = LayoutInflater.from(context);
-        mCLickReport=cLickReport;
+        mCLickReport = cLickReport;
     }
 
     @NonNull
@@ -79,7 +79,7 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
         holder.lnContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (reportCurrent.getAmount()>0){
+                if (reportCurrent.getAmount() > 0) {
                     mCLickReport.onClick(reportCurrent);
                 }
 
@@ -101,6 +101,10 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
         notifyDataSetChanged();
     }
 
+    interface OnCLickReport {
+        void onClick(ReportCurrent reportCurrent);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout lnContent;
         private ImageView ivBackgroundColor, ivIcon;
@@ -114,8 +118,5 @@ public class ReportCurrentAdapter extends RecyclerView.Adapter<ReportCurrentAdap
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAmount = itemView.findViewById(R.id.tvAmount);
         }
-    }
-    interface OnCLickReport{
-        void onClick(ReportCurrent reportCurrent);
     }
 }

@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.screen.calculator;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * - Mục đích Class :Adapter của bàn phím
  * - @created_by Hoàng Hiệp on 4/12/2019
@@ -127,7 +127,7 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
                     ivIconInput.setVisibility(View.VISIBLE);
                     tvInputKey.setVisibility(View.GONE);
                 }
-            } catch (Resources.NotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

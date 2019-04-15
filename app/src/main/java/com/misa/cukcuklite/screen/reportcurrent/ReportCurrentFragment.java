@@ -49,10 +49,9 @@ public class ReportCurrentFragment extends Fragment implements IReportCurrentCon
     }
 
     /**
-     * Mục đích method: Khai báo ánh xạ view
+     * Mục đích method: Xử lý sự kiện
      *
-     * @param v View
-     * @created_by Hoàng Hiệp on 4/9/2019
+     * @created_by Hoàng Hiệp on 3/27/2019
      */
     private void initView(View v) {
         mPresenter = new ReportCurrentPresenter(this, getContext());
@@ -63,16 +62,33 @@ public class ReportCurrentFragment extends Fragment implements IReportCurrentCon
         rvReport.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
+    /**
+     * Mục đích method: Add data và Adapter khi load xong
+     *
+     * @param reportCurrents: danh sách ReportCurrent
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onLoadReportCurrentDone(List<ReportCurrent> reportCurrents) {
         mAdapter.setData(reportCurrents);
     }
 
+    /**
+     * Mục đích method: Xử li khi click vào item bất kì
+     *
+     * @param reportCurrent: trả về ReportCurrent ở vị trí đó
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onClick(ReportCurrent reportCurrent) {
         mOnClickCurrentReport.onClick(reportCurrent);
     }
 
+    /**
+     * Mục đích method: interface Callback khi click vào item
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     public interface OnClickCurrentReport {
         void onClick(ReportCurrent reportCurrent);
     }

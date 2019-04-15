@@ -13,6 +13,10 @@ import com.misa.cukcuklite.screen.home.HomeActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * - Mục đích Class :Màn hình đăng nhập bằng email và mật khẩu
+ * - @created_by Hoàng Hiệp on 4/15/2019
+ */
 public class LoginPhoneEmailActivity extends AppCompatActivity implements ILoginPhoneEmailContract.IView, View.OnClickListener {
     private static final String TAG = LoginPhoneEmailActivity.class.getName();
     private ILoginPhoneEmailContract.IPresenter mPresenter;
@@ -39,6 +43,7 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         initComponent();
         initListener();
     }
+
     /**
      * Mục đích method: Khởi tạo, ánh xạ View và đổ dữ liệu mặc định cho View
      *
@@ -49,6 +54,7 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         mUsername = findViewById(R.id.edUserName);
         mPassword = findViewById(R.id.edPassword);
     }
+
     /**
      * Mục đích method: Bắt sự kiện
      *
@@ -58,6 +64,7 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         findViewById(R.id.btnBack).setOnClickListener(this);
         findViewById(R.id.btnLogin).setOnClickListener(this);
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *
@@ -78,26 +85,54 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         }
     }
 
+    /**
+     * Mục đích method: Hiện thông báo khi tên đăng nhập để trống
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onEmptyUsername() {
         Toast.makeText(this, getString(R.string.login_msg_username_empty), Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Mục đích method: Hiện thông báo khi mật khẩu để trống
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void onEmptyPassword() {
         Toast.makeText(this, getString(R.string.login_msg_password_empty), Toast.LENGTH_SHORT).show();
     }
+
+    /**
+     * Mục đích method: Chuyển đến màn hình Home
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
 
     @Override
     public void navigateHomeScreen() {
         startActivity(HomeActivity.getIntent(this));
     }
 
+    /**
+     * Mục đích method: Hiện thông báo khi đăng nhập thất bại
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
+
     @Override
     public void onLoginFail() {
         Toast.makeText(this, R.string.msg_login_fail, Toast.LENGTH_SHORT).show();
 
     }
+
+    /**
+     * Mục đích method: Hiện loading
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
 
     @Override
     public void showLoading() {
@@ -107,6 +142,11 @@ public class LoginPhoneEmailActivity extends AppCompatActivity implements ILogin
         progressDialog.show();
     }
 
+    /**
+     * Mục đích method: Ẩn loading
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     @Override
     public void hideLoading() {
         progressDialog.dismiss();

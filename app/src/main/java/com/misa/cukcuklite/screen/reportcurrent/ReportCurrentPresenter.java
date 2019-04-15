@@ -28,6 +28,11 @@ public class ReportCurrentPresenter implements IReportCurrentContract.IPresenter
         mContext = context;
     }
 
+    /**
+     * Mục đích method: Trả về danh sách ReportCurrent
+     *
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     @SuppressLint("StaticFieldLeak")
     @Override
     public void getListReportCurrent() {
@@ -41,11 +46,11 @@ public class ReportCurrentPresenter implements IReportCurrentContract.IPresenter
                 reportCurrentList.add(new ReportCurrent(ParamReportEnum.THIS_MONTH));
                 reportCurrentList.add(new ReportCurrent(ParamReportEnum.THIS_YEAR));
                 for (ReportCurrent current : reportCurrentList) {
-
-                    current.setAmount(getAmount(DatabaseClient.getInstance(mContext)
+                    List<Bill> bills=DatabaseClient.getInstance(mContext)
                             .getAppDatabase()
                             .mBillDAO()
-                            .getBillBetweenDate(current.getFromDate(), current.getToDate())));
+                            .getBillBetweenDate(current.getFromDate(), current.getToDate());
+                    current.setAmount(getAmount(bills));
                 }
                 return reportCurrentList;
             }
@@ -60,6 +65,13 @@ public class ReportCurrentPresenter implements IReportCurrentContract.IPresenter
 
     }
 
+    /**
+     * Mục đích method: Tính tổng số tiền
+     *
+     * @param bills : danh sách hóa đơn
+     * @return amount: tổng só tiền của hóa đơn
+     * @created_by Hoàng Hiệp on 4/15/2019
+     */
     private long getAmount(List<Bill> bills) {
         try {
             long amount = 0;

@@ -8,6 +8,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
+
 /**
  * - Mục đích Class :Trừ tượng đối tượng Hóa đơn
  * - @created_by Hoàng Hiệp on 4/12/2019
@@ -21,6 +22,16 @@ public class Bill {
     @ColumnInfo(name = "date")
     @TypeConverters({DateConverter.class})
     private Date date;
+    @ColumnInfo(name = "amount")
+    private long amount;
+
+    public Bill() {
+    }
+
+    public Bill(int orderId, Date date) {
+        this.orderId = orderId;
+        this.date = date;
+    }
 
     public long getAmount() {
         return amount;
@@ -28,16 +39,6 @@ public class Bill {
 
     public void setAmount(long amount) {
         this.amount = amount;
-    }
-
-    @ColumnInfo(name = "amount")
-    private long amount;
-    public Bill() {
-    }
-
-    public Bill(int orderId, Date date) {
-        this.orderId = orderId;
-        this.date = date;
     }
 
     public int getId() {

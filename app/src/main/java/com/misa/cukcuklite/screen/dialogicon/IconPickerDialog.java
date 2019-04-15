@@ -82,10 +82,12 @@ public class IconPickerDialog extends DialogFragment implements IconPickerAdapte
             e.printStackTrace();
         }
     }
- /**
-      * Mục đích method: Set kích cỡ cho dialog
-      * @created_by Hoàng Hiệp on 4/12/2019
-      */
+
+    /**
+     * Mục đích method: Set kích cỡ cho dialog
+     *
+     * @created_by Hoàng Hiệp on 4/12/2019
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -98,6 +100,7 @@ public class IconPickerDialog extends DialogFragment implements IconPickerAdapte
             e.printStackTrace();
         }
     }
+
     /**
      * Mục đích method: Xử lý sự kiện
      *

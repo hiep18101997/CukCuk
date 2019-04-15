@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * - Mục đích Class :Adapter của BillCal
  * - @created_by Hoàng Hiệp on 4/12/2019
@@ -28,7 +29,7 @@ public class BillCalculatorAdapter extends RecyclerView.Adapter<BillCalculatorAd
         mContext = context;
         mSuggestMoneys = suggestMoneys;
         mOnClickSuggestMoney = onClickSuggestMoney;
-        mLayoutInflater=LayoutInflater.from(context);
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @NonNull
