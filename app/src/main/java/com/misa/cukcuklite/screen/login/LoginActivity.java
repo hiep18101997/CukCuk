@@ -51,7 +51,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.I
         lnFacebook.setOnClickListener(this);
         lnPhoneEmail.setOnClickListener(this);
     }
-
+    /**
+     * Mục đích method: Khở
+     *
+     * @created_by Hoàng Hiệp on 3/27/2019
+     */
     private void initFacebookSDK() {
         try {
             mCallbackManager = CallbackManager.Factory.create();
