@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.screen.chooseunit;
 
 import com.misa.cukcuklite.data.model.Unit;
-
 import java.util.List;
 
 /**
@@ -10,27 +9,30 @@ import java.util.List;
  * ‐ @created_by Hoàng Hiệp on 3/23/2019
  */
 interface IChooseUnitContract {
-    interface IView {
-        void onGetUnitSuccess(List<Unit> units);
 
-        void onInsertUnitSuccess(int unit);
+  interface IView {
 
-        void onInsertUnitError();
+    void onGetUnitSuccess(List<Unit> units);
 
-        void onEditUnitDone(int id);
+    void onInsertUnitSuccess(int unit);
 
-        void onRemoveUnitSuccess();
+    void onInsertUnitError();
 
-        void onRemoveUnitError();
-    }
+    void onEditUnitDone(int id);
 
-    interface IPresenter {
-        void getListUnit();
+    void onRemoveUnitSuccess();
 
-        void saveUnit(String text);
+    void onRemoveUnitError();
+  }
 
-        void editUnit(Unit unitEdit);
+  interface IPresenter {
 
-        void removeUnit(Unit unit);
-    }
+    void getListUnit();
+
+    void saveUnit(String text);
+
+    void editUnit(Unit unitEdit);
+
+    void removeUnit(Unit unit);
+  }
 }

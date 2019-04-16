@@ -1,23 +1,26 @@
 package com.misa.cukcuklite.screen.register;
 
 interface IRegisterContract {
-    interface IView {
-        void hideLoading();
 
-        void onEmptyUsername();
+  interface IView {
 
-        void onEmptyPassword();
+    void hideLoading();
 
-        void onRepassFail();
+    void onEmptyUsername();
 
-        void onEmptyRePass();
+    void onEmptyPassword();
 
-        void navigateHomeScreen();
+    void onRepassFail();
 
-        void onRegisterFail();
-    }
+    void onEmptyRePass();
 
-    interface IPresenter {
-        void register(String username, String password, String repassword);
-    }
+    void navigateHomeScreen();
+
+    void onRegisterFail();
+  }
+
+  interface IPresenter {
+
+    void register(String username, String password, String repassword);
+  }
 }

@@ -142,4 +142,10 @@
     <string name="login_msg_re_password_empty">Xác nhận mật khẩu không được để trống</string>
     <string name="login_msg_re_password_fail">Mật khẩu nhập lại không khớp</string>
     <string name="login_msg_register_fail">Đăng kí tài khoản không thành công</string>
+    <string name="logout_confirm">Bạn có chắc chắn muốn đăng xuất</string>
+    <string name="url_rate_app">market://details?id=vn.com.misa.android_cukcuklite</string>
+    <string name="mess_share">Chào bạn. Hãy tải ngay CUKCUK Lite - ứng dụng bán hàng miễn phí dành cho các quán nhỏ và quầy di động tại địa chỉ: https://play.google.com/store/apps/details?id=vn.com.misa.android_cukcuklite</string>
+    <string name="share_via">Chia sẻ qua</string>
+    <string name="mess_bill">Số tiền khách đưa nhỏ hơn số tiền phải trả</string>
+  <string name="totalRevenue">Tổng \n doanh thu</string>
 </resources>

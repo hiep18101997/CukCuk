@@ -15,141 +15,143 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import com.misa.cukcuklite.R;
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
-
+import java.text.NumberFormat;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import java.util.Locale;
 
 /**
- * - Mục đích Class :Adapter cho màn hình bán hàng
- * - @created_by Hoàng Hiệp on 4/15/2019
+ * - Mục đích Class :Adapter cho màn hình bán hàng - @created_by Hoàng Hiệp on 4/15/2019
  */
 public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
-    private Context mContext;
-    private List<Order> mOrders;
-    private LayoutInflater layoutInflater;
-    private OnClickItem mOnClickItem;
-    private int[] colorBg;
 
-    public SaleAdapter(Context context, List<Order> orders, OnClickItem onClickItem) {
-        mContext = context;
-        this.mOrders = orders;
-        layoutInflater = LayoutInflater.from(context);
-        mOnClickItem = onClickItem;
-        colorBg = context.getResources().getIntArray(R.array.arr_colors);
-    }
+  private Context mContext;
+  private List<Order> mOrders;
+  private LayoutInflater layoutInflater;
+  private OnClickItem mOnClickItem;
+  private int[] colorBg;
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.item_sale, parent, false);
-        return new ViewHolder(view);
-    }
+  public SaleAdapter(Context context, List<Order> orders, OnClickItem onClickItem) {
+    mContext = context;
+    this.mOrders = orders;
+    layoutInflater = LayoutInflater.from(context);
+    mOnClickItem = onClickItem;
+    colorBg = context.getResources().getIntArray(R.array.arr_colors);
+  }
 
-    @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        try {
-            List<DishOrder> dishOrders = mOrders.get(position).getOrders();
-            SpannableStringBuilder builder = new SpannableStringBuilder();
-            for (DishOrder dishOrder : dishOrders) {
-                if (dishOrder.getQuantity() != 0) {
-                    Dish dish = dishOrder.getDish();
-                    Integer count = dishOrder.getQuantity();
-                    String s = dish.getName() + " (" + count.toString() + "), ";
-                    SpannableString span = new SpannableString(s);
-                    span.setSpan(new RelativeSizeSpan(0.8f),
-                            dish.getName().length() + 1,
-                            s.length() - 2, 0);
-                    span.setSpan(new ForegroundColorSpan(Color.parseColor("#3A8FC7")),
-                            dish.getName().length() + 1,
-                            s.length() - 2, 0);
-                    builder.append(span);
-                } else {
-                }
-            }
-            holder.tvContent.setText(builder.delete(builder.length() - 2, builder.length() - 1));
-            holder.tvPerson.setText(String.valueOf(mOrders.get(position).getNumberPerson()));
-            holder.tvAmount.setText(String.valueOf(getAmount(dishOrders)));
-            holder.tvTable.setText(String.valueOf(mOrders.get(position).getNumberTable()));
-            Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_table);
-            drawableBg.setColorFilter(colorBg[position % colorBg.length], PorterDuff.Mode.SRC);
-            holder.imgBackground.setImageDrawable(drawableBg);
-            holder.rlContent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnClickItem.onClickItem(mOrders.get(position));
-                }
-            });
-            holder.lnCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnClickItem.onClickCancel(mOrders.get(position));
-                }
-            });
-            holder.lnTakeMoney.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnClickItem.onClickTakeMoney(mOrders.get(position));
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+  @NonNull
+  @Override
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view = layoutInflater.inflate(R.layout.item_sale, parent, false);
+    return new ViewHolder(view);
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    try {
+      List<DishOrder> dishOrders = mOrders.get(position).getOrders();
+      SpannableStringBuilder builder = new SpannableStringBuilder();
+      for (DishOrder dishOrder : dishOrders) {
+        if (dishOrder.getQuantity() != 0) {
+          Dish dish = dishOrder.getDish();
+          Integer count = dishOrder.getQuantity();
+          String s = dish.getName() + " (" + count.toString() + "), ";
+          SpannableString span = new SpannableString(s);
+          span.setSpan(new RelativeSizeSpan(0.8f),
+              dish.getName().length() + 1,
+              s.length() - 2, 0);
+          span.setSpan(new ForegroundColorSpan(Color.parseColor("#3A8FC7")),
+              dish.getName().length() + 1,
+              s.length() - 2, 0);
+          builder.append(span);
+        } else {
         }
-    }
-
-    private long getAmount(List<DishOrder> dishOrders) {
-        long amount = 0;
-        for (DishOrder entry : dishOrders) {
-            amount += entry.getDish().getCost() * entry.getQuantity();
+      }
+      holder.tvContent.setText(builder.delete(builder.length() - 2, builder.length() - 1));
+      holder.tvPerson.setText(String.valueOf(mOrders.get(position).getNumberPerson()));
+      holder.tvAmount
+          .setText(NumberFormat.getNumberInstance(Locale.US).format(getAmount(dishOrders)));
+      holder.tvTable.setText(String.valueOf(mOrders.get(position).getNumberTable()));
+      Drawable drawableBg = mContext.getResources().getDrawable(R.drawable.bg_table);
+      drawableBg.setColorFilter(colorBg[position % colorBg.length], PorterDuff.Mode.SRC);
+      holder.imgBackground.setImageDrawable(drawableBg);
+      holder.rlContent.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          mOnClickItem.onClickItem(mOrders.get(position));
         }
-        return amount;
-    }
-
-    @Override
-    public int getItemCount() {
-        return mOrders != null ? mOrders.size() : 0;
-    }
-
-    public void addData(List<Order> orders) {
-        if (orders == null) {
-            return;
+      });
+      holder.lnCancel.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          mOnClickItem.onClickCancel(mOrders.get(position));
         }
-        mOrders.clear();
-        mOrders.addAll(orders);
-        notifyDataSetChanged();
-    }
-
-    interface OnClickItem {
-        void onClickItem(Order order);
-
-        void onClickCancel(Order order);
-
-        void onClickTakeMoney(Order order);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public RelativeLayout rlContent;
-        public LinearLayout lnCancel, lnTakeMoney;
-        public ImageView imgBackground, imgGotoDetail;
-        public TextView tvTable, tvPerson, tvAmount, tvContent;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imgBackground = itemView.findViewById(R.id.imgBackground);
-            imgGotoDetail = itemView.findViewById(R.id.imgGotoDetail);
-            lnCancel = itemView.findViewById(R.id.lnCancel);
-            lnTakeMoney = itemView.findViewById(R.id.lnTakeMoney);
-            tvTable = itemView.findViewById(R.id.tvTable);
-            tvPerson = itemView.findViewById(R.id.tvPerson);
-            tvAmount = itemView.findViewById(R.id.tvAmount);
-            tvContent = itemView.findViewById(R.id.tvContent);
-            rlContent = itemView.findViewById(R.id.rlContent);
+      });
+      holder.lnTakeMoney.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          mOnClickItem.onClickTakeMoney(mOrders.get(position));
         }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
+
+  private long getAmount(List<DishOrder> dishOrders) {
+    long amount = 0;
+    for (DishOrder entry : dishOrders) {
+      amount += entry.getDish().getCost() * entry.getQuantity();
+    }
+    return amount;
+  }
+
+  @Override
+  public int getItemCount() {
+    return mOrders != null ? mOrders.size() : 0;
+  }
+
+  public void addData(List<Order> orders) {
+    if (orders == null) {
+      return;
+    }
+    mOrders.clear();
+    mOrders.addAll(orders);
+    notifyDataSetChanged();
+  }
+
+  interface OnClickItem {
+
+    void onClickItem(Order order);
+
+    void onClickCancel(Order order);
+
+    void onClickTakeMoney(Order order);
+  }
+
+  public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public RelativeLayout rlContent;
+    public LinearLayout lnCancel, lnTakeMoney;
+    public ImageView imgBackground, imgGotoDetail;
+    public TextView tvTable, tvPerson, tvAmount, tvContent;
+
+    public ViewHolder(@NonNull View itemView) {
+      super(itemView);
+      imgBackground = itemView.findViewById(R.id.imgBackground);
+      imgGotoDetail = itemView.findViewById(R.id.imgGotoDetail);
+      lnCancel = itemView.findViewById(R.id.lnCancel);
+      lnTakeMoney = itemView.findViewById(R.id.lnTakeMoney);
+      tvTable = itemView.findViewById(R.id.tvTable);
+      tvPerson = itemView.findViewById(R.id.tvPerson);
+      tvAmount = itemView.findViewById(R.id.tvAmount);
+      tvContent = itemView.findViewById(R.id.tvContent);
+      rlContent = itemView.findViewById(R.id.rlContent);
+    }
+  }
 }

@@ -1,25 +1,28 @@
 package com.misa.cukcuklite.screen.loginphoneemail;
 
 /**
- * - Mục đích Class :Màn hình đăng nhập bằng tài khoản mật khẩu
- * - @created_by Hoàng Hiệp on 4/15/2019
+ * - Mục đích Class :Màn hình đăng nhập bằng tài khoản mật khẩu - @created_by Hoàng Hiệp on
+ * 4/15/2019
  */
 interface ILoginPhoneEmailContract {
-    interface IView {
-        void onEmptyUsername();
 
-        void onEmptyPassword();
+  interface IView {
 
-        void navigateHomeScreen();
+    void onEmptyUsername();
 
-        void onLoginFail();
+    void onEmptyPassword();
 
-        void showLoading();
+    void navigateHomeScreen();
 
-        void hideLoading();
-    }
+    void onLoginFail();
 
-    interface IPresenter {
-        void login(String username, String password);
-    }
+    void showLoading();
+
+    void hideLoading();
+  }
+
+  interface IPresenter {
+
+    void login(String username, String password);
+  }
 }

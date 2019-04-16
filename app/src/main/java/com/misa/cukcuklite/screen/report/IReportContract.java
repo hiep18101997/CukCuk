@@ -6,9 +6,12 @@ package com.misa.cukcuklite.screen.report;
  * ‐ @created_by Hoàng Hiệp on 7/4/2019
  */
 interface IReportContract {
-    interface IView {
-    }
 
-    interface IPresenter {
-    }
+  interface IView {
+
+  }
+
+  interface IPresenter {
+
+  }
 }

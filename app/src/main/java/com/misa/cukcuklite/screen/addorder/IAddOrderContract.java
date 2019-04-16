@@ -2,37 +2,38 @@ package com.misa.cukcuklite.screen.addorder;
 
 import com.misa.cukcuklite.data.model.DishOrder;
 import com.misa.cukcuklite.data.model.Order;
-
 import java.util.List;
 
 /**
- * ‐ Contract  trong mô hình MVP cho màn hình Đặt món
- * ‐ @created_by Hoàng Hiệp on 4/5/2019
+ * ‐ Contract  trong mô hình MVP cho màn hình Đặt món ‐ @created_by Hoàng Hiệp on 4/5/2019
  */
 interface IAddOrderContract {
-    interface IView {
-        void onLoadListDishSuccess(List<DishOrder> list);
 
-        void onZeroPerson();
+  interface IView {
 
-        void onZeroTable();
+    void onLoadListDishSuccess(List<DishOrder> list);
 
-        void onZeroDish();
+    void onZeroPerson();
 
-        void onSaveOrderDone();
+    void onZeroTable();
 
-        void onEditOrderDone();
+    void onZeroDish();
 
-        void navigateBillActivity(Order mOrder);
-    }
+    void onSaveOrderDone();
 
-    interface IPresenter {
-        void getMenu();
+    void onEditOrderDone();
 
-        void saveOrder(String table, String person, List<DishOrder> list);
+    void navigateBillActivity(Order mOrder);
+  }
 
-        void editOrder(int idOrder, String table, String person, List<DishOrder> list);
+  interface IPresenter {
 
-        void takeMoney(String toString, String toString1, List<DishOrder> list);
-    }
+    void getMenu();
+
+    void saveOrder(String table, String person, List<DishOrder> list);
+
+    void editOrder(int idOrder, String table, String person, List<DishOrder> list);
+
+    void takeMoney(String toString, String toString1, List<DishOrder> list);
+  }
 }

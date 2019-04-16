@@ -87,8 +87,8 @@
 
                 <ImageView
                     android:id="@+id/imgMinus"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                    android:layout_width="@dimen/dp_42"
+                    android:layout_height="@dimen/dp_42"
                     android:src="@drawable/bg_minus_selector" />
 
                 <TextView
@@ -109,8 +109,8 @@
 
                 <ImageView
                     android:id="@+id/imgPlus"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                    android:layout_width="@dimen/dp_42"
+                    android:layout_height="@dimen/dp_42"
                     android:src="@drawable/bg_plus_selector" />
             </LinearLayout>
         </RelativeLayout>

@@ -4,7 +4,7 @@
     android:id="@+id/rlItemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="@dimen/rl_item_margin"
     android:background="@drawable/bg_border_radius_gray"
     android:clickable="true"
     android:focusable="true"

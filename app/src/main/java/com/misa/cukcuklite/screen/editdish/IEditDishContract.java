@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.editdish;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.Unit;
 
@@ -12,23 +11,26 @@ import com.misa.cukcuklite.data.model.Unit;
  * ‐ @created_by Hoàng Hiệp on 3/23/2019
  */
 interface IEditDishContract {
-    interface IView {
-        void onRemoveDishDone();
 
-        void onEditDishDone();
+  interface IView {
 
-        void onGetNameDone(Unit unit);
+    void onRemoveDishDone();
 
-        void onRemoveUnitError();
-    }
+    void onEditDishDone();
 
-    interface IPresenter {
-        void editDish(Dish currentDish);
+    void onGetNameDone(Unit unit);
 
-        Bitmap getBitmapFromAssets(Activity activity, String icon);
+    void onRemoveUnitError();
+  }
 
-        void removeDish(Dish currentDish);
+  interface IPresenter {
 
-        void getNameUnitFromId(int unit);
-    }
+    void editDish(Dish currentDish);
+
+    Bitmap getBitmapFromAssets(Activity activity, String icon);
+
+    void removeDish(Dish currentDish);
+
+    void getNameUnitFromId(int unit);
+  }
 }

@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             android:text="@string/content_login_phone_email_top"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_normal" />
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             android:text="@string/content_login_phone_email_bot"
             android:textColor="@color/white"
             android:textSize="@dimen/btn_login_text_size" />

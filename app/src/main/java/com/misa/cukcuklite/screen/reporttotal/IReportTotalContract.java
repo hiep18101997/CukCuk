@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.reporttotal;
 
 import com.misa.cukcuklite.data.model.ParamReport;
 import com.misa.cukcuklite.data.model.ReportTotal;
-
 import java.util.List;
 
 /**
@@ -11,11 +10,14 @@ import java.util.List;
  * ‐ @created_by Hoàng Hiệp on 7/4/2019
  */
 interface IReportTotalContract {
-    interface IView {
-        void onLoadDataDone(List<ReportTotal> reportTotals);
-    }
 
-    interface IPresenter {
-        void loadData(ParamReport paramReport);
-    }
+  interface IView {
+
+    void onLoadDataDone(List<ReportTotal> reportTotals);
+  }
+
+  interface IPresenter {
+
+    void loadData(ParamReport paramReport);
+  }
 }

@@ -294,8 +294,8 @@
                             android:textSize="@dimen/font_size_medium_small" />
 
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="@dimen/dp_28"
+                            android:layout_height="@dimen/dp_28"
                             android:layout_marginEnd="-8dp"
                             app:srcCompat="@drawable/ic_chevron_right" />
                     </LinearLayout>
@@ -337,7 +337,7 @@
 
                 <com.misa.cukcuklite.utils.OrderBottomView
                     android:layout_width="match_parent"
-                    android:layout_height="8dp" />
+                    android:layout_height="@dimen/dp_8" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

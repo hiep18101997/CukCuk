@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.data.db;
 
 import android.content.Context;
-
 import androidx.room.Room;
 
 /**
@@ -10,23 +9,25 @@ import androidx.room.Room;
  * ‐ @created_by dhhiep on 3/22/2019
  */
 public class DatabaseClient {
-    private static DatabaseClient mInstance;
-    private Context mCtx;
-    private AppDatabase appDatabase;
 
-    private DatabaseClient(Context mCtx) {
-        this.mCtx = mCtx;
-        appDatabase = Room.databaseBuilder(mCtx, AppDatabase.class, "CukCukLite").fallbackToDestructiveMigration().build();
-    }
+  private static DatabaseClient mInstance;
+  private Context mCtx;
+  private AppDatabase appDatabase;
 
-    public static synchronized DatabaseClient getInstance(Context mCtx) {
-        if (mInstance == null) {
-            mInstance = new DatabaseClient(mCtx);
-        }
-        return mInstance;
-    }
+  private DatabaseClient(Context mCtx) {
+    this.mCtx = mCtx;
+    appDatabase = Room.databaseBuilder(mCtx, AppDatabase.class, "CukCukLite")
+        .fallbackToDestructiveMigration().build();
+  }
 
-    public AppDatabase getAppDatabase() {
-        return appDatabase;
+  public static synchronized DatabaseClient getInstance(Context mCtx) {
+    if (mInstance == null) {
+      mInstance = new DatabaseClient(mCtx);
     }
+    return mInstance;
+  }
+
+  public AppDatabase getAppDatabase() {
+    return appDatabase;
+  }
 }

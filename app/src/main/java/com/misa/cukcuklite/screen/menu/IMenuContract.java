@@ -1,7 +1,6 @@
 package com.misa.cukcuklite.screen.menu;
 
 import com.misa.cukcuklite.data.model.Dish;
-
 import java.util.List;
 
 /**
@@ -10,11 +9,14 @@ import java.util.List;
  * ‐ @created_by Hoàng Hiệp on 3/23/2019
  */
 interface IMenuContract {
-    interface IView {
-        void onLoadListDishSuccess(List<Dish> dishes);
-    }
 
-    interface IPresenter {
-        void getAllDish();
-    }
+  interface IView {
+
+    void onLoadListDishSuccess(List<Dish> dishes);
+  }
+
+  interface IPresenter {
+
+    void getAllDish();
+  }
 }

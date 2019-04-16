@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:paddingStart="16dp"
+        android:paddingStart="@dimen/tv_unit_padding_start"
         tools:ignore="RtlSymmetry" />
 
     <ImageView

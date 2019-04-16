@@ -11,36 +11,37 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "units")
 public class Unit {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-    @ColumnInfo(name = "name")
-    private String mName;
 
-    public Unit(String name) {
-        mName = name;
-    }
+  @PrimaryKey(autoGenerate = true)
+  private int id;
+  @ColumnInfo(name = "name")
+  private String mName;
 
-    public int getId() {
-        return id;
-    }
+  public Unit(String name) {
+    mName = name;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getName() {
-        return mName;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        mName = name;
-    }
+  public String getName() {
+    return mName;
+  }
 
-    @Override
-    public String toString() {
-        return "Unit{" +
-                "id=" + id +
-                ", mName='" + mName + '\'' +
-                '}';
-    }
+  public void setName(String name) {
+    mName = name;
+  }
+
+  @Override
+  public String toString() {
+    return "Unit{" +
+        "id=" + id +
+        ", mName='" + mName + '\'' +
+        '}';
+  }
 }

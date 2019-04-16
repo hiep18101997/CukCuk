@@ -37,8 +37,8 @@
 
                 <ImageView
                     android:id="@+id/ivAvatar"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="@dimen/iv_avatar_w"
+                    android:layout_height="@dimen/iv_avatar_h"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/tv_navi_padding"
                     android:scaleType="centerCrop" />
@@ -264,6 +264,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnShare"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/iv_navi_w"
                 android:background="@drawable/bg_item"
@@ -291,6 +292,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/iv_navi_w"
+                android:id="@+id/lnRate"
                 android:background="@drawable/bg_item"
                 android:clickable="true"
                 android:focusable="true"

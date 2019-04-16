@@ -132,4 +132,20 @@
     <dimen name="water_mark_height">220dp</dimen>
     <dimen name="direct_top_height">200dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    <dimen name="margin_13">13dp</dimen>
+    <dimen name="iv_avatar_w">70dp</dimen>
+    <dimen name="iv_avatar_h">70dp</dimen>
+    <dimen name="tv_unit_padding_start">16dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="rl_item_margin">6dp</dimen>
+    <dimen name="btn_min_w">90dp</dimen>
+    <dimen name="iv_icon_h">50dp</dimen>
+    <dimen name="rv_margin_bot">8dp</dimen>
+    <dimen name="dp_395">395dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_42">42dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="iv_logo_medium_w">70dp</dimen>
+    <dimen name="dp_52">52dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
 </resources>

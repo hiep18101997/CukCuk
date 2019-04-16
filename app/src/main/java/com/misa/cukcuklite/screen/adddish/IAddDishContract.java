@@ -2,7 +2,6 @@ package com.misa.cukcuklite.screen.adddish;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-
 import com.misa.cukcuklite.data.model.Dish;
 import com.misa.cukcuklite.data.model.Unit;
 
@@ -12,21 +11,24 @@ import com.misa.cukcuklite.data.model.Unit;
  * ‐ @created_by Hoàng Hiệp on 3/23/2019
  */
 interface IAddDishContract {
-    interface IView {
-        void onEmptyName();
 
-        void onEmptyUnit();
+  interface IView {
 
-        void onAddDishDone();
+    void onEmptyName();
 
-        void onGetNameDone(Unit unit);
-    }
+    void onEmptyUnit();
 
-    interface IPresenter {
-        Bitmap getBitmapFromAssets(Context context, String icon);
+    void onAddDishDone();
 
-        void addDish(Dish dish);
+    void onGetNameDone(Unit unit);
+  }
 
-        void getNameUnitFromId(int unitID);
-    }
+  interface IPresenter {
+
+    Bitmap getBitmapFromAssets(Context context, String icon);
+
+    void addDish(Dish dish);
+
+    void getNameUnitFromId(int unitID);
+  }
 }

@@ -30,8 +30,8 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/iv_logo_medium_w"
+            android:layout_height="@dimen/iv_logo_medium_w"
             android:contentDescription="@string/image_view"
             android:scaleType="fitCenter"
             android:src="@drawable/logo_cukcuk_white" />
@@ -85,7 +85,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:layout_marginStart="52dp"
+                android:layout_marginStart="@dimen/dp_52"
                 android:background="@color/divider_color" />
 
             <LinearLayout
